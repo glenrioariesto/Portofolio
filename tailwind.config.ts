@@ -9,8 +9,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "#FF7700",//Orange
+        "primary-variant": "#FF5003",//Darker Orange
+        secondary: "#364BC5",
+        "secondary-variant": "#A855F7",
+        "background-primary": "#FFF7F0",
+      },
+      fontFamily: {
+        grotesk: ["var(--font-space-grotesk)", "sans-serif"],
       },
     },
   },
