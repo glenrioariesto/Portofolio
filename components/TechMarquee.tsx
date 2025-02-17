@@ -11,8 +11,6 @@ const techStack = [
   { name: "Supabase", icon: "/tech-stack/supabase.svg" },
   { name: "MySQL", icon: "/tech-stack/mysql.svg" },
   { name: "PostgreSQL", icon: "/tech-stack/postgress.svg" },
-  { name: "Flutter", icon: "/tech-stack/flutter.svg" },
-  { name: "Laravel", icon: "/tech-stack/laravel.svg" },
   { name: "Vercel", icon: "/tech-stack/vercel.svg" },
   { name: "GitHub", icon: "/tech-stack/github.svg" },
   { name: "ChatGPT", icon: "/tech-stack/chatgpt.svg" },
@@ -20,7 +18,7 @@ const techStack = [
 
 const TechMarquee = () => {
   return (
-    <div className="relative overflow-hidden mt-10 h-16 max-w-screen-lg mx-auto px-4">
+    <div className="relative overflow-hidden h-16 max-w-screen-lg mx-auto px-4">
       {/* Gradient Shadow (inframe & outframe) */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Shadow di kiri */}
@@ -32,7 +30,7 @@ const TechMarquee = () => {
       {/* Marquee */}
       <motion.div
         className="flex w-max space-x-10 items-center"
-        animate={{ x: ["0%", "-100%"] }}
+        animate={{ x: ["0%", "-50%"] }}
         transition={{
           ease: "linear",
           duration: 35,

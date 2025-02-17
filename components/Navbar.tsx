@@ -31,7 +31,7 @@ const Navbar = () => {
 
         {/* Link Navigasi */}
         <div className={`md:fle  ${isOpen ? "flex flex-col absolute top-14 right-0 bg-white shadow-md w-48 p-4 rounded-lg " : "hidden md:flex space-x-2"}`}>
-          <Link href="#about" className="block text-secondary hover:text-primary py-1">About</Link>
+          <Link href="#about" className="block text-secondary hover:text-primary py-1">About Me</Link>
           <Link href="#experience" className="block text-secondary hover:text-primary py-1">Experience</Link>
           <Link href="#showcase" className="block text-secondary hover:text-primary py-1">Showcase</Link>
           <Link href="#services" className="block text-secondary hover:text-primary py-1">Services</Link>

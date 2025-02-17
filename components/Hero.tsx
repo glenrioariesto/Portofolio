@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="flex justify-center items-center mx-auto max-w-screen-lg mt-24">
+    <section className="flex justify-center items-center mx-auto max-w-screen-lg pt-24">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -21,7 +21,7 @@ const Hero = () => {
         >
             <div className="w-[400px] h-[400px] rounded-full overflow-hidden ">
                 <Image
-                src="/profile-2.webp"
+                src="/profile.webp"
                 alt="Glen Rio Aristo"
                 width={200}
                 height={200}
