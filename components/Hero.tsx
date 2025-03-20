@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { MailCheckIcon } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -10,7 +11,7 @@ const Hero = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="w-full bg-white shadow-lg rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center"
+        className="w-full bg-white shadow-lg rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center "
       >
         {/* Foto Profil */}
         <motion.div
@@ -68,7 +69,13 @@ const Hero = () => {
               web applications
             </span>, leveraging modern technologies and AI to enhance efficiency and quality.
           </p>
-
+          <a 
+            className="bg-gradient-to-r from-primary-variant to-primary px-4 py-2 w-full justify-center text-center rounded-md flex items-center gap-2" 
+            href="mailto:glenrioariesto@gmail.com"
+          >
+            <MailCheckIcon className="w-5 h-5" /> 
+            Email Me
+          </a>
         </motion.div>
       </motion.div>
     </section>

@@ -1,6 +1,7 @@
-import Experience from "@/components/Experience";
 import Hero from "@/components/Hero";
 import TechMarquee from "@/components/TechMarquee";
+import OrgExperience from "@/components/OrgExperience";
+import Experience from "@/components/Experience";
 
 export default function Home() {
   return (
@@ -8,12 +9,12 @@ export default function Home() {
       <div className="bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/background-kotak.png')" }}>
         <Hero />
       </div>
-      <div className="bg-white pt-28 ">
+      <div className="bg-white pt-12 ">
         <TechMarquee />
-        <Experience />
+        <OrgExperience />
       </div>
-      <Hero />
-      <Hero />
+      <Experience />  
+     
 
 
     </main>
