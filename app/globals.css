@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-dots {
+    background-image: radial-gradient(#dadada 1px, transparent 0);
+    background-size: 20px 20px;
+    background-color: #fff;
+    background-attachment: fixed;
+  }
+  
