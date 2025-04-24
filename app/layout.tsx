@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id" className={spaceGrotesk.variable}>
-      <body className="bg-dots text-white">
+      <body className="bg-dots text-white scroll-smooth">
         <Navbar />
         {children}
       </body>

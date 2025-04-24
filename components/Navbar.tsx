@@ -3,6 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react"; // Icon untuk hamburger menu
+import { ShinyText } from "./ShinyText";
+import { motion, AnimatePresence } from "framer-motion";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,26 +21,71 @@ const Navbar = () => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3 w-3 bg-primary-variant"></span>
           </span>
-          <h1 className="text-sm font-medium whitespace-nowrap">Available For Remote Work</h1>
+           <ShinyText
+              text="Available For Remote Work"
+              speed={5}
+              className="text-sm font-medium whitespace-nowrap"
+            />
         </div>
 
         {/* Menu untuk Mobile */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-secondary focus:outline-none"
+          className="md:hidden text-secondary focus:outline-none transition-all duration-300 ease-in-out"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        {/* Link Navigasi */}
-        <div className={`md:fle  ${isOpen ? "flex flex-col absolute top-14 right-0 bg-white shadow-md w-48 p-4 rounded-lg " : "hidden md:flex space-x-2"}`}>
+        {/* Link Navigasi (Desktop) */}
+        <div className="hidden md:flex space-x-2">
           <Link href="#about" className="block text-secondary hover:text-primary py-1">About Me</Link>
           <Link href="#experience" className="block text-secondary hover:text-primary py-1">Experience</Link>
           <Link href="#showcase" className="block text-secondary hover:text-primary py-1">Showcase</Link>
           <Link href="#services" className="block text-secondary hover:text-primary py-1">Services</Link>
         </div>
-
       </div>
+      
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="flex flex-col absolute top-14 right-6 bg-white shadow-md w-48 p-4 rounded-lg z-40 md:hidden"
+          >
+            <Link
+              href="#about"
+              onClick={() => setIsOpen(false)}
+              className="block text-secondary hover:text-primary py-1"
+            >
+              About Me
+            </Link>
+            <Link
+              href="#experience"
+              onClick={() => setIsOpen(false)}
+              className="block text-secondary hover:text-primary py-1"
+            >
+              Experience
+            </Link>
+            <Link
+              href="#showcase"
+              onClick={() => setIsOpen(false)}
+              className="block text-secondary hover:text-primary py-1"
+            >
+              Showcase
+            </Link>
+            <Link
+              href="#services"
+              onClick={() => setIsOpen(false)}
+              className="block text-secondary hover:text-primary py-1"
+            >
+              Services
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </nav>
   );
 };

@@ -9,7 +9,7 @@ export default function Home() {
       <div className="bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/background-kotak.png')" }}>
         <Hero />
       </div>
-      <div className="bg-white pt-12 ">
+      <div className="pt-12 ">
         <TechMarquee />
         <OrgExperience />
       </div>
