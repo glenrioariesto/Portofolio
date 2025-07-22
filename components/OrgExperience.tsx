@@ -84,7 +84,7 @@ const OrgExperience = () => {
     <section id="experience" className="relative flex justify-center mx-auto max-w-screen-lg pt-12 ">
       <motion.div
         ref={ref}
-        className="w-full flex flex-col md:flex-row items-start gap-10 bg-white rounded-2xl shadow-lg p-4"
+        className="w-full flex flex-col md:flex-row items-start gap-10 p-4"
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
