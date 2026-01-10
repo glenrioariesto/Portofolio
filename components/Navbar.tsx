@@ -2,91 +2,56 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react"; // Icon untuk hamburger menu
+import { Home, User, Briefcase, Layers, Sparkles } from "lucide-react";
 import { ShinyText } from "./ShinyText";
-import { motion, AnimatePresence } from "framer-motion";
-
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
-    <nav className="font-grotesk fixed top-5 left-1/2 transform -translate-x-1/2 w-[90%] max-w-screen-lg py-3 px-6 bg-white rounded-xl shadow-lg z-50">
-      <div className="flex justify-between items-center">
-        
-        {/* "Available For Remote Work" */}
-        <div className="flex items-center space-x-2 bg-secondary text-white px-4 py-2 rounded-full">
-          {/* Pin Circle dengan Animasi Kedip */}
-          <span className="relative flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-primary-variant"></span>
-          </span>
-           <ShinyText
-              text="Available For Remote Work"
-              speed={5}
-              className="text-sm font-medium whitespace-nowrap"
-            />
+    <>
+
+
+      {/* Navigation Sidebar / Bottom Bar */}
+      <nav className="
+        fixed z-40 bg-white/90 backdrop-blur-md shadow-2xl border border-white/20
+        /* Mobile: Floating Bottom Dock (iPhone style) */
+        bottom-8 left-1/2 -translate-x-1/2 w-auto h-auto rounded-full flex flex-row justify-between items-center px-8 py-4 gap-6
+        /* Desktop: Floating Left Sidebar */
+        2xl:top-1/2 2xl:-translate-y-1/2 2xl:left-8 2xl:bottom-auto 2xl:translate-x-0 2xl:flex-col 2xl:px-4 2xl:py-10 2xl:gap-10 2xl:rounded-full
+      ">
+
+        {/* Logo / Number Badge (Desktop Only) */}
+        <div className="hidden 2xl:flex w-10 h-10 bg-black text-white rounded-full items-center justify-center font-bold text-xl">
+          G
         </div>
 
-        {/* Menu untuk Mobile */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-secondary focus:outline-none transition-all duration-300 ease-in-out"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
-        {/* Link Navigasi (Desktop) */}
-        <div className="hidden md:flex space-x-2">
-          <Link href="#about" className="block text-secondary hover:text-primary py-1">About Me</Link>
-          <Link href="#experience" className="block text-secondary hover:text-primary py-1">Experience</Link>
-          <Link href="#showcase" className="block text-secondary hover:text-primary py-1">Showcase</Link>
-          <Link href="#services" className="block text-secondary hover:text-primary py-1">Services</Link>
+        {/* Navigation Links */}
+        <div className="flex flex-row 2xl:flex-col gap-6 2xl:gap-8 text-gray-400 items-center">
+          <Link href="#" className="hover:text-black transition-colors p-2 hover:bg-gray-100 rounded-full" title="Home">
+            <Home size={24} />
+          </Link>
+          <Link href="#about" className="hover:text-black transition-colors p-2 hover:bg-gray-100 rounded-full" title="About Me">
+            <User size={24} />
+          </Link>
+          <Link href="#experience" className="hover:text-black transition-colors p-2 hover:bg-gray-100 rounded-full" title="Experience">
+            <Briefcase size={24} />
+          </Link>
+          <Link href="#showcase" className="hover:text-black transition-colors p-2 hover:bg-gray-100 rounded-full" title="Showcase">
+            <Layers size={24} />
+          </Link>
+          <Link href="#services" className="hover:text-black transition-colors p-2 hover:bg-gray-100 rounded-full" title="Services">
+            <Sparkles size={24} />
+          </Link>
         </div>
-      </div>
-      
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="flex flex-col absolute top-14 right-6 bg-white shadow-md w-48 p-4 rounded-lg z-40 md:hidden"
-          >
-            <Link
-              href="#about"
-              onClick={() => setIsOpen(false)}
-              className="block text-secondary hover:text-primary py-1"
-            >
-              About Me
-            </Link>
-            <Link
-              href="#experience"
-              onClick={() => setIsOpen(false)}
-              className="block text-secondary hover:text-primary py-1"
-            >
-              Experience
-            </Link>
-            <Link
-              href="#showcase"
-              onClick={() => setIsOpen(false)}
-              className="block text-secondary hover:text-primary py-1"
-            >
-              Showcase
-            </Link>
-            <Link
-              href="#services"
-              onClick={() => setIsOpen(false)}
-              className="block text-secondary hover:text-primary py-1"
-            >
-              Services
-            </Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
-    </nav>
+        {/* Bottom Avatar (Desktop Only) */}
+        <div className="hidden 2xl:block mt-auto">
+          <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden border-2 border-white shadow-sm">
+            <img src="/assets/profile.webp" alt="Profile" className="w-full h-full object-cover" />
+          </div>
+        </div>
+
+      </nav>
+    </>
   );
 };
 

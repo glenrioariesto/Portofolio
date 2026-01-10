@@ -6,15 +6,15 @@ import Experience from "@/components/Experience";
 export default function Home() {
   return (
     <main>
-      <div className="bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/background-kotak.png')" }}>
+      <div className="bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/assets/background-kotak.png')" }}>
         <Hero />
       </div>
-      <div className="pt-12 ">
+      <div className="pt-12">
         <TechMarquee />
         <OrgExperience />
       </div>
-      <Experience />  
-     
+      <Experience />
+
 
 
     </main>

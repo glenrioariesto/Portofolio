@@ -64,13 +64,6 @@ const cardVariants = {
       ease: "easeOut",
     },
   },
-  hover: {
-    scale: 1.02,
-    boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
-    transition: {
-      duration: 0.3,
-    },
-  },
   tap: {
     scale: 0.98,
   },
@@ -81,17 +74,17 @@ const OrgExperience = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" className="relative flex justify-center mx-auto max-w-screen-lg pt-12 ">
+    <section id="experience" className="relative flex justify-center mx-auto max-w-screen-lg pt-12 px-3">
       <motion.div
         ref={ref}
-        className="w-full flex flex-col md:flex-row items-start gap-10 p-4"
+        className="w-full flex flex-col md:flex-row items-start gap-10 p-8 md:p-12 bg-white/90 backdrop-blur-md shadow-2xl rounded-[2.5rem] border-2 border-gray-400 2xl:border-gray-100"
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
         {/* Sticky Section */}
         <motion.div
-          className="md:w-1/3 md:sticky top-96 self-start text-center md:text-left px-4"
+          className="md:w-1/3 md:sticky top-24 self-start text-center md:text-left"
           variants={itemVariants}
         >
           <div className="flex items-center justify-center md:justify-start gap-2">
@@ -114,17 +107,16 @@ const OrgExperience = () => {
             {orgExperiences.map((exp, index) => (
               <motion.div
                 key={index}
-                className="p-6 sm:p-8 rounded-lg shadow-lg bg-white"
+                className="p-6 sm:p-8 rounded-b-[2rem] bg-gradient-to-b from-transparent to-gray-50 border-b border-gray-100 relative overflow-hidden"
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"
-                whileHover="hover"
                 whileTap="tap"
                 layout
               >
-                <h3 className="text-2xl sm:text-xl font-bold text-secondary">{exp.title}</h3>
-                <p className="text-sm text-secondary/80">{exp.company} • {exp.duration}</p>
-                <ul className="list-disc pl-5 mt-2 text-gray-700 text-justify">
+                <h3 className="text-2xl sm:text-xl font-bold bg-gradient-to-r from-secondary to-cyan-400 text-transparent bg-clip-text relative z-10">{exp.title}</h3>
+                <p className="text-sm text-gray-500 relative z-10 font-medium">{exp.company} • {exp.duration}</p>
+                <ul className="list-disc pl-5 mt-2 text-gray-500 text-justify relative z-10">
                   {exp.description.map((point, i) => (
                     <motion.li
                       key={i}
