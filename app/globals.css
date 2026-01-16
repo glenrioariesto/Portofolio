@@ -1,6 +1,28 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #FF7700;
+  --color-primary-variant: #FF5003;
+  --color-secondary: #364BC5;
+  --color-secondary-variant: #A855F7;
+  --color-background-primary: #FFF7F0;
+
+  --font-grotesk: var(--font-space-grotesk), sans-serif;
+
+  --animate-shine: shine 5s linear infinite;
+
+  @keyframes shine {
+    0% {
+      background-position: 100%;
+    }
+
+    100% {
+      background-position: -100%;
+    }
+  }
+}
+
+
 
 html {
   scroll-behavior: smooth;

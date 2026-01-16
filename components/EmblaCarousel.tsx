@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react'
+﻿import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   EmblaCarouselType,
   EmblaEventType,
@@ -6,8 +6,9 @@ import {
 } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import { NextButton, PrevButton, usePrevNextButtons } from './EmblaCarouselArrowButton'
-import { Home, Compass, User, Settings, ArrowUpRight } from 'lucide-react'
-
+import { ArrowUpRight, ChevronLeft, ChevronRight, Layers, ChevronUp, ChevronDown } from 'lucide-react'
+import { Project } from './Experience'
+import Image from 'next/image'
 
 const TWEEN_FACTOR_BASE = 0.52
 
@@ -15,12 +16,191 @@ const numberWithinRange = (number: number, min: number, max: number): number =>
   Math.min(Math.max(number, min), max)
 
 type PropType = {
-  slides: number[]
+  projects: Project[]
   options?: EmblaOptionsType
 }
 
+const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isTechStackExpanded, setIsTechStackExpanded] = useState(false)
+  const [isInfoExpanded, setIsInfoExpanded] = useState(false)
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    setCurrentImageIndex((prev) => (prev + 1) % project.images.length)
+  }
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length)
+  }
+
+  return (
+    <div className="embla__slide__number relative h-full">
+      <div className="flex w-full h-[500px] bg-white/90 backdrop-blur-md rounded-[2.5rem] overflow-hidden shadow-2xl py-2 pr-2 relative border-2 border-gray-400 2xl:border-gray-100">
+
+        {/* Navigation Bar (Sidebar on Desktop, Bottom Bar on Mobile) */}
+        <div className="
+            z-30
+            /* Mobile: Absolute bottom, horizontal row */
+            absolute bottom-0 left-0 w-full h-16 flex flex-row justify-around items-center bg-white rounded-b-[2.5rem] px-6 2xl:border-none
+            /* Desktop: Relative, vertical column */
+            md:relative md:w-20 md:h-full md:flex-col md:justify-start md:py-8 md:gap-8 md:bottom-auto md:left-auto md:bg-transparent md:px-0 md:rounded-none
+        ">
+          {/* Number Badge (Desktop only) */}
+          <div className="hidden md:flex w-10 h-10 bg-black text-white rounded-full items-center justify-center font-bold text-xl">
+            {index + 1}
+          </div>
+
+          {/* Icons */}
+          <div className="flex flex-row md:flex-col gap-8 text-gray-400 w-full md:w-auto justify-around md:justify-start items-center">
+            {/* Next Image Button */}
+            <button
+              onClick={nextImage}
+              className="text-black hover:text-gray-600 transition-colors"
+              aria-label="Next Image"
+            >
+              <ChevronRight size={24} />
+            </button>
+
+            {/* Previous Image Button */}
+            <button
+              onClick={prevImage}
+              className="text-gray-400 hover:text-black transition-colors"
+              aria-label="Previous Image"
+            >
+              <ChevronLeft size={24} />
+            </button>
+          </div>
+
+          {/* Bottom Avatar (Desktop only) */}
+          <div className="hidden md:block mt-auto">
+            <div className="w-8 h-8 rounded-full bg-gray-200" />
+          </div>
+        </div>
+
+        {/* Main Content Area */}
+        <div className="flex-1 relative rounded-[2rem] overflow-hidden bg-[#fdf6f0] h-full pb-16 md:pb-0">
+
+          {/* Background Image */}
+          <div className="absolute inset-0 bg-gray-200">
+            {/* Fallback gradient if no image */}
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-orange-100" />
+
+            {project.images.length > 0 && (
+              <Image
+                src={project.images[currentImageIndex]}
+                alt={`${project.title} screenshot ${currentImageIndex + 1}`}
+                fill
+                className="object-cover transition-opacity duration-500"
+              />
+            )}
+
+            {/* Image Indicators - Removed as we have counter in navbar now */}
+            {/* {project.images.length > 1 && (
+               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                 {project.images.map((_, idx) => (
+                   <div 
+                     key={idx} 
+                     className={`w-2 h-2 rounded-full transition-colors ${idx === currentImageIndex ? 'bg-white' : 'bg-white/50'}`}
+                   />
+                 ))}
+               </div>
+             )} */}
+          </div>
+
+          {/* Top Right Actions */}
+          <div className="absolute top-6 right-6 z-10 flex gap-4 text-black">
+            <a
+              href={project.link || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-white/50 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium hover:bg-white transition-colors"
+            >
+              View Project
+              <ArrowUpRight size={16} />
+            </a>
+          </div>
+
+          {/* Content Overlay */}
+          <div className="absolute inset-0 pt-8 flex flex-col justify-end text-black pointer-events-none">
+            <div className="grid grid-cols-[5rem_auto_1fr_auto_3rem] items-end">
+
+              {/* Spacer Left */}
+              <div className="h-12 w-full relative -mb-2 2xl:-mb-1 border-b-8 border-r-8 rounded-b-3xl border-gray-400 2xl:border-white z-50"></div>
+
+              {/* Bottom Left Widget - Tech Stack */}
+              <div
+                className={`-mx-2 2xl:-mx-[0.6rem] bg-white/90 backdrop-blur-md p-5 rounded-t-3xl shadow-sm w-auto min-w-[12rem] max-w-[11rem] hidden sm:block relative z-40 border-x-8 border-t-8 border-b-0 2xl:border-x-2 2xl:border-t-2 border-gray-400 2xl:border-gray-100  pointer-events-auto cursor-pointer transition-all duration-300 ease-in-out ${isTechStackExpanded ? 'h-auto max-h-[300px]' : 'h-24 overflow-hidden'}`}
+                onClick={() => setIsTechStackExpanded(!isTechStackExpanded)}
+              >
+                <div className="flex items-center justify-between gap-2 mb-3 text-gray-500">
+                  <div className="flex items-center gap-2">
+                    <Layers size={16} />
+                    <span className="text-xs font-medium uppercase tracking-wider">Tech Stack</span>
+                  </div>
+                  {isTechStackExpanded ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {project.techStack.map((tech, idx) => (
+                    <span key={idx} className={`px-2 py-1 bg-gray-100 rounded-md text-xs font-medium text-gray-700 ${!isTechStackExpanded && idx > 2 ? 'hidden' : ''}`}>
+                      {tech}
+                    </span>
+                  ))}
+                  {!isTechStackExpanded && project.techStack.length > 3 && (
+                    <span className="px-2 py-1 bg-gray-100 rounded-md text-xs font-medium text-gray-700">
+                      +{project.techStack.length - 3}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Spacer Middle */}
+              <div className="h-12 w-full relative -mb-2 2xl:-mb-1 border-b-8 border-x-8 rounded-b-3xl border-gray-400 2xl:border-white z-50">
+                {/* This space is reserved for the inverted radius effect */}
+              </div>
+
+              {/* Bottom Right Widget - Project Info */}
+              <div
+                className={`-mx-2 2xl:-mx-[0.6rem] bg-white/90 backdrop-blur-md p-4 rounded-t-3xl shadow-sm flex flex-col justify-center gap-2 pr-8 relative z-40 border-x-8 border-t-8 border-b-0 2xl:border-x-2 2xl:border-t-2 border-gray-400 2xl:border-gray-100 pointer-events-auto cursor-pointer transition-all duration-300 ease-in-out  min-w-[20rem] max-w-[28rem]  ${isInfoExpanded ? 'h-auto max-h-[300px]' : 'h-24 overflow-hidden'}`}
+                onClick={() => setIsInfoExpanded(!isInfoExpanded)}
+              >
+                <div className="flex items-center gap-6">
+                  <div className="flex flex-col items-center border-r border-gray-200 pr-6">
+                    <span className="text-xs font-medium text-gray-500">{project.date.split(' ')[0]}</span>
+                    <span className="text-3xl font-bold">{project.date.split(' ')[1]}</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold leading-tight">{project.title}</h3>
+                    <p className={`text-xs text-gray-500 mt-1 ${!isInfoExpanded ? 'line-clamp-1' : ''}`}>{project.description}</p>
+                  </div>
+                  <div className="absolute top-4 right-4 text-gray-400">
+                    {isInfoExpanded ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
+                  </div>
+                </div>
+
+                {isInfoExpanded && project.stats && (
+                  <div className="mt-4 pt-4 border-t border-gray-200 flex justify-between items-center">
+                    <span className="text-sm font-medium text-gray-600">{project.stats.label}</span>
+                    <span className="text-lg font-bold text-primary">{project.stats.value}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Spacer Right */}
+              <div className="h-12 w-full relative -mb-2 2xl:-mb-1 border-b-8 border-l-8 rounded-b-3xl border-gray-400 2xl:border-white z-50"></div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options } = props
+  const { projects, options } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
   const tweenFactor = useRef(0)
   const tweenNodes = useRef<HTMLElement[]>([])
@@ -99,123 +279,21 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   }, [emblaApi, tweenScale])
 
   return (
-    <div className="embla">
+    <div className="embla relative px-20">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((index) => (
-            <div className="embla__slide" key={index}>
-              <div className="embla__slide__number relative h-full">
-                <div className="flex w-full h-[500px] bg-white/90 backdrop-blur-md rounded-[2.5rem] overflow-hidden shadow-2xl py-2 pr-2 relative border-2 border-gray-400 2xl:border-gray-100">
-
-
-
-                  {/* Navigation Bar (Sidebar on Desktop, Bottom Bar on Mobile) */}
-                  <div className="
-                      z-30
-                      /* Mobile: Absolute bottom, horizontal row */
-                      absolute bottom-0 left-0 w-full h-16 flex flex-row justify-around items-center bg-white rounded-b-[2.5rem] px-6 2xl:border-none
-                      /* Desktop: Relative, vertical column */
-                      md:relative md:w-20 md:h-full md:flex-col md:justify-start md:py-8 md:gap-8 md:bottom-auto md:left-auto md:bg-transparent md:px-0 md:rounded-none
-                  ">
-                    {/* Number Badge (Desktop only) */}
-                    <div className="hidden md:flex w-10 h-10 bg-black text-white rounded-full items-center justify-center font-bold text-xl">
-                      {index + 1}
-                    </div>
-
-                    {/* Icons */}
-                    <div className="flex flex-row md:flex-col gap-8 text-gray-400 w-full md:w-auto justify-around md:justify-start items-center">
-                      <Home size={24} className="text-black" />
-                      <Compass size={24} />
-                      <User size={24} />
-                      <Settings size={24} />
-                    </div>
-
-                    {/* Bottom Avatar (Desktop only) */}
-                    <div className="hidden md:block mt-auto">
-                      <div className="w-8 h-8 rounded-full bg-gray-200" />
-                    </div>
-                  </div>
-
-                  {/* Main Content Area */}
-                  <div className="flex-1 relative rounded-[2rem] overflow-hidden bg-[#fdf6f0] h-full pb-16 md:pb-0 border-2 border-gray-400 2xl:border-gray-100">
-
-                    {/* Background Image Placeholder */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-orange-100">
-                      {/* Abstract shapes or image would go here */}
-                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-orange-300 rounded-full blur-3xl opacity-20" />
-                      <div className="absolute left-20 top-20 w-64 h-64 bg-blue-300 rounded-full blur-3xl opacity-20" />
-                    </div>
-
-
-
-                    {/* Top Right Actions */}
-                    <div className="absolute top-6 right-6 z-10 flex gap-4 text-black">
-                      <button className="flex items-center gap-2 bg-white/50 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium hover:bg-white transition-colors">
-                        Redirect to Portfolio
-                        <ArrowUpRight size={16} />
-                      </button>
-                    </div>
-
-                    {/* Content Overlay */}
-                    <div className="absolute inset-0 pt-8 flex flex-col justify-end text-black">
-                      <div className="grid grid-cols-[5rem_auto_1fr_auto_3rem] items-end">
-
-                        {/* Spacer Left */}
-                        <div className="h-12 w-full relative -mb-2 2xl:-mb-1 border-b-8 border-r-8 rounded-b-3xl border-gray-400 2xl:border-white z-50"></div>
-
-                        {/* Bottom Left Widget */}
-                        <div className="-mx-2 2xl:-mx-[0.6rem] bg-white/80 backdrop-blur-md p-5 rounded-t-3xl shadow-sm w-48 hidden sm:block relative z-40 border-8 2xl:border-2 border-gray-400 2xl:border-gray-100 border-b-0">
-                          <div className="flex justify-between items-start mb-2">
-                            <span className="text-xs font-medium text-gray-500">20% off</span>
-                            <div className="w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-xs">
-                              ✓
-                            </div>
-                          </div>
-                          <div className="mb-1">
-                            <span className="text-sm text-gray-500">Free Popcorn</span>
-                          </div>
-                          <div>
-                            <span className="text-3xl font-bold">24</span>
-                            <span className="text-sm text-gray-500 ml-1">min</span>
-                          </div>
-                        </div>
-
-                        {/* Spacer Middle */}
-                        <div className="h-12 w-full relative -mb-2 2xl:-mb-1 border-b-8 border-x-8 rounded-b-3xl border-gray-400 2xl:border-white z-50">
-                          {/* This space is reserved for the inverted radius effect */}
-                        </div>
-
-                        {/* Bottom Right Widget */}
-                        <div className="-mx-2 2xl:-mx-[0.6rem] bg-white/80 backdrop-blur-md p-4 rounded-t-3xl shadow-sm flex items-center gap-6 pr-8 relative z-40 border-8 2xl:border-2 border-gray-400 2xl:border-gray-100 border-b-0">
-                          <div className="flex flex-col items-center border-r border-gray-200 pr-6">
-                            <span className="text-xs font-medium text-gray-500">Oct 2024</span>
-                            <span className="text-3xl font-bold">02</span>
-                          </div>
-                          <div>
-                            <h3 className="text-xl font-bold leading-tight">Dungeon<br />Dragon<span className="text-purple-600">S</span></h3>
-                          </div>
-                        </div>
-
-                        {/* Spacer Right */}
-                        <div className="h-12 w-full relative -mb-2 2xl:-mb-1 border-b-8 border-l-8 rounded-b-3xl border-gray-400 2xl:border-white z-50"></div>
-
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
+          {projects.map((project, index) => (
+            <div className="embla__slide" key={project.id}>
+              <ProjectCard project={project} index={index} />
             </div>
           ))}
         </div>
       </div>
 
-      {/* <div className="embla__controls">
-        <div className="embla__buttons">
-          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
-        </div>
-      </div> */}
+      <div className="absolute top-1/2 -translate-y-1/2 left-0 w-full flex justify-between pointer-events-none px-24 2xl:px-82 ">
+        <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} className="pointer-events-auto w-12 h-12 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg text-black" />
+        <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} className="pointer-events-auto w-12 h-12 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg text-black" />
+      </div>
     </div>
   )
 }
