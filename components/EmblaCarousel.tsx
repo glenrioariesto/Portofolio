@@ -6,7 +6,7 @@ import {
 } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import { NextButton, PrevButton, usePrevNextButtons } from './EmblaCarouselArrowButton'
-import { ArrowUpRight, ChevronLeft, ChevronRight, Layers, ChevronUp, ChevronDown } from 'lucide-react'
+import { ArrowUpRight, ChevronLeft, ChevronRight, Layers, ChevronUp, ChevronDown, Briefcase } from 'lucide-react'
 import { Project } from './Experience'
 import Image from 'next/image'
 
@@ -37,6 +37,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
   return (
     <div className="embla__slide__number relative h-full">
+      {/*this add props color custom bg*/}
       <div className="flex w-full h-[500px] bg-white/90 backdrop-blur-md rounded-[2.5rem] overflow-hidden shadow-2xl py-2 pr-2 relative border-2 border-gray-400 2xl:border-gray-100">
 
         {/* Navigation Bar (Sidebar on Desktop, Bottom Bar on Mobile) */}
@@ -57,7 +58,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             {/* Next Image Button */}
             <button
               onClick={nextImage}
-              className="text-black hover:text-gray-600 transition-colors"
+              className="text-black hover:text-gray-600 transition-colors cursor-pointer"
               aria-label="Next Image"
             >
               <ChevronRight size={24} />
@@ -66,7 +67,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             {/* Previous Image Button */}
             <button
               onClick={prevImage}
-              className="text-gray-400 hover:text-black transition-colors"
+              className="text-gray-400 hover:text-black transition-colors cursor-pointer"
               aria-label="Previous Image"
             >
               <ChevronLeft size={24} />
@@ -111,15 +112,46 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
           {/* Top Right Actions */}
           <div className="absolute top-6 right-6 z-10 flex gap-4 text-black">
-            <a
-              href={project.link || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-white/50 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium hover:bg-white transition-colors"
-            >
-              View Project
-              <ArrowUpRight size={16} />
-            </a>
+            {project.links && project.links.length > 0 && (
+              <>
+                {project.links.length === 1 ? (
+                  <a
+                    href={project.links[0].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-white/50 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium hover:bg-white transition-colors"
+                  >
+                    {project.links[0].label || "View Project"}
+                    <ArrowUpRight size={16} />
+                  </a>
+                ) : (
+                  <div className="relative group">
+                    <button
+                      className="flex items-center gap-2 bg-white/50 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium hover:bg-white transition-colors"
+                    >
+                      View Project
+                      <ChevronDown size={16} />
+                    </button>
+                    <div className="absolute right-0 top-full pt-2 w-48 hidden group-hover:block z-50">
+                      <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100 p-1">
+                        {project.links.map((link, idx) => (
+                          <a
+                            key={idx}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                          >
+                            {link.label}
+                            <ArrowUpRight size={14} className="text-gray-400" />
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
           </div>
 
           {/* Content Overlay */}
@@ -127,11 +159,11 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             <div className="grid grid-cols-[5rem_auto_1fr_auto_3rem] items-end">
 
               {/* Spacer Left */}
-              <div className="h-12 w-full relative -mb-2 2xl:-mb-1 border-b-8 border-r-8 rounded-b-3xl border-gray-400 2xl:border-white z-50"></div>
+              <div className="h-12 w-full relative -mb-2 border-b-12 border-r-12 rounded-b-4xl border-white/80 2xl:border-white z-50"></div>
 
               {/* Bottom Left Widget - Tech Stack */}
               <div
-                className={`-mx-2 2xl:-mx-[0.6rem] bg-white/90 backdrop-blur-md p-5 rounded-t-3xl shadow-sm w-auto min-w-[12rem] max-w-[11rem] hidden sm:block relative z-40 border-x-8 border-t-8 border-b-0 2xl:border-x-2 2xl:border-t-2 border-gray-400 2xl:border-gray-100  pointer-events-auto cursor-pointer transition-all duration-300 ease-in-out ${isTechStackExpanded ? 'h-auto max-h-[300px]' : 'h-24 overflow-hidden'}`}
+                className={`-mx-[0.7rem] 2xl:-mx-[1rem] bg-white p-5 rounded-t-3xl shadow-sm w-auto min-w-[12rem] max-w-[15rem] hidden sm:block relative z-40 border-x-12 border-t-12 border-b-0 2xl:border-x-2 2xl:border-t-2 border-white/20 2xl:border-gray-100  pointer-events-auto cursor-pointer transition-all duration-300 ease-in-out flex flex-col ${isTechStackExpanded ? 'h-auto' : 'h-24 overflow-hidden'}`}
                 onClick={() => setIsTechStackExpanded(!isTechStackExpanded)}
               >
                 <div className="flex items-center justify-between gap-2 mb-3 text-gray-500">
@@ -141,7 +173,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                   </div>
                   {isTechStackExpanded ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className={`flex flex-wrap gap-2 pr-1 ${isTechStackExpanded ? 'max-h-[140px] overflow-y-auto' : ''}`}>
                   {project.techStack.map((tech, idx) => (
                     <span key={idx} className={`px-2 py-1 bg-gray-100 rounded-md text-xs font-medium text-gray-700 ${!isTechStackExpanded && idx > 2 ? 'hidden' : ''}`}>
                       {tech}
@@ -156,39 +188,65 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
               </div>
 
               {/* Spacer Middle */}
-              <div className="h-12 w-full relative -mb-2 2xl:-mb-1 border-b-8 border-x-8 rounded-b-3xl border-gray-400 2xl:border-white z-50">
+              <div className="h-12 w-full relative -mb-2 border-b-12 border-x-12 rounded-b-4xl border-white/80 2xl:border-white z-50">
                 {/* This space is reserved for the inverted radius effect */}
               </div>
 
               {/* Bottom Right Widget - Project Info */}
               <div
-                className={`-mx-2 2xl:-mx-[0.6rem] bg-white/90 backdrop-blur-md p-4 rounded-t-3xl shadow-sm flex flex-col justify-center gap-2 pr-8 relative z-40 border-x-8 border-t-8 border-b-0 2xl:border-x-2 2xl:border-t-2 border-gray-400 2xl:border-gray-100 pointer-events-auto cursor-pointer transition-all duration-300 ease-in-out  min-w-[20rem] max-w-[28rem]  ${isInfoExpanded ? 'h-auto max-h-[300px]' : 'h-24 overflow-hidden'}`}
+                className={`-mx-[0.7rem] 2xl:-mx-[1rem] bg-white p-4 rounded-t-3xl shadow-sm flex flex-col justify-center gap-2 pr-8 relative z-40 border-x-12 border-t-12 border-b-0 2xl:border-x-2 2xl:border-t-2 border-white/20 2xl:border-gray-100 pointer-events-auto cursor-pointer transition-all duration-300 ease-in-out  min-w-[20rem] max-w-[28rem]  ${isInfoExpanded ? 'h-auto max-h-[250px] overflow-y-auto' : 'h-24 overflow-hidden'}`}
                 onClick={() => setIsInfoExpanded(!isInfoExpanded)}
               >
                 <div className="flex items-center gap-6">
-                  <div className="flex flex-col items-center border-r border-gray-200 pr-6">
-                    <span className="text-xs font-medium text-gray-500">{project.date.split(' ')[0]}</span>
-                    <span className="text-3xl font-bold">{project.date.split(' ')[1]}</span>
+                  {/* Date Section - handles both simple and range */}
+                  <div className="flex flex-col items-center border-r border-gray-200 pr-6 shrink-0">
+                    {project.date.includes(' - ') ? (
+                      /* Range date: "Sep 2024 - Jan 2025" */
+                      <>
+                        <span className="text-xs font-bold text-gray-700 text-center leading-tight mt-0.5">
+                          {project.date.split(' - ')[0]}
+                        </span>
+                        <span className="text-[10px] text-gray-400 my-0.5">to</span>
+                        <span className="text-xs font-bold text-gray-700 text-center leading-tight">
+                          {project.date.split(' - ')[1]}
+                        </span>
+                      </>
+                    ) : (
+                      /* Simple date: "Oct 2024" */
+                      <>
+                        <span className="text-xs font-medium text-gray-500">{project.date.split(' ')[0]}</span>
+                        <span className="text-3xl font-bold">{project.date.split(' ')[1]}</span>
+                      </>
+                    )}
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold leading-tight">{project.title}</h3>
-                    <p className={`text-xs text-gray-500 mt-1 ${!isInfoExpanded ? 'line-clamp-1' : ''}`}>{project.description}</p>
+                  <div className="min-w-0">
+                    <h3 className="text-xl font-rubik-doodle font-bold leading-tight">{project.title}</h3>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-xs font-semibold">{project.role}</span>
+                    </div>
+                    {isInfoExpanded && (
+                      <p className="text-xs text-gray-500 mt-2 leading-relaxed">{project.description}</p>
+                    )}
                   </div>
                   <div className="absolute top-4 right-4 text-gray-400">
                     {isInfoExpanded ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
                   </div>
                 </div>
 
-                {isInfoExpanded && project.stats && (
-                  <div className="mt-4 pt-4 border-t border-gray-200 flex justify-between items-center">
-                    <span className="text-sm font-medium text-gray-600">{project.stats.label}</span>
-                    <span className="text-lg font-bold text-primary">{project.stats.value}</span>
+                {isInfoExpanded && project.stats && project.stats.length > 0 && (
+                  <div className="mt-4 pt-4 border-t border-gray-200 flex flex-wrap gap-4">
+                    {project.stats.map((stat, idx) => (
+                      <div key={idx} className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-gray-600">{stat.label}</span>
+                        <span className="text-lg font-bold text-primary">{stat.value}</span>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
 
               {/* Spacer Right */}
-              <div className="h-12 w-full relative -mb-2 2xl:-mb-1 border-b-8 border-l-8 rounded-b-3xl border-gray-400 2xl:border-white z-50"></div>
+              <div className="h-12 w-full relative -mb-2 border-b-12 border-l-12 rounded-b-4xl border-white/80 2xl:border-white z-50"></div>
 
             </div>
           </div>

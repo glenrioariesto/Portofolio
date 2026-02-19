@@ -94,7 +94,7 @@ const OrgExperience = () => {
             >
               <Briefcase className="w-7 h-7 md:w-20 md:h-20 text-primary" />
             </motion.div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-primary">My Organizational Experience</h2>
+            <h2 className="text-2xl sm:text-3xl font-rubik-doodle font-bold text-primary">My Organizational Experience</h2>
           </div>
           <p className="text-md sm:text-lg text-gray-500 leading-relaxed mt-2 text-justify">
             Here are some of the positions and contributions I have made within various organizations.
@@ -114,7 +114,7 @@ const OrgExperience = () => {
                 whileTap="tap"
                 layout
               >
-                <h3 className="text-2xl sm:text-xl font-bold bg-gradient-to-r from-secondary to-cyan-400 text-transparent bg-clip-text relative z-10">{exp.title}</h3>
+                <h3 className="text-2xl sm:text-xl font-rubik-doodle font-bold bg-gradient-to-r from-secondary to-cyan-400 text-transparent bg-clip-text relative z-10">{exp.title}</h3>
                 <p className="text-sm text-gray-500 relative z-10 font-medium">{exp.company} • {exp.duration}</p>
                 <ul className="list-disc pl-5 mt-2 text-gray-500 text-justify relative z-10">
                   {exp.description.map((point, i) => (

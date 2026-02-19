@@ -3,91 +3,80 @@
 import { motion } from "framer-motion";
 import { ShinyText } from "./ShinyText";
 import EmblaCarousel from "./EmblaCarousel";
+import MobileShowcase from "./MobileShowcase";
 import { EmblaOptionsType } from "embla-carousel";
 
 export interface Project {
   id: number;
   title: string;
   category: string;
-  date: string;
+  date: string; // Supports "Oct 2024" or "Oct 2024 - Jan 2025"
+  role: string;
   description: string;
   images: string[];
   techStack: string[];
   stats?: {
     label: string;
     value: string;
-  };
-  link?: string;
+  }[];
+  links?: { label: string; url: string }[];
 }
 
 const PROJECTS: Project[] = [
   {
     id: 1,
-    title: "E-Commerce Platform",
+    title: "Landing Page Ads",
     category: "Web Application",
-    date: "Oct 2024",
-    description: "A full-featured e-commerce platform with real-time inventory management.",
+    date: "Oct 2024 - Now",
+    role: "Lead Full Stack Developer",
+    description: "Built and continuously optimizing a high-conversion landing page for advertising campaigns, SEO best practices, and performance tuning to maximize user engagement and lead generation.",
     images: [
-      "/assets/project1-1.jpg",
-      "/assets/project1-2.jpg",
-      "/assets/project1-3.jpg"
+      "/assets/project1/cover-1.webp",
+      "/assets/project1/cover-2.webp",
+      // "/assets/project1/cover-3.png",
     ],
-    techStack: ["Next.js", "TypeScript", "Tailwind", "Supabase"],
-    stats: { label: "Sales", value: "+150%" }
+    techStack: ["Next.js", "TypeScript", "Tailwind",],
+    stats: [{ label: "Conversion rate", value: "+150%" }],
+    links: [
+      { label: "Ads Gamparai", url: "https://gamparai.com" },
+    ]
   },
   {
     id: 2,
-    title: "Finance Dashboard",
+    title: "Platform Course AI Art",
     category: "SaaS Product",
-    date: "Sep 2024",
-    description: "Analytics dashboard for tracking personal finances and investments.",
+    date: "Sep 2024 - Now",
+    role: "Lead Full Stack Developer",
+    description: "Developed and maintaining a full-featured SaaS course platform for AI-generated art, including user authentication, course management dashboard, video streaming, Midtrans payment gateway integration, and automated email notifications.",
     images: [
-      "/assets/project2-1.jpg",
-      "/assets/project2-2.jpg"
+      "/assets/project2/cover-1.webp",
+      // "/assets/project2/2.webp"
     ],
-    techStack: ["React", "D3.js", "Node.js", "PostgreSQL"],
-    stats: { label: "Users", value: "10k+" }
+    techStack: ["Next.js", "TypeScript", "Tailwind", "Postgres", "pgAdmin4", "Restfull API", "ORM Prisma", "Midtrans Payment Gateway", "JWT"],
+    stats: [
+      { label: "Users", value: "6k+" },
+      { label: "Repeat Order", value: "2.5k+" },
+    ],
+    links: [
+      { label: "Live App", url: "https://aigensee.id" }
+    ]
   },
   {
     id: 3,
-    title: "AI Content Generator",
+    title: "InstaScheduler",
     category: "AI Tool",
     date: "Aug 2024",
-    description: "Generates marketing copy and social media posts using GPT-4.",
+    role: "Full Stack Developer",
+    description: "Built an AI-powered Instagram content scheduler that leverages OpenAI API to automatically generate captions, hashtags, and optimal posting schedules, with a React dashboard for content calendar management.",
     images: [
-      "/assets/project3-1.jpg",
-      "/assets/project3-2.jpg",
-      "/assets/project3-3.jpg"
+      // "/assets/project3/1.webp",
+      // "/assets/project3/2.webp",
+      // "/assets/project3/3.webp"
     ],
     techStack: ["OpenAI API", "Python", "FastAPI", "React"],
-    stats: { label: "Generated", value: "1M+ Words" }
+    stats: [{ label: "Generated", value: "1M+ Words" }]
+    // No links for this one (private)
   },
-  {
-    id: 4,
-    title: "Health & Fitness App",
-    category: "Mobile App",
-    date: "Jul 2024",
-    description: "Cross-platform mobile app for tracking workouts and nutrition.",
-    images: [
-      "/assets/project4-1.jpg",
-      "/assets/project4-2.jpg"
-    ],
-    techStack: ["React Native", "Firebase", "Redux"],
-    stats: { label: "Downloads", value: "50k+" }
-  },
-  {
-    id: 5,
-    title: "Real Estate Portal",
-    category: "Web Platform",
-    date: "Jun 2024",
-    description: "Property listing platform with virtual tours and map integration.",
-    images: [
-      "/assets/project5-1.jpg",
-      "/assets/project5-2.jpg"
-    ],
-    techStack: ["Vue.js", "Nuxt", "Leaflet", "Laravel"],
-    stats: { label: "Listings", value: "500+" }
-  }
 ];
 
 const OPTIONS: EmblaOptionsType = { loop: true, align: 'center' }
@@ -108,11 +97,12 @@ const Experience = () => {
         <ShinyText
           text="My Experience"
           speed={5}
-          className="text-2xl sm:text-3xl font-bold text-primary"
+          className="text-2xl sm:text-3xl font-rubik-doodle font-bold text-primary"
         />
       </motion.div>
 
       <EmblaCarousel projects={PROJECTS} options={OPTIONS} />
+      <MobileShowcase projects={PROJECTS} />
     </section>
   );
 }

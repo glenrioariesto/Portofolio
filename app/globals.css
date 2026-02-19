@@ -8,6 +8,7 @@
   --color-background-primary: #FFF7F0;
 
   --font-grotesk: var(--font-space-grotesk), sans-serif;
+  --font-rubik-doodle: var(--font-rubik-doodle), cursive;
 
   --animate-shine: shine 5s linear infinite;
 
