@@ -43,7 +43,7 @@ const MobileProjectCard = ({
                 onClick={onExpand}
             >
                 {/* ── Image Section ── */}
-                <div className="relative w-full aspect-[16/10] overflow-hidden">
+                <div className="relative w-full h-[184px] overflow-hidden">
                     {project.images.length > 0 ? (
                         <>
                             <Image
@@ -91,13 +91,6 @@ const MobileProjectCard = ({
                             </div>
                         </div>
                     )}
-
-                    {/* Project number badge */}
-                    <div className="absolute top-4 left-4 z-10">
-                        <div className="w-9 h-9 bg-black/70 backdrop-blur-md text-white rounded-xl flex items-center justify-center font-bold text-sm shadow-lg">
-                            {String(index + 1).padStart(2, '0')}
-                        </div>
-                    </div>
 
                     {/* Link badges at top right */}
                     {project.links && project.links.length > 0 && (
