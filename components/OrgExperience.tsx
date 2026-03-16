@@ -24,9 +24,9 @@ const orgExperiences = [
     company: `Secretary`,
     duration: `2022 - 2023`,
     description: [
-      `I have experience as a secretary, managing incoming and outgoing files, as well as taking meeting minutes.`,
-      `Optimized web performance and improved accessibility.`,
-      `Built reusable React components for scalable applications.`
+      `Managed internal and external documentation, ensuring all organizational records were organized and easily accessible.`,
+      `Coordinated meeting schedules and took comprehensive minutes to track action items and project progress.`,
+      `Streamlined administrative workflows to improve communication efficiency within the leadership team.`
     ],
   },
 ];
@@ -77,7 +77,7 @@ const OrgExperience = () => {
     <section id="experience" className="relative flex justify-center mx-auto max-w-screen-lg pt-12 px-3">
       <motion.div
         ref={ref}
-        className="w-full flex flex-col md:flex-row items-start gap-10 p-8 md:p-12 bg-white/90 backdrop-blur-md shadow-2xl rounded-[2.5rem] border-2 border-gray-400 2xl:border-gray-100"
+        className="w-full flex flex-col md:flex-row items-start gap-10 p-8 md:p-12 bg-white/90 backdrop-blur-md shadow-2xl rounded-[2.5rem] border border-white/30"
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -114,7 +114,7 @@ const OrgExperience = () => {
                 whileTap="tap"
                 layout
               >
-                <h3 className="text-2xl sm:text-xl font-rubik-doodle font-bold bg-gradient-to-r from-secondary to-cyan-400 text-transparent bg-clip-text relative z-10">{exp.title}</h3>
+                <h3 className="text-xl sm:text-2xl font-rubik-doodle font-bold bg-gradient-to-r from-secondary to-cyan-400 text-transparent bg-clip-text relative z-10">{exp.title}</h3>
                 <p className="text-sm text-gray-500 relative z-10 font-medium">{exp.company} • {exp.duration}</p>
                 <ul className="list-disc pl-5 mt-2 text-gray-500 text-justify relative z-10">
                   {exp.description.map((point, i) => (

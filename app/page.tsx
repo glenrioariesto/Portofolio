@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import TechMarquee from "@/components/TechMarquee";
 import OrgExperience from "@/components/OrgExperience";
+import Services from "@/components/Services";
 import Experience from "@/components/Experience";
 
 export default function Home() {
@@ -11,7 +12,8 @@ export default function Home() {
       </div>
       <div className="pt-12">
         <TechMarquee />
-        <OrgExperience />
+        {/* <OrgExperience /> */}
+        <Services />
       </div>
       <Experience />
 

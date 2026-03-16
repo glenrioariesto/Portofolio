@@ -38,7 +38,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
   return (
     <div className="embla__slide__number relative h-full">
       {/*this add props color custom bg*/}
-      <div className="flex w-full h-[500px] bg-white/90 backdrop-blur-md rounded-[2.5rem] overflow-hidden shadow-2xl py-2 pr-2 relative border-2 border-gray-400 2xl:border-gray-100">
+      <div className="flex w-full h-[500px] bg-white/90 backdrop-blur-md rounded-[2.5rem] overflow-hidden shadow-2xl py-2 pr-2 relative border border-white/30">
 
         {/* Navigation Bar (Sidebar on Desktop, Bottom Bar on Mobile) */}
         <div className="
@@ -58,8 +58,8 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             {/* Next Image Button */}
             <button
               onClick={nextImage}
-              className="text-black hover:text-gray-600 transition-colors cursor-pointer"
-              aria-label="Next Image"
+              className="text-black hover:text-gray-600 transition-colors cursor-pointer p-2 rounded-full hover:bg-gray-100/50"
+              aria-label={`Next image for ${project.title}`}
             >
               <ChevronRight size={24} />
             </button>
@@ -67,8 +67,8 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             {/* Previous Image Button */}
             <button
               onClick={prevImage}
-              className="text-gray-400 hover:text-black transition-colors cursor-pointer"
-              aria-label="Previous Image"
+              className="text-gray-500 hover:text-black transition-colors cursor-pointer p-2 rounded-full hover:bg-gray-100/50"
+              aria-label={`Previous image for ${project.title}`}
             >
               <ChevronLeft size={24} />
             </button>
@@ -97,17 +97,19 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
               />
             )}
 
-            {/* Image Indicators - Removed as we have counter in navbar now */}
-            {/* {project.images.length > 1 && (
-               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-                 {project.images.map((_, idx) => (
-                   <div 
-                     key={idx} 
-                     className={`w-2 h-2 rounded-full transition-colors ${idx === currentImageIndex ? 'bg-white' : 'bg-white/50'}`}
-                   />
-                 ))}
-               </div>
-             )} */}
+            {/* Image Indicators */}
+            {project.images.length > 1 && (
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20 bg-black/10 backdrop-blur-sm px-2 py-1 rounded-full">
+                {project.images.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(idx); }}
+                    className={`w-1.5 h-1.5 rounded-full transition-all ${idx === currentImageIndex ? 'bg-white w-4' : 'bg-white/50'}`}
+                    aria-label={`Go to image ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Top Right Actions */}
@@ -228,7 +230,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                       <p className="text-xs text-gray-500 mt-2 leading-relaxed">{project.description}</p>
                     )}
                   </div>
-                  <div className="absolute top-4 right-4 text-gray-400">
+                  <div className="absolute top-4 right-4 text-gray-500">
                     {isInfoExpanded ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
                   </div>
                 </div>

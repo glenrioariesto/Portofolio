@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useState } from "react";
+import { ShinyText } from "./ShinyText";
 
 const techStack = [
   { name: "Next.js", icon: "/tech-stack/nextjs.svg" },
@@ -40,21 +42,33 @@ const itemVariants = {
 
 
 const TechMarquee = () => {
+  const [isPaused, setIsPaused] = useState(false);
+
   return (
-    <div className="py-8 px-6"> {/* Added wrapper with vertical padding to allow shadow to breathe */}
-      <div className="relative overflow-hidden h-24 max-w-screen-lg mx-auto px-4 rounded-[2.5rem] shadow-2xl backdrop-blur-md border-2 border-gray-400 2xl:border-gray-100">
+    <div className="py-12 px-6 flex flex-col items-center gap-8">
+      {/* <div className="backdrop-blur-md rounded-2xl shadow-lg p-4 border border-white/20 relative z-10 transition-all hover:scale-105">
+        <ShinyText
+          text="My Tech Stack"
+          speed={5}
+          className="text-xl sm:text-2xl font-rubik-doodle font-bold text-primary px-4"
+        />
+      </div> */}
+
+      <div
+        className="relative overflow-hidden h-24 max-w-screen-lg w-full mx-auto px-4 rounded-[2.5rem] shadow-2xl backdrop-blur-md border border-white/30"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
         {/* Gradient Shadow (inframe & outframe) */}
         <div className="absolute inset-0 pointer-events-none z-10">
-          {/* Shadow di kiri */}
-          <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-white to-transparent"></div>
-          {/* Shadow di kanan*/}
-          <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-white to-transparent"></div>
+          <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-white/90 to-transparent"></div>
+          <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-white/90 to-transparent"></div>
         </div>
 
         {/* Marquee */}
         <motion.div
           className="flex w-max space-x-10 items-center h-full"
-          animate={{ x: ["0%", "-50%"] }}
+          animate={{ x: isPaused ? undefined : ["0%", "-50%"] }}
           transition={{
             ease: "linear",
             duration: 35,
