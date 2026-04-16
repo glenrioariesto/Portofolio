@@ -74,7 +74,7 @@ const Navbar = () => {
                 href={link.href}
                 className={`
                   flex flex-col items-center transition-all duration-300 p-2 rounded-xl group relative
-                  ${isActive ? "text-primary bg-primary/5" : "text-gray-400 hover:text-black hover:bg-gray-100/50"}
+                  ${isActive ? "text-primary bg-primary/5" : "text-gray-500 hover:text-black hover:bg-gray-100/50"}
                 `}
                 title={link.label}
               >

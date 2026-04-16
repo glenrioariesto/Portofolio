@@ -1,3 +1,5 @@
+import React from "react";
+
 interface ShinyTextProps {
   text: string;
   disabled?: boolean;

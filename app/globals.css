@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #FF7700;
-  --color-primary-variant: #FF5003;
-  --color-secondary: #364BC5;
-  --color-secondary-variant: #A855F7;
-  --color-background-primary: #FFF7F0;
+  --color-primary: #B45309;
+  --color-primary-variant: #92400E;
+  --color-secondary: #1E293B;
+  --color-secondary-variant: #334155;
+  --color-background-primary: #FBE9D4;
 
   --font-grotesk: var(--font-space-grotesk), sans-serif;
   --font-rubik-doodle: var(--font-rubik-doodle), cursive;
@@ -29,12 +29,6 @@ html {
   scroll-behavior: smooth;
 }
 
-.bg-dots {
-  background-image: radial-gradient(#c0c0c0 1px, transparent 0);
-  background-size: 20px 20px;
-  background-color: #fff;
-  background-attachment: fixed;
-}
 
 .backdrop-blur-md {
   backdrop-filter: blur(8px);

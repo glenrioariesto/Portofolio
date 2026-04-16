@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["300"], // Light (300)
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-space-grotesk",
 });
 
@@ -52,7 +52,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${rubikDoodleShadow.variable}`}>
-      <body className="bg-dots text-white scroll-smooth">
+      <body className="bg-background-primary text-gray-900 scroll-smooth">
         <Navbar />
         {children}
       </body>
