@@ -84,20 +84,17 @@ const OPTIONS: EmblaOptionsType = { loop: true, align: 'center' }
 const Experience = () => {
   return (
     <section id="showcase" className="relative flex flex-col overflow-hidden -mt-20 pt-20">
-      <div
-        className="absolute inset-0 bg-cover bg-center -z-20 bg-[url('/assets/background-kotak.png')]"
-      />
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/40 to-transparent -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FBE9D4]/90 via-[#FBE9D4]/40 to-transparent -z-10" />
 
       <motion.div
-        className="mx-auto backdrop-blur-md rounded-2xl shadow-lg p-4 border border-white/20 my-12 relative z-10"
+        className="mx-auto text-center px-4 my-12 relative z-10"
       >
         <ShinyText
           text="My Experience"
           speed={5}
-          className="text-2xl sm:text-3xl font-rubik-doodle font-bold text-primary"
+          className="text-3xl md:text-6xl font-grotesk font-bold text-primary tracking-tight"
         />
       </motion.div>
 

@@ -45,24 +45,17 @@ const TechMarquee = () => {
   const [isPaused, setIsPaused] = useState(false);
 
   return (
-    <div className="py-12 px-6 flex flex-col items-center gap-8">
-      {/* <div className="backdrop-blur-md rounded-2xl shadow-lg p-4 border border-white/20 relative z-10 transition-all hover:scale-105">
-        <ShinyText
-          text="My Tech Stack"
-          speed={5}
-          className="text-xl sm:text-2xl font-rubik-doodle font-bold text-primary px-4"
-        />
-      </div> */}
+    <div className="py-0 px-6 flex flex-col items-center gap-8">
 
       <div
-        className="relative overflow-hidden h-24 max-w-screen-lg w-full mx-auto px-4 rounded-[2.5rem] shadow-2xl backdrop-blur-md border border-white/30"
+        className="relative overflow-hidden h-24 max-w-screen-lg w-full mx-auto px-4"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
         {/* Gradient Shadow (inframe & outframe) */}
         <div className="absolute inset-0 pointer-events-none z-10">
-          <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-white/90 to-transparent"></div>
-          <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-white/90 to-transparent"></div>
+          <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-[#FBE9D4] to-transparent"></div>
+          <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-[#FBE9D4] to-transparent"></div>
         </div>
 
         {/* Marquee */}
