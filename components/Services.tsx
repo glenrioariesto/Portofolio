@@ -14,32 +14,32 @@ const services = [
     {
         title: "Project Consultation",
         description: "Expert guidance for software strategy, tech stack selection, and scalable architecture design from day one.",
-        icon: <Image src="/assets/services/consultation.png" alt="Consultation" width={80} height={80} className="w-20 h-20 object-contain" />,
-        className: "md:col-span-2 bg-white",
+        icon: <Image src="/assets/services/consultation.webp" alt="Consultation" width={80} height={80} className="w-20 h-20 object-contain" />,
+        className: "md:col-span-2",
     },
     {
         title: "Infrastructure",
         description: "Seamless cloud setup and CI/CD pipelines.",
-        icon: <Image src="/assets/services/infrastructure.png" alt="Infrastructure" width={80} height={80} className="w-20 h-20 object-contain" />,
-        className: "md:col-span-1 bg-white",
+        icon: <Image src="/assets/services/infrastructure.webp" alt="Infrastructure" width={80} height={80} className="w-20 h-20 object-contain" />,
+        className: "md:col-span-1",
     },
     {
         title: "Vibe Coding Rescue",
         description: "Fixing AI-generated prototypes. I refactor code, fix broken vibes, and ensure production-level stability.",
-        icon: <Image src="/assets/services/rescue.png" alt="Rescue" width={80} height={80} className="w-20 h-20 object-contain" />,
-        className: "md:col-span-1 bg-white",
+        icon: <Image src="/assets/services/rescue.webp" alt="Rescue" width={80} height={80} className="w-20 h-20 object-contain" />,
+        className: "md:col-span-1",
     },
     {
         title: "Performance",
         description: "Maximum speed, SEO friendliness, and perfect Lighthouse scores.",
-        icon: <Image src="/assets/services/performance.png" alt="Performance" width={80} height={80} className="w-20 h-20 object-contain" />,
-        className: "md:col-span-1 bg-white",
+        icon: <Image src="/assets/services/performance.webp" alt="Performance" width={80} height={80} className="w-20 h-20 object-contain" />,
+        className: "md:col-span-1",
     },
     {
         title: "PRD & Documentation",
         description: "Detailed technical requirements and alignment between business and development teams.",
-        icon: <Image src="/assets/services/documentation.png" alt="Documentation" width={80} height={80} className="w-20 h-20 object-contain" />,
-        className: "md:col-span-1 bg-white",
+        icon: <Image src="/assets/services/documentation.webp" alt="Documentation" width={80} height={80} className="w-20 h-20 object-contain" />,
+        className: "md:col-span-1",
     },
 ];
 
@@ -49,11 +49,11 @@ const Services = () => {
             <div className="space-y-16">
                 {/* Centered Header */}
                 <div className="text-center space-y-6">
-                    <h2 className="text-3xl md:text-7xl font-grotesk font-bold text-amber-800 tracking-tighter">
+                    <h2 className="text-3xl md:text-7xl font-grotesk font-bold text-amber-900 tracking-tighter">
                         My Services
                     </h2>
                     <p className="text-gray-500 max-w-2xl mx-auto text-sm md:text-xl leading-relaxed">
-                        Professional consultation and technical excellence. 
+                        Professional consultation and technical excellence.
                         I help you build digital products that feel premium and perform beyond expectations.
                     </p>
                 </div>
@@ -64,8 +64,8 @@ const Services = () => {
                         <div
                             key={index}
                             className={`
-                                group relative p-8 rounded-[3rem] border border-stone-200 shadow-sm overflow-hidden
-                                bg-white transition-all duration-500 hover:shadow-2xl hover:-translate-y-1
+                                group relative p-8 rounded-[3rem] border border-white shadow-sm overflow-hidden
+                                bg-white/70 backdrop-blur-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-1
                                 ${service.className}
                             `}
                         >
@@ -94,14 +94,14 @@ const Services = () => {
                     <a
                         href="https://github.com/glenrioariesto"
                         target="_blank"
-                        className="flex items-center gap-3 bg-slate-900 text-white px-10 py-5 rounded-2xl hover:bg-black transition-all shadow-xl"
+                        className="flex items-center gap-3 bg-gradient-to-r from-primary-variant to-primary text-white px-10 py-5 rounded-2xl hover:opacity-90 transition-all shadow-xl shadow-primary/20"
                     >
                         <Github size={24} />
                         <span className="font-bold">Explore My Work</span>
                     </a>
                     <a
                         href="mailto:glenrioariesto@gmail.com"
-                        className="flex items-center gap-3 bg-white border-2 border-amber-100 px-10 py-5 rounded-2xl hover:bg-amber-50 transition-all shadow-lg text-amber-900 font-bold"
+                        className="flex items-center gap-3 bg-white/50 backdrop-blur-md border border-primary/20 px-10 py-5 rounded-2xl hover:bg-white transition-all shadow-lg text-primary font-bold"
                     >
                         <Mail size={24} />
                         Email Me
