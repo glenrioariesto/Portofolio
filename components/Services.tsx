@@ -1,127 +1,113 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import {
-    Users,
-    Server,
-    Wrench,
-    Zap,
-    FileEdit,
     Github,
     Mail,
-    ArrowRight
+    ArrowUpRight
 } from "lucide-react";
 import { ShinyText } from "./ShinyText";
 
 const services = [
     {
         title: "Project Consultation",
-        description: "Expert guidance for your software project strategy, choosing the right tech stack, and architecting for scalability from day one.",
-        icon: <Users className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-500" />,
+        description: "Expert guidance for software strategy, tech stack selection, and scalable architecture design from day one.",
+        icon: <Image src="/assets/services/consultation.png" alt="Consultation" width={80} height={80} className="w-20 h-20 object-contain" />,
+        className: "md:col-span-2 bg-white",
     },
     {
-        title: "Infrastructure & DevOps",
-        description: "Cloud setup, CI/CD pipelines, and server management to ensure your application runs smoothly and scales effortlessly.",
-        icon: <Server className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-500" />,
+        title: "Infrastructure",
+        description: "Seamless cloud setup and CI/CD pipelines.",
+        icon: <Image src="/assets/services/infrastructure.png" alt="Infrastructure" width={80} height={80} className="w-20 h-20 object-contain" />,
+        className: "md:col-span-1 bg-white",
     },
     {
         title: "Vibe Coding Rescue",
-        description: "Turning AI-generated prototypes into production-ready software. I fix 'broken vibes', refactor code, and ensure stability.",
-        icon: <Wrench className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-500" />,
+        description: "Fixing AI-generated prototypes. I refactor code, fix broken vibes, and ensure production-level stability.",
+        icon: <Image src="/assets/services/rescue.png" alt="Rescue" width={80} height={80} className="w-20 h-20 object-contain" />,
+        className: "md:col-span-1 bg-white",
     },
     {
-        title: "Performance & Optimization",
-        description: "Tuning your application for maximum speed, SEO friendliness, and a 100/100 Lighthouse score.",
-        icon: <Zap className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-500" />,
+        title: "Performance",
+        description: "Maximum speed, SEO friendliness, and perfect Lighthouse scores.",
+        icon: <Image src="/assets/services/performance.png" alt="Performance" width={80} height={80} className="w-20 h-20 object-contain" />,
+        className: "md:col-span-1 bg-white",
     },
     {
-        title: "PRD & Documentation Update",
-        description: "Comprehensive technical requirements and PRD updates to align your development team with the business goals.",
-        icon: <FileEdit className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-500" />,
+        title: "PRD & Documentation",
+        description: "Detailed technical requirements and alignment between business and development teams.",
+        icon: <Image src="/assets/services/documentation.png" alt="Documentation" width={80} height={80} className="w-20 h-20 object-contain" />,
+        className: "md:col-span-1 bg-white",
     },
 ];
 
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: { staggerChildren: 0.1 },
-    },
-};
-
-const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5 },
-    },
-};
-
 const Services = () => {
     return (
-        <section id="services" className="relative flex justify-center mx-auto max-w-screen-lg px-3 pt-8">
-            <motion.div
-                className="w-full bg-white/90 backdrop-blur-md shadow-2xl rounded-[2.5rem] border border-white/30 p-8 md:p-12"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={containerVariants}
-            >
-                <div className="flex flex-col md:flex-row gap-12">
-                    {/* Header Section */}
-                    <div className="md:w-1/3 text-center md:text-left space-y-6">
-                        <ShinyText
-                            text="My Services"
-                            speed={5}
-                            className="text-2xl sm:text-3xl font-rubik-doodle font-bold text-primary"
-                        />
-                        <p className="text-gray-500 leading-relaxed">
-                            I provide professional consultation and technical services to help you build better digital products.
-                        </p>
+        <section id="services" className="relative max-w-screen-lg mx-auto py-20 px-4">
+            <div className="space-y-16">
+                {/* Centered Header */}
+                <div className="text-center space-y-6">
+                    <h2 className="text-3xl md:text-7xl font-grotesk font-bold text-amber-800 tracking-tighter">
+                        My Services
+                    </h2>
+                    <p className="text-gray-500 max-w-2xl mx-auto text-sm md:text-xl leading-relaxed">
+                        Professional consultation and technical excellence. 
+                        I help you build digital products that feel premium and perform beyond expectations.
+                    </p>
+                </div>
 
-                        <div className="flex flex-col gap-3 pt-4">
-                            <a
-                                href="https://github.com/glenrioariesto"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center md:justify-start gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-all hover:scale-105 shadow-md"
-                            >
-                                <Github size={20} />
-                                <span className="font-semibold">Visit My GitHub</span>
-                            </a>
-                            <a
-                                href="mailto:glenrioariesto@gmail.com"
-                                className="flex items-center justify-center md:justify-start gap-3 bg-gradient-to-r from-primary-variant to-primary text-white px-6 py-3 rounded-xl hover:opacity-90 transition-all hover:scale-105 shadow-lg shadow-primary/20"
-                            >
-                                <Mail size={20} />
-                                <span className="font-semibold">Email Me Directly</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    {/* Services Grid */}
-                    <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        {services.map((service, index) => (
-                            <motion.div
-                                key={index}
-                                variants={itemVariants}
-                                className="p-6 rounded-2xl bg-white/50 border border-white shadow-sm hover:border-secondary transition-all hover:shadow-xl hover:-translate-y-1 group"
-                            >
-                                <div className="mb-4 p-3 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl w-fit group-hover:from-secondary group-hover:to-cyan-400 transition-all duration-500">
+                {/* Bento Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {services.map((service, index) => (
+                        <div
+                            key={index}
+                            className={`
+                                group relative p-8 rounded-[3rem] border border-stone-200 shadow-sm overflow-hidden
+                                bg-white transition-all duration-500 hover:shadow-2xl hover:-translate-y-1
+                                ${service.className}
+                            `}
+                        >
+                            <div className="relative z-10 h-full flex flex-col">
+                                <div className="mb-8 p-2 bg-amber-50/50 rounded-3xl w-fit group-hover:bg-amber-100 transition-colors duration-500">
                                     {service.icon}
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-secondary-variant transition-colors">
-                                    {service.title}
-                                </h3>
-                                <p className="text-sm text-gray-500 leading-relaxed">
-                                    {service.description}
-                                </p>
-                            </motion.div>
-                        ))}
-                    </div>
+                                <div className="flex-1 space-y-4">
+                                    <div className="flex items-center justify-between">
+                                        <h3 className="text-2xl font-bold text-slate-900 font-grotesk">
+                                            {service.title}
+                                        </h3>
+                                        <ArrowUpRight size={24} className="text-stone-300 group-hover:text-amber-700 transition-all duration-500" />
+                                    </div>
+                                    <p className="text-gray-500 leading-relaxed text-lg">
+                                        {service.description}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-            </motion.div>
+
+                {/* Bottom Actions */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-12">
+                    <a
+                        href="https://github.com/glenrioariesto"
+                        target="_blank"
+                        className="flex items-center gap-3 bg-slate-900 text-white px-10 py-5 rounded-2xl hover:bg-black transition-all shadow-xl"
+                    >
+                        <Github size={24} />
+                        <span className="font-bold">Explore My Work</span>
+                    </a>
+                    <a
+                        href="mailto:glenrioariesto@gmail.com"
+                        className="flex items-center gap-3 bg-white border-2 border-amber-100 px-10 py-5 rounded-2xl hover:bg-amber-50 transition-all shadow-lg text-amber-900 font-bold"
+                    >
+                        <Mail size={24} />
+                        Email Me
+                    </a>
+                </div>
+            </div>
         </section>
     );
 };
