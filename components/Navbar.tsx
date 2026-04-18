@@ -3,17 +3,19 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Home, User, Briefcase, Layers, Sparkles } from "lucide-react";
-import { ShinyText } from "./ShinyText";
+import { motion, AnimatePresence } from "framer-motion";
+import { Home, User, Briefcase, Layers, Sparkles, PhoneCall } from "lucide-react";
+import { useNavbarContext } from "@/context/NavbarContext";
 
 const Navbar = () => {
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState("hero");
+  const { isHidden } = useNavbarContext();
 
   useEffect(() => {
-    const sections = ["about", "experience", "showcase", "services"];
+    const sections = ["hero", "services", "showcase", "booking"];
     const observerOptions = {
       root: null,
-      rootMargin: "-20% 0px -70% 0px", // Focus on the middle-upper part of the screen
+      rootMargin: "-40% 0px -40% 0px",
       threshold: 0,
     };
 
@@ -27,85 +29,125 @@ const Navbar = () => {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    // Fallback for Top of page
-    const handleScroll = () => {
-      if (window.scrollY < 100) {
-        setActiveSection("about");
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-
     sections.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
 
+    const handleScroll = () => {
+      if (window.scrollY < 100) setActiveSection("hero");
+    };
+    window.addEventListener("scroll", handleScroll);
+
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
-    }
+    };
   }, []);
 
   const navLinks = [
-    { id: "about", label: "Home", icon: <Home size={24} />, href: "#" },
-    { id: "about", label: "About", icon: <User size={24} />, href: "#about" },
-    { id: "experience", label: "Exp", icon: <Briefcase size={24} />, href: "#experience" },
-    { id: "showcase", label: "Work", icon: <Layers size={24} />, href: "#showcase" },
-    { id: "services", label: "Svc", icon: <Sparkles size={24} />, href: "#services" },
+    { id: "hero", label: "Home", icon: <Home size={22} />, href: "#" },
+    { id: "services", label: "Services", icon: <Sparkles size={22} />, href: "#services" },
+    { id: "showcase", label: "Projects", icon: <Layers size={22} />, href: "#showcase" },
+    { id: "booking", label: "Contact", icon: <PhoneCall size={22} />, href: "#booking" },
   ];
 
   return (
-    <>
-      <nav className="
-        fixed z-40 bg-white/80 backdrop-blur-lg shadow-2xl border border-white/30
-        bottom-8 left-1/2 -translate-x-1/2 w-auto h-auto rounded-full flex flex-row justify-between items-center px-6 py-3 gap-4
-        md:top-1/2 md:-translate-y-1/2 md:left-8 md:bottom-auto md:translate-x-0 md:flex-col md:px-4 md:py-10 md:gap-10 md:rounded-full
-      ">
-        <div className="hidden md:flex w-10 h-10 bg-black text-white rounded-full items-center justify-center font-bold text-xl hover:scale-110 transition-transform cursor-pointer">
-          G
-        </div>
+    <motion.nav 
+      initial={{ y: 0, opacity: 1, zIndex: 50 }}
+      animate={{ 
+        y: isHidden ? 250 : 0,
+        opacity: isHidden ? 0 : 1,
+        zIndex: isHidden ? -100 : 50,
+        pointerEvents: isHidden ? "none" : "auto",
+        display: isHidden ? "none" : "flex", // Force absolute disappearance
+      }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 300, 
+        damping: 30,
+        display: { delay: isHidden ? 0.3 : 0 } // Delay 'none' until animation finishes
+      }}
+      className="
+      fixed 
+      bottom-10 left-1/2 -translate-x-1/2 
+      lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 lg:left-8 lg:translate-x-0
+    ">
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="
+          flex items-center gap-1 p-2 bg-white/70 backdrop-blur-2xl rounded-[2.5rem] border border-white shadow-[0_20px_50px_rgba(0,0,0,0.1)]
+          lg:flex-col lg:py-8 lg:px-3 lg:gap-5
+        "
+      >
+        {/* Brand Logo (Desktop) */}
+        <Link href="#" className="hidden lg:flex mb-4 w-10 h-10 overflow-hidden rounded-full items-center justify-center shadow-lg hover:scale-110 transition-transform active:scale-95">
+          <Image
+            src="/assets/logo.webp"
+            alt="Logo"
+            width={40}
+            height={40}
+            priority
+            className="w-full h-full object-cover"
+          />
+        </Link>
 
-        <div className="flex flex-row md:flex-col gap-4 md:gap-8 items-center">
-          {navLinks.map((link, idx) => {
-            const isActive = activeSection === link.id || (link.label === "Home" && activeSection === "");
+        <div className="flex flex-row lg:flex-col gap-1 lg:gap-2">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
             return (
               <Link
-                key={idx}
+                key={link.id}
                 href={link.href}
-                className={`
-                  flex flex-col items-center transition-all duration-300 p-2 rounded-xl group relative
-                  ${isActive ? "text-primary bg-primary/5" : "text-gray-500 hover:text-black hover:bg-gray-100/50"}
-                `}
+                className="relative p-4 flex items-center justify-center group transition-all"
                 title={link.label}
               >
-                {link.icon}
-                <span className={`text-[10px] md:hidden mt-0.5 font-semibold ${isActive ? "text-primary" : ""}`}>
-                  {link.label}
+                {isActive && (
+                  <motion.div
+                    layoutId="nav-pill"
+                    className="absolute inset-0 bg-amber-950 rounded-[1.5rem] lg:rounded-2xl shadow-lg shadow-amber-900/20"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+
+                <span className={`relative z-10 transition-colors duration-300 ${isActive ? "text-white" : "text-slate-400 group-hover:text-amber-950"}`}>
+                  {link.icon}
                 </span>
 
-                {/* Active Indicator Dot (Desktop) */}
-                <span className={`
-                  hidden md:block absolute -right-2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-primary transition-all duration-500
-                  ${isActive ? "opacity-100 scale-100" : "opacity-0 scale-0"}
-                `} />
+                {/* Desktop Tooltip */}
+                <div className="hidden lg:block absolute left-full ml-4 px-3 py-1.5 bg-slate-900 text-white text-[10px] font-bold uppercase tracking-widest rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-xl">
+                    {link.label}
+                    {/* Tooltip Arrow */}
+                    <div className="absolute top-1/2 -translate-y-1/2 -left-1 border-4 border-transparent border-r-slate-900" />
+                </div>
+
+                {/* Mobile Active Indicator Dot */}
+                {isActive && (
+                   <motion.div 
+                    layoutId="nav-dot"
+                    className="absolute -top-1 left-1/2 -translate-x-1/2 lg:hidden w-1 h-1 bg-amber-950 rounded-full"
+                   />
+                )}
               </Link>
             );
           })}
         </div>
 
-        <div className="hidden md:block mt-auto group">
-          <Link href="#about" className="w-10 h-10 block rounded-full bg-gray-200 overflow-hidden border-2 border-white shadow-sm group-hover:border-primary transition-colors">
+        {/* Profile Trigger (Desktop) */}
+        <Link href="#booking" className="hidden lg:block mt-4 group">
+          <div className="w-10 h-10 rounded-full border-2 border-white overflow-hidden shadow-sm group-hover:border-primary transition-all active:scale-95">
             <Image
               src="/assets/profile.webp"
               alt="Profile"
               width={40}
               height={40}
-              className="w-full h-full object-cover"
+              className="object-cover"
             />
-          </Link>
-        </div>
-      </nav>
-    </>
+          </div>
+        </Link>
+      </motion.div>
+    </motion.nav>
   );
 };
 

@@ -9,6 +9,7 @@
 
   --font-grotesk: var(--font-space-grotesk), sans-serif;
   --font-rubik-doodle: var(--font-rubik-doodle), cursive;
+  --font-sans: var(--font-inter), sans-serif;
 
   --animate-shine: shine 5s linear infinite;
 
@@ -129,6 +130,5 @@ html {
 @media (max-width: 768px) {
   .embla {
     --slide-size: 90%;
-    display: none;
   }
 }

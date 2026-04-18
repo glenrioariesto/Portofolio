@@ -15,31 +15,31 @@ const services = [
         title: "Project Consultation",
         description: "Expert guidance for software strategy, tech stack selection, and scalable architecture design from day one.",
         icon: <Image src="/assets/services/consultation.webp" alt="Consultation" width={80} height={80} className="w-20 h-20 object-contain" />,
-        className: "md:col-span-2",
+        className: "md:col-span-2 lg:col-span-2",
     },
     {
         title: "Infrastructure",
         description: "Seamless cloud setup and CI/CD pipelines.",
         icon: <Image src="/assets/services/infrastructure.webp" alt="Infrastructure" width={80} height={80} className="w-20 h-20 object-contain" />,
-        className: "md:col-span-1",
+        className: "md:col-span-1 lg:col-span-1",
     },
     {
         title: "Vibe Coding Rescue",
         description: "Fixing AI-generated prototypes. I refactor code, fix broken vibes, and ensure production-level stability.",
         icon: <Image src="/assets/services/rescue.webp" alt="Rescue" width={80} height={80} className="w-20 h-20 object-contain" />,
-        className: "md:col-span-1",
+        className: "md:col-span-1 lg:col-span-1",
     },
     {
         title: "Performance",
         description: "Maximum speed, SEO friendliness, and perfect Lighthouse scores.",
         icon: <Image src="/assets/services/performance.webp" alt="Performance" width={80} height={80} className="w-20 h-20 object-contain" />,
-        className: "md:col-span-1",
+        className: "md:col-span-1 lg:col-span-1",
     },
     {
         title: "PRD & Documentation",
         description: "Detailed technical requirements and alignment between business and development teams.",
         icon: <Image src="/assets/services/documentation.webp" alt="Documentation" width={80} height={80} className="w-20 h-20 object-contain" />,
-        className: "md:col-span-1",
+        className: "md:col-span-1 lg:col-span-1",
     },
 ];
 
@@ -52,14 +52,14 @@ const Services = () => {
                     <h2 className="text-3xl md:text-7xl font-grotesk font-bold text-amber-900 tracking-tighter">
                         My Services
                     </h2>
-                    <p className="text-gray-500 max-w-2xl mx-auto text-sm md:text-xl leading-relaxed">
+                    <p className="text-gray-500 max-w-2xl mx-auto text-sm md:text-xl leading-relaxed font-grotesk font-light">
                         Professional consultation and technical excellence.
                         I help you build digital products that feel premium and perform beyond expectations.
                     </p>
                 </div>
 
                 {/* Bento Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {services.map((service, index) => (
                         <div
                             key={index}
@@ -80,7 +80,7 @@ const Services = () => {
                                         </h3>
                                         <ArrowUpRight size={24} className="text-stone-300 group-hover:text-amber-700 transition-all duration-500" />
                                     </div>
-                                    <p className="text-gray-500 leading-relaxed text-lg">
+                                    <p className="text-gray-500 leading-relaxed text-lg font-grotesk font-light">
                                         {service.description}
                                     </p>
                                 </div>

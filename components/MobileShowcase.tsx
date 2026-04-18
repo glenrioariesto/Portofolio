@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useMotionValue, useTransform, PanInfo } from '
 import { ArrowUpRight, ChevronDown, ChevronUp, Layers, Calendar, Briefcase, ExternalLink, X } from 'lucide-react'
 import Image from 'next/image'
 import { Project } from './Experience'
+import { useNavbar } from '@/hooks/useNavbar'
 
 // ────────────────────────────────────────────────────────────────
 // Mobile Project Card
@@ -39,25 +40,25 @@ const MobileProjectCard = ({
             className="w-full"
         >
             <div
-                className="relative rounded-3xl overflow-hidden bg-white shadow-[0_8px_40px_rgba(0,0,0,0.08)] border border-gray-100"
+                className="relative rounded-3xl overflow-hidden bg-white shadow-[0_6px_30px_rgba(0,0,0,0.08)] border border-gray-100"
                 onClick={onExpand}
             >
                 {/* ── Image Section ── */}
-                <div className="relative w-full h-[184px] overflow-hidden">
+                <div className="relative w-full aspect-video overflow-hidden">
                     {project.images.length > 0 ? (
                         <>
                             <Image
                                 src={project.images[currentImageIndex]}
                                 alt={`${project.title} screenshot ${currentImageIndex + 1}`}
                                 fill
-                                className="object-cover transition-all duration-700 ease-out"
+                                className="object-contain object-top transition-all duration-700 ease-out"
                             />
                             {/* Gradient overlay on image */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                            {/* <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" /> */}
 
                             {/* Image dots indicator */}
                             {project.images.length > 1 && (
-                                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-50">
                                     {project.images.map((_, idx) => (
                                         <button
                                             key={idx}
@@ -66,22 +67,15 @@ const MobileProjectCard = ({
                                                 setCurrentImageIndex(idx)
                                             }}
                                             className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentImageIndex
-                                                ? 'w-6 bg-white'
-                                                : 'w-1.5 bg-white/50'
+                                                ? 'w-6 bg-amber-700 shadow-sm'
+                                                : 'w-1.5 bg-gray-300 shadow-sm'
                                                 }`}
                                         />
                                     ))}
                                 </div>
                             )}
 
-                            {/* Tap to change image */}
-                            {project.images.length > 1 && (
-                                <button
-                                    onClick={nextImage}
-                                    className="absolute inset-0 z-[5]"
-                                    aria-label="Next image"
-                                />
-                            )}
+
                         </>
                     ) : (
                         <div className="absolute inset-0 bg-gradient-to-br from-orange-100 via-orange-50 to-amber-50 flex items-center justify-center">
@@ -111,16 +105,17 @@ const MobileProjectCard = ({
                         </div>
                     )}
 
-                    {/* Category pill over image */}
-                    <div className="absolute bottom-3 left-4 z-10">
-                        <span className="px-3 py-1 bg-white/20 backdrop-blur-md text-white text-xs font-semibold rounded-full border border-white/20">
-                            {project.category}
-                        </span>
-                    </div>
                 </div>
 
                 {/* ── Content Section ── */}
-                <div className="p-5 pt-4">
+                <div className="p-5 pt-0">
+                    {/* Category */}
+                    <div className="mb-2">
+                        <span className="px-3 py-1 bg-orange-50 text-amber-700 text-[10px] font-bold uppercase tracking-wider rounded-md border border-orange-100">
+                            {project.category}
+                        </span>
+                    </div>
+
                     {/* Title & Date Row */}
                     <div className="flex items-start justify-between gap-3 mb-1.5">
                         <h3 className="text-lg font-rubik-doodle font-bold text-gray-900 leading-tight flex-1">
@@ -250,9 +245,16 @@ const ExpandedProjectModal = ({
         }
     }
 
+    const nextImage = (e: React.MouseEvent | React.TouchEvent) => {
+        e.stopPropagation()
+        if (project.images.length > 1) {
+            setCurrentImageIndex((prev) => (prev + 1) % project.images.length)
+        }
+    }
+
     return (
         <motion.div
-            className="fixed inset-0 z-[100] flex items-end"
+            className="fixed inset-0 z-[999] flex items-end"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -295,17 +297,20 @@ const ExpandedProjectModal = ({
 
                 <div className="overflow-y-auto max-h-[85vh] pb-8">
                     {/* Image */}
-                    <div className="relative w-full aspect-[16/10] mx-auto px-4">
-                        <div className="relative w-full h-full rounded-2xl overflow-hidden">
+                    <div className="relative w-full aspect-[16/9] mx-auto px-4">
+                        <div 
+                            className="relative w-full h-full rounded-2xl overflow-hidden cursor-pointer active:scale-[0.99] transition-transform"
+                            onClick={project.images.length > 1 ? nextImage : undefined}
+                        >
                             {project.images.length > 0 ? (
                                 <>
                                     <Image
                                         src={project.images[currentImageIndex]}
                                         alt={project.title}
                                         fill
-                                        className="object-cover"
+                                        className="object-contain object-top"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                                    {/* <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" /> */}
 
                                     {/* Image Slider */}
                                     {project.images.length > 1 && (
@@ -315,8 +320,8 @@ const ExpandedProjectModal = ({
                                                     key={idx}
                                                     onClick={() => setCurrentImageIndex(idx)}
                                                     className={`h-2 rounded-full transition-all duration-300 ${idx === currentImageIndex
-                                                        ? 'w-8 bg-white'
-                                                        : 'w-2 bg-white/50'
+                                                        ? 'w-8 bg-amber-700 shadow-sm'
+                                                        : 'w-2 bg-gray-300 shadow-sm'
                                                         }`}
                                                 />
                                             ))}
@@ -430,6 +435,16 @@ const ExpandedProjectModal = ({
 // ────────────────────────────────────────────────────────────────
 const MobileShowcase = ({ projects }: { projects: Project[] }) => {
     const [expandedProject, setExpandedProject] = useState<number | null>(null)
+    const { hide, show } = useNavbar("mobileShowcase")
+
+    // Navbar visibility control
+    useEffect(() => {
+        if (expandedProject !== null) {
+            hide()
+        } else {
+            show()
+        }
+    }, [expandedProject])
 
     // Lock body scroll when modal is open
     useEffect(() => {
@@ -444,7 +459,7 @@ const MobileShowcase = ({ projects }: { projects: Project[] }) => {
     }, [expandedProject])
 
     return (
-        <div className="block md:hidden px-4 pb-6">
+        <div className="block lg:hidden px-4 pb-6">
             {/* Cards container */}
             <div className="flex flex-col gap-5">
                 {projects.map((project, index) => (

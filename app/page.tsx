@@ -1,47 +1,133 @@
+"use client"
+
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Sparkles, MousePointer2 } from "lucide-react";
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import TechMarquee from "@/components/TechMarquee";
-import OrgExperience from "@/components/OrgExperience";
 import Services from "@/components/Services";
 import Experience from "@/components/Experience";
 import Booking from "@/components/Booking";
 
 export default function Home() {
+  const { scrollYProgress } = useScroll();
+
+  // Booking specific parallax transform
+  const xBooking = useTransform(scrollYProgress, [0.6, 1], [150, -50]);
+
+  // Entrance animation variants
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  };
+
   return (
-    <main className="flex flex-col pb-40">
-      {/* Hero Section */}
-      <div className="relative bg-cover bg-center bg-no-repeat mb-15 md:mb-30 px-4 md:px-0" style={{ backgroundImage: "url('/assets/background-kotak.png')" }}>
-        {/* Transition Gradient to Peach Background */}
+    <main className="flex flex-col text-slate-900">
+
+      {/* 1. Hero Section - Snap Start (Already has animations inside component) */}
+      <section className="relative shrink-0 min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat snap-start overflow-hidden"
+        style={{ backgroundImage: "url('/assets/background-kotak.webp')" }}>
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background-primary to-transparent pointer-events-none" />
-        <Hero />
-      </div>
+        <div className="w-full z-10 py-12">
+          <Hero />
+        </div>
+      </section>
 
-      {/* Tech Stack Marquee (Integrated with no extra gap) */}
-      <div className="py-0 pt-[60px] md:pt-0">
-        <TechMarquee />
-      </div>
+      {/* 2. Tech Stack Bridge - Waving Icons */}
+      <section className="relative shrink-0 py-8 bg-background-primary snap-start flex flex-col justify-center overflow-visible">
 
-      {/* Services Section (With top gap) */}
-      <div className="relative bg-white py-24 md:py-32 mt-24 md:mt-32">
-        {/* Top Transition: Peach to White */}
+        {/* Top Right Waving Asset (Tablet/Desktop) */}
+        <motion.div
+
+          animate={{ rotate: [0, 10, -10, 0], y: [0, -15, 0] }}
+          transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+          className="hidden md:block absolute -top-24 lg:-top-16 2xl:-top-40 right-6 lg:right-12 select-none pointer-events-none z-20"
+        >
+          <Image
+            src="/assets/top_right_iso_icon.webp"
+            alt="3D Isometric Tech Icon"
+            width={190}
+            height={190}
+            className="w-20 h-20 lg:w-[90px] lg:h-[90px] 2xl:w-[190px] 2xl:h-[190px] opacity-100 drop-shadow-2xl object-contain"
+          />
+        </motion.div>
+
+        {/* Bottom Left Waving Icon (Tablet/Desktop) */}
+        <motion.div
+          animate={{ rotate: [0, 10, -10, 0], y: [0, -15, 0] }}
+          transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+          className="hidden md:block absolute -bottom-24 lg:-bottom-40 left-6 lg:left-12 select-none pointer-events-none z-20"
+        >
+          <Image
+            src="/assets/bottom_left_iso_icon.webp"
+            alt="3D Isometric Cursor Icon"
+            width={180}
+            height={180}
+            className="w-20 h-20 lg:w-[100px] lg:h-[100px] 2xl:w-[180px] 2xl:h-[180px] opacity-100 drop-shadow-2xl object-contain"
+          />
+        </motion.div>
+
+        <div className="relative z-10">
+          <TechMarquee />
+        </div>
+      </section>
+
+      {/* 3. Services Section - Reveal Animation */}
+      <section className="relative shrink-0 min-h-screen flex items-center justify-center bg-white snap-start overflow-hidden">
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background-primary to-transparent pointer-events-none" />
 
-        <div className="px-4">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+          className="w-full z-10 py-12"
+        >
           <Services />
-        </div>
+        </motion.div>
 
-        {/* Bottom Transition: White to Peach */}
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background-primary to-transparent pointer-events-none" />
-      </div>
+      </section>
 
-      {/* Experience / Showcase Section */}
-      <div className="mt-24 md:mt-32 px-4 md:px-0">
-        <Experience />
-      </div>
+      {/* 4. Experience / Projects Showcase - Reveal Animation */}
+      <section className="relative shrink-0 min-h-screen flex items-center justify-center bg-background-primary/30 snap-start overflow-hidden">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+          className="w-full z-10 md:px-16 2xl:px-0 py-12"
+        >
+          <Experience />
+        </motion.div>
+      </section>
 
-      {/* Booking Section */}
-      <div className="mt-24 md:mt-32">
-        <Booking />
-      </div>
+      {/* 5. Booking Section - Reveal Animation */}
+      <section className="relative shrink-0 min-h-screen flex items-center justify-center bg-background-primary/30 snap-start overflow-hidden">
+        {/* Parallax Background Text (Desktop Only) */}
+        <motion.div
+          style={{ x: xBooking }}
+          className="hidden md:block absolute top-0 lg:-top-20 left-20 text-[130px] lg:text-[10vw] font-black text-amber-900/5 whitespace-nowrap select-none pointer-events-none uppercase tracking-tighter z-0"
+        >
+          Let's Design Incredible Work
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+          className="w-full z-10 md:px-16 py-12 lg:mt-20"
+        >
+          <Booking />
+        </motion.div>
+      </section>
+
     </main>
   );
 }

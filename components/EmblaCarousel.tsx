@@ -1,4 +1,4 @@
-﻿import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   EmblaCarouselType,
   EmblaEventType,
@@ -9,6 +9,7 @@ import { NextButton, PrevButton, usePrevNextButtons } from './EmblaCarouselArrow
 import { ArrowUpRight, ChevronLeft, ChevronRight, Layers, ChevronUp, ChevronDown, Briefcase } from 'lucide-react'
 import { Project } from './Experience'
 import Image from 'next/image'
+import { useNavbar } from '@/hooks/useNavbar'
 
 const TWEEN_FACTOR_BASE = 0.52
 
@@ -20,10 +21,19 @@ type PropType = {
   options?: EmblaOptionsType
 }
 
-const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
+const ProjectCard = ({ 
+  project, 
+  index, 
+  isExpanded, 
+  onToggle 
+}: { 
+  project: Project; 
+  index: number;
+  isExpanded: boolean;
+  onToggle: () => void;
+}) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isTechStackExpanded, setIsTechStackExpanded] = useState(false)
-  const [isInfoExpanded, setIsInfoExpanded] = useState(false)
 
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation()
@@ -37,57 +47,30 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
   return (
     <div className="embla__slide__number relative h-full">
-      {/*this add props color custom bg*/}
       <div className="flex w-full h-[500px] bg-white/90 backdrop-blur-md rounded-[2.5rem] overflow-hidden shadow-2xl py-2 pr-2 relative border border-white/30">
 
-        {/* Navigation Bar (Sidebar on Desktop, Bottom Bar on Mobile) */}
-        <div className="
-            z-30
-            /* Mobile: Absolute bottom, horizontal row */
-            absolute bottom-0 left-0 w-full h-16 flex flex-row justify-around items-center bg-white rounded-b-[2.5rem] px-6 2xl:border-none
-            /* Desktop: Relative, vertical column */
-            md:relative md:w-20 md:h-full md:flex-col md:justify-start md:py-8 md:gap-8 md:bottom-auto md:left-auto md:bg-transparent md:px-0 md:rounded-none
-        ">
-          {/* Number Badge (Desktop only) */}
+        <div className="z-30 absolute bottom-0 left-0 w-full h-16 flex flex-row justify-around items-center bg-white rounded-b-[2.5rem] px-6 md:relative md:w-20 md:h-full md:flex-col md:justify-start md:py-8 md:gap-8 md:bottom-auto md:left-auto md:bg-transparent md:px-0 md:rounded-none">
           <div className="hidden md:flex w-10 h-10 bg-black text-white rounded-full items-center justify-center font-bold text-xl">
             {index + 1}
           </div>
-
-          {/* Icons */}
           <div className="flex flex-row md:flex-col gap-8 text-gray-400 w-full md:w-auto justify-around md:justify-start items-center">
-            {/* Next Image Button */}
-            <button
-              onClick={nextImage}
-              className="text-black hover:text-gray-600 transition-colors cursor-pointer p-2 rounded-full hover:bg-gray-100/50"
-              aria-label={`Next image for ${project.title}`}
-            >
+            <button onClick={nextImage} className="text-black hover:text-gray-600 transition-colors p-2 rounded-full hover:bg-gray-100/50">
               <ChevronRight size={24} />
             </button>
-
-            {/* Previous Image Button */}
-            <button
-              onClick={prevImage}
-              className="text-gray-500 hover:text-black transition-colors cursor-pointer p-2 rounded-full hover:bg-gray-100/50"
-              aria-label={`Previous image for ${project.title}`}
-            >
+            <button onClick={prevImage} className="text-gray-500 hover:text-black transition-colors p-2 rounded-full hover:bg-gray-100/50">
               <ChevronLeft size={24} />
             </button>
           </div>
-
-          {/* Bottom Avatar (Desktop only) */}
-          <div className="hidden md:block mt-auto">
-            <div className="w-8 h-8 rounded-full bg-gray-200" />
-          </div>
         </div>
 
-        {/* Main Content Area */}
-        <div className="flex-1 relative rounded-[2rem] overflow-hidden bg-[#fdf6f0] h-full pb-16 md:pb-0">
-
-          {/* Background Image */}
+        <div 
+          className="flex-1 relative rounded-[2rem] overflow-hidden bg-[#fdf6f0] h-full pb-16 md:pb-0 cursor-pointer pointer-events-auto"
+          onClick={() => {
+            if (window.innerWidth < 1024) onToggle();
+          }}
+        >
           <div className="absolute inset-0 bg-gray-200">
-            {/* Fallback gradient if no image */}
             <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-orange-100" />
-
             {project.images.length > 0 && (
               <Image
                 src={project.images[currentImageIndex]}
@@ -96,24 +79,10 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                 className="object-cover transition-opacity duration-500"
               />
             )}
-
-            {/* Image Indicators */}
-            {project.images.length > 1 && (
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20 bg-black/10 backdrop-blur-sm px-2 py-1 rounded-full">
-                {project.images.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(idx); }}
-                    className={`w-1.5 h-1.5 rounded-full transition-all ${idx === currentImageIndex ? 'bg-white w-4' : 'bg-white/50'}`}
-                    aria-label={`Go to image ${idx + 1}`}
-                  />
-                ))}
-              </div>
-            )}
           </div>
 
           {/* Top Right Actions */}
-          <div className="absolute top-6 right-6 z-10 flex gap-4 text-black">
+          <div className="absolute top-6 right-6 z-50 flex gap-4 text-black pointer-events-auto">
             {project.links && project.links.length > 0 && (
               <>
                 {project.links.length === 1 ? (
@@ -156,17 +125,13 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             )}
           </div>
 
-          {/* Content Overlay */}
           <div className="absolute inset-0 pt-8 flex flex-col justify-end text-black pointer-events-none">
             <div className="grid grid-cols-[5rem_auto_1fr_auto_3rem] items-end">
-
-              {/* Spacer Left */}
               <div className="h-12 w-full relative -mb-2 border-b-12 border-r-12 rounded-b-4xl border-white/80 2xl:border-white z-50"></div>
-
-              {/* Bottom Left Widget - Tech Stack */}
+              
               <div
-                className={`-mx-[0.7rem] 2xl:-mx-[1rem] bg-white p-5 rounded-t-3xl shadow-sm w-auto min-w-[12rem] max-w-[15rem] hidden sm:block relative z-40 border-x-12 border-t-12 border-b-0 2xl:border-x-2 2xl:border-t-2 border-white/20 2xl:border-gray-100  pointer-events-auto cursor-pointer transition-all duration-300 ease-in-out flex flex-col ${isTechStackExpanded ? 'h-auto' : 'h-24 overflow-hidden'}`}
-                onClick={() => setIsTechStackExpanded(!isTechStackExpanded)}
+                className={`-mx-[0.7rem] 2xl:-mx-[1rem] bg-white p-5 rounded-t-3xl shadow-sm w-auto min-w-[12rem] max-w-[15rem] hidden sm:block relative z-40 border-x-12 border-t-12 border-b-0 border-white/20 pointer-events-auto cursor-pointer transition-all duration-300 flex flex-col ${isTechStackExpanded ? 'h-auto' : 'h-24 overflow-hidden'}`}
+                onClick={(e) => { e.stopPropagation(); setIsTechStackExpanded(!isTechStackExpanded); }}
               >
                 <div className="flex items-center justify-between gap-2 mb-3 text-gray-500">
                   <div className="flex items-center gap-2">
@@ -177,82 +142,41 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                 </div>
                 <div className={`flex flex-wrap gap-2 pr-1 ${isTechStackExpanded ? 'max-h-[140px] overflow-y-auto' : ''}`}>
                   {project.techStack.map((tech, idx) => (
-                    <span key={idx} className={`px-2 py-1 bg-gray-100 rounded-md text-xs font-medium text-gray-700 ${!isTechStackExpanded && idx > 2 ? 'hidden' : ''}`}>
+                    <span key={idx} className="px-2 py-1 bg-gray-100 rounded-md text-xs font-medium text-gray-700">
                       {tech}
                     </span>
                   ))}
-                  {!isTechStackExpanded && project.techStack.length > 3 && (
-                    <span className="px-2 py-1 bg-gray-100 rounded-md text-xs font-medium text-gray-700">
-                      +{project.techStack.length - 3}
-                    </span>
-                  )}
                 </div>
               </div>
 
-              {/* Spacer Middle */}
-              <div className="h-12 w-full relative -mb-2 border-b-12 border-x-12 rounded-b-4xl border-white/80 2xl:border-white z-50">
-                {/* This space is reserved for the inverted radius effect */}
-              </div>
+              <div className="h-12 w-full relative -mb-2 border-b-12 border-x-12 rounded-b-4xl border-white/80 2xl:border-white z-50"></div>
 
-              {/* Bottom Right Widget - Project Info */}
               <div
-                className={`-mx-[0.7rem] 2xl:-mx-[1rem] bg-white p-4 rounded-t-3xl shadow-sm flex flex-col justify-center gap-2 pr-8 relative z-40 border-x-12 border-t-12 border-b-0 2xl:border-x-2 2xl:border-t-2 border-white/20 2xl:border-gray-100 pointer-events-auto cursor-pointer transition-all duration-300 ease-in-out  min-w-[20rem] max-w-[28rem]  ${isInfoExpanded ? 'h-auto max-h-[250px] overflow-y-auto' : 'h-24 overflow-hidden'}`}
-                onClick={() => setIsInfoExpanded(!isInfoExpanded)}
+                className={`-mx-[0.7rem] 2xl:-mx-[1rem] bg-white p-4 rounded-t-3xl shadow-sm flex flex-col justify-center gap-2 pr-8 relative border-x-12 border-t-12 border-b-0 border-white/20 pointer-events-auto cursor-pointer transition-all duration-300 ease-in-out min-w-[20rem] max-w-[28rem] ${isExpanded ? 'h-auto max-h-[400px] overflow-y-auto z-[200] shadow-[0_-20px_50px_rgba(0,0,0,0.1)]' : 'h-24 overflow-hidden z-40'}`}
+                onClick={(e) => { e.stopPropagation(); onToggle(); }}
               >
                 <div className="flex items-center gap-6">
-                  {/* Date Section - handles both simple and range */}
                   <div className="flex flex-col items-center border-r border-gray-200 pr-6 shrink-0">
-                    {project.date.includes(' - ') ? (
-                      /* Range date: "Sep 2024 - Jan 2025" */
-                      <>
-                        <span className="text-xs font-bold text-gray-700 text-center leading-tight mt-0.5">
-                          {project.date.split(' - ')[0]}
-                        </span>
-                        <span className="text-[10px] text-gray-400 my-0.5">to</span>
-                        <span className="text-xs font-bold text-gray-700 text-center leading-tight">
-                          {project.date.split(' - ')[1]}
-                        </span>
-                      </>
-                    ) : (
-                      /* Simple date: "Oct 2024" */
-                      <>
-                        <span className="text-xs font-medium text-gray-500">{project.date.split(' ')[0]}</span>
-                        <span className="text-3xl font-bold">{project.date.split(' ')[1]}</span>
-                      </>
-                    )}
+                    <span className="text-xs font-bold text-gray-700 text-center leading-tight mt-0.5">{project.date}</span>
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-xl font-rubik-doodle font-bold leading-tight">{project.title}</h3>
+                    <h3 className="text-2xl font-bold leading-tight font-rubik-doodle tracking-wide">{project.title}</h3>
                     <div className="flex items-center gap-2 mt-1">
                       <span className="text-xs font-semibold">{project.role}</span>
                     </div>
-                    {isInfoExpanded && (
-                      <p className="text-xs text-gray-500 mt-2 leading-relaxed">{project.description}</p>
+                    {isExpanded && (
+                      <p className="text-xs text-gray-500 mt-2 leading-relaxed font-grotesk font-light">{project.description}</p>
                     )}
                   </div>
                   <div className="absolute top-4 right-4 text-gray-500">
-                    {isInfoExpanded ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
+                    {isExpanded ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
                   </div>
                 </div>
-
-                {isInfoExpanded && project.stats && project.stats.length > 0 && (
-                  <div className="mt-4 pt-4 border-t border-gray-200 flex flex-wrap gap-4">
-                    {project.stats.map((stat, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-gray-600">{stat.label}</span>
-                        <span className="text-lg font-bold text-primary">{stat.value}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
               </div>
 
-              {/* Spacer Right */}
               <div className="h-12 w-full relative -mb-2 border-b-12 border-l-12 rounded-b-4xl border-white/80 2xl:border-white z-50"></div>
-
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -262,6 +186,9 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const { projects, options } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+  const { hide, show } = useNavbar("emblaCarousel")
+  
   const tweenFactor = useRef(0)
   const tweenNodes = useRef<HTMLElement[]>([])
 
@@ -271,6 +198,21 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     onPrevButtonClick,
     onNextButtonClick
   } = usePrevNextButtons(emblaApi)
+
+  // Sync Navbar Visibility with Expanded State
+  useEffect(() => {
+    // Hide navbar for any screen smaller than typical desktop (1024px)
+    if (window.innerWidth < 1024) {
+      if (expandedIndex !== null) hide();
+      else show();
+    }
+  }, [expandedIndex]); // Removed hide, show from dependencies to avoid infinite loops
+
+  // Reset expanded state on slide change
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on('select', () => setExpandedIndex(null));
+  }, [emblaApi]);
 
   const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
     tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
@@ -296,27 +238,10 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         slidesInSnap.forEach((slideIndex) => {
           if (isScrollEvent && !slidesInView.includes(slideIndex)) return
 
-          if (engine.options.loop) {
-            engine.slideLooper.loopPoints.forEach((loopItem) => {
-              const target = loopItem.target()
-
-              if (slideIndex === loopItem.index && target !== 0) {
-                const sign = Math.sign(target)
-
-                if (sign === -1) {
-                  diffToTarget = scrollSnap - (1 + scrollProgress)
-                }
-                if (sign === 1) {
-                  diffToTarget = scrollSnap + (1 - scrollProgress)
-                }
-              }
-            })
-          }
-
           const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current)
           const scale = numberWithinRange(tweenValue, 0, 1).toString()
           const tweenNode = tweenNodes.current[slideIndex]
-          tweenNode.style.transform = `scale(${scale})`
+          if (tweenNode) tweenNode.style.transform = `scale(${scale})`
         })
       })
     },
@@ -325,11 +250,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
   useEffect(() => {
     if (!emblaApi) return
-
     setTweenNodes(emblaApi)
     setTweenFactor(emblaApi)
     tweenScale(emblaApi)
-
     emblaApi
       .on('reInit', setTweenNodes)
       .on('reInit', setTweenFactor)
@@ -344,7 +267,12 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         <div className="embla__container">
           {projects.map((project, index) => (
             <div className="embla__slide" key={project.id}>
-              <ProjectCard project={project} index={index} />
+              <ProjectCard 
+                project={project} 
+                index={index} 
+                isExpanded={expandedIndex === index}
+                onToggle={() => setExpandedIndex(expandedIndex === index ? null : index)}
+              />
             </div>
           ))}
         </div>

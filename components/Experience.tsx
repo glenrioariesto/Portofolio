@@ -81,7 +81,11 @@ const PROJECTS: Project[] = [
 
 const OPTIONS: EmblaOptionsType = { loop: true, align: 'center' }
 
+import { useNavbarContext } from "@/context/NavbarContext";
+
 const Experience = () => {
+  const { isHidden } = useNavbarContext();
+
   return (
     <section id="showcase" className="relative flex flex-col overflow-hidden -mt-20 pt-20">
 
@@ -89,6 +93,8 @@ const Experience = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-[#FBE9D4]/90 via-[#FBE9D4]/40 to-transparent -z-10" />
 
       <motion.div
+        animate={{ opacity: isHidden ? 0 : 1 }}
+        transition={{ duration: 0.3 }}
         className="mx-auto text-center px-4 my-12 relative z-10"
       >
         <ShinyText
@@ -98,7 +104,9 @@ const Experience = () => {
         />
       </motion.div>
 
-      <EmblaCarousel projects={PROJECTS} options={OPTIONS} />
+      <div className="hidden lg:block">
+        <EmblaCarousel projects={PROJECTS} options={OPTIONS} />
+      </div>
       <MobileShowcase projects={PROJECTS} />
     </section>
   );
