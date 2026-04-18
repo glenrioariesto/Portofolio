@@ -67,7 +67,7 @@ export async function POST(request: Request) {
       if (modifier === "AM" && hours === 12) hours = 0;
 
       const startDate = new Date(`${bookingDate}T${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:00`);
-      const endDate = new Date(startDate.getTime() + 45 * 60000);
+      const endDate = new Date(startDate.getTime() + 30 * 60000);
 
       await calendar.events.insert({
         calendarId: process.env.GOOGLE_CALENDAR_ID,

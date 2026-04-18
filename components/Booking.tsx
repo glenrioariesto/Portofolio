@@ -13,11 +13,10 @@ import {
 } from "lucide-react";
 
 const timeSlots = [
-    "09:00 AM", "10:00 AM", "11:30 AM",
-    "01:00 PM", "02:30 PM", "04:00 PM", "05:15 PM"
+    "07:00 PM", "07:30 PM", "08:00 PM", "08:30 PM"
 ];
 
-const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 import { useNavbarContext } from "@/context/NavbarContext";
 import { Notification } from "./Notification";
@@ -46,12 +45,47 @@ const Booking = () => {
         message: ''
     });
 
+    const [viewDate, setViewDate] = useState(new Date());
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const viewYear = viewDate.getFullYear();
+    const viewMonth = viewDate.getMonth();
+
+    const handlePrevMonth = () => {
+        setViewDate(new Date(viewYear, viewMonth - 1, 1));
+        setSelectedDate(null);
+        setSelectedTime(null);
+    };
+
+    const handleNextMonth = () => {
+        setViewDate(new Date(viewYear, viewMonth + 1, 1));
+        setSelectedDate(null);
+        setSelectedTime(null);
+    };
+
+    const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    const getDaysInMonth = (month: number, year: number) => {
+        return new Date(year, month + 1, 0).getDate();
+    };
+
+    const getFirstDayOfMonth = (month: number, year: number) => {
+        return new Date(year, month, 1).getDay();
+    };
+
+    const daysInMonth = getDaysInMonth(viewMonth, viewYear);
+    const firstDay = getFirstDayOfMonth(viewMonth, viewYear);
+
     const { isHidden } = useNavbarContext();
 
     const handleBooking = async () => {
         setIsSubmitting(true);
         try {
-            const dateStr = `2026-04-${selectedDate?.toString().padStart(2, '0')}`;
+            const dateStr = `${viewYear}-${(viewMonth + 1).toString().padStart(2, '0')}-${selectedDate?.toString().padStart(2, '0')}`;
             
             const response = await fetch('/api/bookings', {
                 method: 'POST',
@@ -139,9 +173,9 @@ const Booking = () => {
 
                         <div className="space-y-5">
                             {[
-                                { icon: <Clock size={18} />, text: "45 Min session" },
+                                { icon: <Clock size={18} />, text: "30 Min session" },
                                 { icon: <Video size={18} />, text: "Google Meet" },
-                                { icon: <Globe size={18} />, text: "GMT+7" }
+                                { icon: <Globe size={18} />, text: "WIB (GMT+7)" }
                             ].map((item, i) => (
                                 <div key={i} className="flex items-center gap-3 text-slate-600">
                                     <div className="p-2 bg-white rounded-xl shadow-sm border border-slate-100 text-primary">
@@ -163,13 +197,20 @@ const Booking = () => {
                     <div className="flex-1 p-8 lg:p-10 space-y-8 bg-white/40">
                         <div className="flex items-center justify-between">
                             <h4 className="text-xl font-bold flex items-center gap-2 text-slate-900">
-                                April <span className="text-slate-400 font-medium">2026</span>
+                                {monthNames[viewMonth]} <span className="text-slate-400 font-medium">{viewYear}</span>
                             </h4>
                             <div className="flex gap-2">
-                                <button className="p-2 hover:bg-slate-100 rounded-lg transition-all border border-slate-100 bg-white">
+                                <button 
+                                    onClick={handlePrevMonth}
+                                    disabled={viewMonth === today.getMonth() && viewYear === today.getFullYear()}
+                                    className="p-2 hover:bg-slate-100 rounded-lg transition-all border border-slate-100 bg-white text-slate-600 disabled:opacity-30 disabled:cursor-not-allowed"
+                                >
                                     <ChevronLeft size={16} />
                                 </button>
-                                <button className="p-2 hover:bg-slate-100 rounded-lg transition-all border border-slate-100 bg-white">
+                                <button 
+                                    onClick={handleNextMonth}
+                                    className="p-2 hover:bg-slate-100 rounded-lg transition-all border border-slate-100 bg-white text-slate-600"
+                                >
                                     <ChevronRight size={16} />
                                 </button>
                             </div>
@@ -181,12 +222,14 @@ const Booking = () => {
                                     {day}
                                 </div>
                             ))}
-                            {[...Array(2)].map((_, i) => <div key={`empty-${i}`} />)}
+                            {[...Array(firstDay)].map((_, i) => <div key={`empty-${i}`} />)}
 
-                            {[...Array(30)].map((_, i) => {
+                            {[...Array(daysInMonth)].map((_, i) => {
                                 const day = i + 1;
-                                const isAvailable = day >= 13 && day <= 28;
+                                const dateObj = new Date(viewYear, viewMonth, day);
+                                const isAvailable = dateObj >= today;
                                 const isSelected = selectedDate === day;
+                                const isRealToday = dateObj.getTime() === today.getTime();
 
                                 return (
                                     <button
@@ -209,6 +252,9 @@ const Booking = () => {
                                         `}
                                     >
                                         {day}
+                                        {isRealToday && !isSelected && (
+                                            <div className="absolute top-1 right-1 w-1.5 h-1.5 bg-primary rounded-full" />
+                                        )}
                                     </button>
                                 );
                             })}
@@ -239,7 +285,7 @@ const Booking = () => {
                                 >
                                     <div className="space-y-1">
                                         <h4 className="font-bold text-sm text-slate-900">Available Times</h4>
-                                        <span className="text-[10px] text-primary font-bold">📅 April {selectedDate}, 2026</span>
+                                        <span className="text-[10px] text-primary font-bold">📅 {monthNames[viewMonth]} {selectedDate}, {viewYear}</span>
                                     </div>
 
                                     <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
@@ -281,7 +327,7 @@ const Booking = () => {
                                 <div className="bg-white rounded-[2.5rem] p-6 shadow-2xl border border-white space-y-6 overflow-hidden h-full flex flex-col">
                                     <div className="space-y-1">
                                         <h4 className="text-xl font-bold text-slate-900 font-grotesk">Complete Booking</h4>
-                                        <p className="text-slate-500 text-xs">Finalize your {selectedTime} session on Apr {selectedDate}.</p>
+                                        <p className="text-slate-500 text-xs">Finalize your {selectedTime} session on {monthNames[viewMonth].substring(0, 3)} {selectedDate}.</p>
                                     </div>
 
                                     <div className="space-y-4">
@@ -377,6 +423,7 @@ const Booking = () => {
             />
 
             <style jsx>{`
+                .custom-scrollbar::-webkit-scrollbar {
                     width: 4px;
                 }
                 .custom-scrollbar::-webkit-scrollbar-track {
