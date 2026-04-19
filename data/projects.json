@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Elicit Tools",
+    "description": "AI-driven requirements engine that automates PRD/User Story generation using OpenAI models. Optimized for software documentation efficiency."
+  },
+  {
+    "name": "Obat Mahasiswa",
+    "description": "Student health portal built with React and Express.js. Features real-time appointment scheduling with a Firebase NoSQL backend."
+  },
+  {
+    "name": "Menu Master",
+    "description": "Restaurant POS system using the CodeIgniter (PHP) MVC framework. Implemented a robust MySQL database for inventory and service tracking."
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "hardSkills": [
+    "Express.js",
+    "MySQL",
+    "PostgreSQL",
+    "RESTful API",
+    "Model Context Protocol (MCP)",
+    "React",
+    "Tailwind",
+    "Firebase",
+    "GCP",
+    "VPS (Ubuntu/Linux)",
+    "Drizzle ORM",
+    "Prisma",
+    "BetterAuth",
+    "Laravel",
+    "NextJS",
+    "NestJS",
+    "Shadcn",
+    "Javascript",
+    "TypeScript",
+    "PHP",
+    "Midtrans API",
+    "Chatgpt API",
+    "Prompting"
+  ],
+  "softSkills": [
+    "Communication",
+    "Problem Solving",
+    "Team Collaboration",
+    "Analytical Thinking",
+    "Attention to Detail"
+  ],
+  "tools": [
+    "Git Control",
+    "Antigravity",
+    "Cursor",
+    "Kilocode CLI",
+    "Amazon Q",
+    "Warp",
+    "Opencode",
+    "Google Flow",
+    "Visual Studio Code",
+    "Postman",
+    "Figma",
+    "pgAdmin",
+    "phpMyAdmin",
+    "Jira",
+    "Notion",
+    "Chatgpt",
+    "Grok"
+  ]
+}

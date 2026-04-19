@@ -1,0 +1,196 @@
+[
+  {
+    "id": 1,
+    "title": "Landing Page Ads",
+    "category": "Web Application",
+    "date": "Aug 2024 - Present",
+    "role": "Lead Full Stack Developer",
+    "description": "Built and continuously optimizing a high-conversion landing page for advertising campaigns, SEO best practices, and performance tuning to maximize user engagement and lead generation.",
+    "images": [
+      "/assets/project1/cover-1.webp",
+      "/assets/project1/cover-2.webp"
+    ],
+    "techStack": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind"
+    ],
+    "stats": [
+      {
+        "label": "Conversion rate",
+        "value": "+150%"
+      }
+    ],
+    "links": [
+      {
+        "label": "Ads Gamparai",
+        "url": "https://gamparai.com"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Platform Course AI Art",
+    "category": "SaaS Product",
+    "date": "Aug 2024 - Present",
+    "role": "Lead Full Stack Developer",
+    "description": "Developed and maintaining a full-featured SaaS course platform for AI-generated art, including user authentication, course management dashboard, video streaming, Midtrans payment gateway integration, and automated email notifications.",
+    "images": [
+      "/assets/Project2/cover-1.webp",
+      "/assets/Project2/cover-slide2.webp",
+      "/assets/Project2/cover-slide3.webp",
+      "/assets/Project2/cover-slide4.webp",
+      "/assets/Project2/cover-slide5.webp",
+      "/assets/Project2/cover-slide6.webp",
+      "/assets/Project2/cover-slide7.webp",
+      "/assets/Project2/cover-slide8.webp"
+    ],
+    "techStack": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind",
+      "Postgres",
+      "pgAdmin4",
+      "Restfull API",
+      "ORM Prisma",
+      "Midtrans Payment Gateway",
+      "JWT"
+    ],
+    "stats": [
+      {
+        "label": "Users",
+        "value": "6k+"
+      },
+      {
+        "label": "Repeat Order",
+        "value": "2.5k+"
+      }
+    ],
+    "links": [
+      {
+        "label": "Main Platform",
+        "url": "https://aigensee.id"
+      },
+      {
+        "label": "AI Wave",
+        "url": "https://aigensee.id/aiwave"
+      },
+      {
+        "label": "AI Motion",
+        "url": "https://aigensee.id/aimotion"
+      },
+      {
+        "label": "Sanggar AI",
+        "url": "https://aigensee.id/sanggar-ai"
+      },
+      {
+        "label": "YourAI",
+        "url": "https://aigensee.id/yourai"
+      },
+      {
+        "label": "YourAI App",
+        "url": "https://aigensee.id/yourai-app"
+      },
+      {
+        "label": "YourAI Storybook",
+        "url": "https://aigensee.id/yourai-storybook"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Aigensee Admin Dashboard",
+    "category": "Internal Enterprise System",
+    "date": "May 2024 - Present",
+    "role": "Fullstack Web Developer",
+    "description": "Developed a comprehensive internal management system to streamline Aigensee's core operations. Features include course content management, real-time student data tracking, automated transaction processing, and a secure attendance system.",
+    "images": [
+      "/assets/project4/cover-1.webp",
+      "/assets/project4/cover-slide2.webp"
+    ],
+    "techStack": [
+      "Next.js",
+      "TypeScript",
+      "Drizzle ORM",
+      "PostgreSQL",
+      "BetterAuth",
+      "Shadcn UI"
+    ],
+    "stats": [
+      {
+        "label": "Efficiency",
+        "value": "+60%"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Human Management System",
+    "category": "Workforce Management",
+    "date": "Sep 2025 - Present",
+    "role": "Fullstack Web Developer",
+    "description": "An automated user attendance management system designed to monitor and track workforce participation with high data accuracy. Integrated into the internal operations to streamline human resource tracking and secure participation audits.",
+    "images": [
+      "/assets/project5/cover-absensi-1.webp",
+      "/assets/project5/cover-absensi-2.webp"
+    ],
+    "techStack": [
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Drizzle ORM",
+      "Zod",
+      "Tailwind"
+    ],
+    "stats": [
+      {
+        "label": "Accuracy",
+        "value": "99.9%"
+      }
+    ],
+    "links": [
+      {
+        "label": "Live App",
+        "url": "https://absensi.aigensee.id"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Simulasi Buku Electronic",
+    "category": "EdTech Gamification",
+    "date": "Oct 2025 - Jan 2025",
+    "role": "Fullstack Web Developer",
+    "description": "Developed 6 interactive educational games and electronic book simulations for the Ministry of Education (Kemendikbud) using high-performance vanilla JavaScript, integrated into national digital curricula for junior high schools.",
+    "images": [
+      "/assets/project3/cover-slide1.webp",
+      "/assets/project3/cover-slide2-alat-ukur.webp",
+      "/assets/project3/cover-slide3-menyusun-manik-manik.webp",
+      "/assets/project3/cover-slide4-menyusun-antarperangkat-cctv.webp",
+      "/assets/project3/cover-slide5-pemakaian-apd.webp",
+      "/assets/project3/cover-slide6-pemrograman-blok.webp",
+      "/assets/project3/cover-slide7-membaca-gambar-kerja.webp",
+      "/assets/project3/cover-slide8-membaca-gambar-kerja.webp",
+      "/assets/project3/cover-slide9-membaca-gambar-kerja.webp"
+    ],
+    "techStack": [
+      "Vanilla JavaScript",
+      "HTML5 Canvas",
+      "CSS3 Animations",
+      "Digital Curricula",
+      "Matter.js"
+    ],
+    "stats": [
+      {
+        "label": "Modules",
+        "value": "6 Games"
+      }
+    ],
+    "links": [
+      {
+        "label": "Live Gallery",
+        "url": "https://glenrioariesto.github.io/simulasi-buku-electronic/"
+      }
+    ]
+  }
+]

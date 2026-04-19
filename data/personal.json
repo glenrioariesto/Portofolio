@@ -1,0 +1,13 @@
+{
+  "personalInfo": {
+    "name": "GLEN RIO ARISTO",
+    "title": "Senior Fullstack Developer & AI Specialist",
+    "phone": "089529307135",
+    "email": "glenrioariesto@gmail.com",
+    "location": "Bandung, Indonesia",
+    "linkedin": "linkedin.com/in/glenrioaristo",
+    "github": "github.com/glenrioariesto",
+    "portfolio": "glenrioariesto.com"
+  },
+  "summary": "Bachelor's degree in Software Engineering from Telkom University (GPA 3.50). Experienced Full Stack Developer adopting a Vibe Engineering mindset with expertise in React, Next.js, and automated workflow pipelines. Specialist in complex multi-API integrations (OpenAI, MCP, Midtrans, Watzap, and various third-party services), payment gateway systems, and robust cloud deployments (GCP, VPS/Linux). Proven track record of delivering high-impact solutions, including a platform that achieved IDR 100M+ revenue post-launch."
+}

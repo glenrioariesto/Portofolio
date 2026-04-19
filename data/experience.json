@@ -1,0 +1,37 @@
+[
+  {
+    "company": "Startup AIGENSEE",
+    "location": "Bandung, Indonesia",
+    "role": "Fullstack Web Developer",
+    "dates": "August 2024 - Present",
+    "achievements": [
+      "Engineered 'Aigensee', a full-stack AI-art learning platform built with Next.js, TypeScript, and PostgreSQL. Integrated Midtrans payment gateway and automated WhatsApp notifications via Watzap provider, driving IDR 100M+ revenue post-launch.",
+      "Optimized interactive UI components, including complex carousels, using AI-assisted development environments like Antigravity.",
+      "Developed a comprehensive internal admin dashboard to manage course content, student data, and transaction orders, streamlining core operations.",
+      "Created an automated user attendance management system to monitor and track workforce participation with high data accuracy.",
+      "Implemented a modular architecture with a relational database design for user management, affiliate systems, and secure transactions.",
+      "Developed 6 interactive educational games (Electronic Book Simulations) for the Ministry of Education (Kemendikbud) using vanilla JavaScript.",
+      "Delivered high-performance gamified modules integrated into the national digital curricula for junior high schools."
+    ]
+  },
+  {
+    "company": "Lecturer Project",
+    "location": "Bandung, Indonesia",
+    "role": "Data Collection",
+    "dates": "May 2024 - June 2024",
+    "achievements": [
+      "Collected and processed over 100,000 tweets related to the 2024 Indonesian presidential election, focusing specifically on public sentiment in the DKI Jakarta area. Utilized Google Colab and Python to scrape, clean, and structure Twitter data for deep analysis to understand regional public opinion and sentiment patterns during the election period.",
+      "Analyzed large-scale datasets to identify public sentiment patterns for political research."
+    ]
+  },
+  {
+    "company": "Bebras Indonesia",
+    "location": "Bandung, Indonesia",
+    "role": "Data Collection",
+    "dates": "Jul 2022 - Aug 2022",
+    "achievements": [
+      "Responsible for systematic data collection from vocational high schools (SMKs) across 10 provinces in Indonesia, involving school identification, coordination with representatives, and conducting surveys or interviews. This data served as a foundation for planning upcoming Bebras projects, particularly focused on enhancing computational literacy and strengthening informatics curricula in vocational education.",
+      "Contributed extensive documentation and reporting of findings for the research and development team, ensuring that all collected information related to school needs and challenges was accurately synthesized to support regional decision-making and project execution."
+    ]
+  }
+]

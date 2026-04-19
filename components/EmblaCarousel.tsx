@@ -165,7 +165,23 @@ const ProjectCard = ({
                       <span className="text-xs font-semibold">{project.role}</span>
                     </div>
                     {isExpanded && (
-                      <p className="text-xs text-gray-500 mt-2 leading-relaxed font-grotesk font-light">{project.description}</p>
+                      <>
+                        <p className="text-xs text-gray-500 mt-3 leading-relaxed font-grotesk font-light max-h-[100px] overflow-y-auto pr-2 custom-scrollbar">
+                          {project.description}
+                        </p>
+                        {project.stats && project.stats.length > 0 && (
+                          <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-gray-100">
+                            {project.stats.map((stat, idx) => (
+                              <div key={idx} className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-50 to-amber-50 px-3 py-1 rounded-full border border-orange-100 shadow-sm">
+                                <span className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">{stat.label}</span>
+                                <span className="text-xs font-black bg-gradient-to-r from-amber-700 to-orange-600 text-transparent bg-clip-text">
+                                  {stat.value}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </>
                     )}
                   </div>
                   <div className="absolute top-4 right-4 text-gray-500">
