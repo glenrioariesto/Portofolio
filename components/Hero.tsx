@@ -1,34 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { MailCheckIcon, Github, Linkedin, FileDown, X, FileText } from "lucide-react";
+import { motion } from "framer-motion";
+import { MailCheckIcon, Github, Linkedin, FileDown } from "lucide-react";
 import { NameText } from "./NameText";
 import { ShinyText } from "./ShinyText";
 import { useState, useEffect } from "react";
 import { useNavbar } from "@/hooks/useNavbar";
+import CVModal from "./CVModal";
 
 const Hero = () => {
   const [showCV, setShowCV] = useState(false);
   const { hide, show } = useNavbar("heroCV");
 
-  // Prevent scroll when modal is open
   useEffect(() => {
-    if (showCV) {
-      document.body.style.overflow = "hidden";
-      hide();
-    } else {
-      document.body.style.overflow = "unset";
-      show();
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-      show();
-    };
-  }, [showCV]);
+    if (showCV) hide();
+    else show();
+    return () => show();
+  }, [showCV, hide, show]);
 
   return (
     <section id="hero" className="flex flex-col justify-center items-center mx-auto max-w-screen-lg gap-8 px-4">
+      <CVModal isOpen={showCV} onClose={() => setShowCV(false)} />
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -44,6 +37,7 @@ const Hero = () => {
           <ShinyText
             text="Available For Remote Work"
             speed={5}
+            as="span"
             className="text-[10px] md:text-sm font-medium"
           />
         </div>
@@ -77,7 +71,6 @@ const Hero = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="md:w-2/3 mt-6 md:mt-0 md:ml-10 space-y-4 text-center md:text-left"
         >
-
           <NameText classNameContainer="hidden md:block" />
 
           <p className="text-sm md:text-lg leading-relaxed text-gray-500 font-grotesk font-light">
@@ -117,7 +110,7 @@ const Hero = () => {
               <Github size={20} />
             </a>
             <a
-              href="https://linkedin.com/in/glenrioariesto" // Placeholder if not provided
+              href="https://linkedin.com/in/glenrioariesto" 
               target="_blank"
               className="p-3 bg-gray-100 hover:bg-[#0077B5] hover:text-white rounded-full transition-all duration-300"
               title="LinkedIn"
@@ -127,56 +120,6 @@ const Hero = () => {
           </div>
         </motion.div>
       </motion.div>
-
-      {/* CV Modal Preview */}
-      <AnimatePresence>
-        {showCV && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-8 bg-black/60 backdrop-blur-sm"
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="w-full max-w-5xl h-[90vh] md:h-[85vh] bg-background-primary rounded-2xl md:rounded-3xl flex flex-col overflow-hidden shadow-2xl relative border border-white/20"
-            >
-              {/* Modal Header */}
-              <div className="flex justify-between items-center p-4 md:px-6 border-b border-gray-200/50 bg-white/50 shrink-0">
-                <h3 className="font-bold text-lg font-grotesk text-amber-900 flex items-center gap-2">
-                  <FileText className="w-5 h-5" /> Curriculum Vitae
-                </h3>
-                <div className="flex items-center gap-3">
-                  <a
-                    href="/assets/cv.pdf"
-                    download="Glen_Rio_Aristo_CV.pdf"
-                    className="bg-gradient-to-r from-primary-variant to-primary hover:opacity-90 text-white px-4 py-2 rounded-xl font-medium text-sm transition-opacity flex items-center gap-2 shadow-sm"
-                  >
-                    <FileDown size={16} /> <span className="hidden sm:inline">Download PDF</span>
-                  </a>
-                  <button
-                    onClick={() => setShowCV(false)}
-                    className="p-2 bg-white border border-gray-200 hover:bg-red-50 hover:text-red-500 hover:border-red-200 rounded-xl transition-colors shadow-sm text-gray-500"
-                  >
-                    <X size={20} />
-                  </button>
-                </div>
-              </div>
-
-              {/* Modal Body / iFrame */}
-              <div className="flex-1 w-full relative bg-gray-100/50">
-                <iframe
-                  src="/assets/cv.pdf#toolbar=0&navpanes=0&scrollbar=0"
-                  className="w-full h-full rounded-b-3xl"
-                  title="CV Preview"
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };

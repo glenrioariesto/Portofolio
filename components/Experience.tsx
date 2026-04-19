@@ -100,6 +100,7 @@ const Experience = () => {
         <ShinyText
           text="My Experience"
           speed={5}
+          as="h2"
           className="text-3xl md:text-6xl font-grotesk font-bold text-amber-900 tracking-tight"
         />
       </motion.div>

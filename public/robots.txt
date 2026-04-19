@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /assets/
+Disallow: /api/
+
+Sitemap: https://glenrioariesto.com/sitemap.xml

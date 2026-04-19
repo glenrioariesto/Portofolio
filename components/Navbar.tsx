@@ -12,6 +12,7 @@ const Navbar = () => {
   const { isHidden } = useNavbarContext();
 
   useEffect(() => {
+    if (isHidden) return; // Don't track scroll if hidden
     const sections = ["hero", "services", "showcase", "booking"];
     const observerOptions = {
       root: null,
@@ -43,7 +44,9 @@ const Navbar = () => {
       observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isHidden]);
+
+  if (isHidden) return null;
 
   const navLinks = [
     { id: "hero", label: "Home", icon: <Home size={22} />, href: "#" },

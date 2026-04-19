@@ -2,10 +2,14 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Twitter, MapPin } from "lucide-react";
+import { useNavbarContext } from "@/context/NavbarContext";
+import { Github, Linkedin, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
+    const { isHidden } = useNavbarContext();
     const currentYear = new Date().getFullYear();
+
+    if (isHidden) return null;
 
     return (
         <footer className="relative bg-white text-slate-900 pt-20 md:pt-32 pb-0 px-4 md:px-0 overflow-hidden snap-start">

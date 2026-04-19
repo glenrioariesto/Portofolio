@@ -5,6 +5,7 @@ interface ShinyTextProps {
   disabled?: boolean;
   speed?: number;
   className?: string;
+  as?: React.ElementType;
 }
 
 export const ShinyText: React.FC<ShinyTextProps> = ({
@@ -12,11 +13,12 @@ export const ShinyText: React.FC<ShinyTextProps> = ({
   disabled = false,
   speed = 5,
   className = "",
+  as: Component = "div",
 }) => {
   const animationDuration = `${speed}s`;
 
   return (
-    <div
+    <Component
       className={`text-[#b5b5b5a4] bg-clip-text inline-block ${
         disabled ? "" : "animate-shine"
       } ${className}`}
@@ -29,6 +31,6 @@ export const ShinyText: React.FC<ShinyTextProps> = ({
       }}
     >
       {text}
-    </div>
+    </Component>
   );
 };
