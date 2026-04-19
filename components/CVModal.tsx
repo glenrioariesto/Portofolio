@@ -1,8 +1,13 @@
-"use client";
-
+import React, { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FileDown, X } from "lucide-react";
-import { useEffect, useRef } from "react";
+import CVTemplate from "./CVTemplate";
+import { X } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const PDFButton = dynamic(() => import("./PDFButton"), { 
+  ssr: false,
+  loading: () => <div className="p-3 bg-white/90 backdrop-blur-md border border-gray-200/50 rounded-2xl"><div className="w-5 h-5 border-2 border-slate-200 border-t-slate-400 animate-spin rounded-full" /></div>
+});
 
 interface CVModalProps {
   isOpen: boolean;
@@ -53,41 +58,30 @@ const CVModal = ({ isOpen, onClose }: CVModalProps) => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            exit={{ opacity: 0, scale: 0.95, y: 30 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className="flex-1 flex flex-col h-full w-full relative"
           >
             {/* Accessibility Title (Hidden) */}
-            <h2 className="sr-only">CV Preview</h2>
+            <h2 className="sr-only">Interactive CV Preview</h2>
 
             {/* Floating Top Bar (Controls) */}
-            <div className="absolute top-4 right-4 z-[1000002] flex items-center gap-2">
-              <a
-                href="/assets/cv.pdf"
-                download="Glen_Rio_Aristo_CV.pdf"
-                className="p-3 bg-white/90 backdrop-blur-md border border-gray-200/50 hover:bg-white text-gray-700 hover:text-primary rounded-2xl transition-all shadow-xl flex items-center justify-center group"
-                title="Download CV"
-              >
-                <FileDown size={22} className="group-hover:scale-110 transition-transform" />
-              </a>
+            <div className="absolute top-4 right-8 z-[1000003] flex items-center gap-3">
+              <PDFButton />
               <button
                 onClick={onClose}
                 className="p-3 bg-white/90 backdrop-blur-md border border-gray-200/50 hover:bg-white text-gray-700 hover:text-red-500 rounded-2xl transition-all shadow-xl flex items-center justify-center group"
-                title="Close"
+                title="Close Preview"
               >
                 <X size={22} className="group-hover:rotate-90 transition-transform" />
               </button>
             </div>
 
-            {/* CV Viewport */}
-            <div className="flex-1 w-full relative bg-slate-100">
-              <iframe
-                src="/assets/cv.pdf#toolbar=0&navpanes=0&scrollbar=0"
-                className="w-full h-full border-none"
-                title="Glen Rio Aristo CV"
-              />
+            {/* Live CV Content (HTML Version for fast viewing) */}
+            <div className="flex-1 w-full overflow-hidden bg-white">
+              <CVTemplate />
             </div>
           </motion.div>
         )}
@@ -97,5 +91,8 @@ const CVModal = ({ isOpen, onClose }: CVModalProps) => {
 };
 
 export default CVModal;
+
+
+
 
 
