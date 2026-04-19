@@ -1,0 +1,17 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "Portofolio"
+main = ".open-next/worker.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[site]
+bucket = ".open-next/assets"
+
+[vars]
+# DATABASE_URL = ""
+# GOOGLE_SERVICE_ACCOUNT_EMAIL = ""
+# GOOGLE_PRIVATE_KEY = ""
+# GOOGLE_CALENDAR_ID = ""
+# NEXT_PUBLIC_SUPABASE_URL = "your-url"
+
+# Bindings (KV, D1, etc. can go here)
