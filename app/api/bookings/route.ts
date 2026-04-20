@@ -18,9 +18,11 @@ export async function POST(request: Request) {
   try {
     const rawBody = await request.json();
     
-    // 0. Get Real IP (Proxy aware)
-    const forwarded = request.headers.get("x-forwarded-for");
-    const clientIp = forwarded ? forwarded.split(',')[0] : "127.0.0.1";
+    // 0. Get Real IP (Cloudflare & Local aware)
+    const clientIp = 
+      request.headers.get("cf-connecting-ip") || 
+      request.headers.get("x-forwarded-for")?.split(',')[0] || 
+      "127.0.0.1";
 
     // 1. Zod Validation
     const validatedData = bookingSchema.parse(rawBody);
