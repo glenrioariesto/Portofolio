@@ -1,40 +1,89 @@
-<<<<<<< HEAD
-# Portofolio
-=======
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Glen Rio Aristo - Premium Portfolio
 
-## Getting Started
+A high-end, Apple-inspired digital portfolio built with a **Vibe Engineering** mindset. Featuring a seamless booking system, AI-integrated workflows, and a sophisticated Bento Grid architecture.
 
-First, run the development server:
+![Next.js 16](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)
+![Tailwind 4](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=flat-square&logo=tailwind-css)
+![Cloudflare Workers](https://img.shields.io/badge/Deployed-Cloudflare-F38020?style=flat-square&logo=cloudflare)
+![Drizzle ORM](https://img.shields.io/badge/Drizzle-ORM-C5F74F?style=flat-square&logo=drizzle)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- ** Apple-Inspired UI**: Clean, minimal, and premium aesthetic using Tailwind 4 and Framer Motion.
+- **📅 Smart Booking System**: Integrated with **Google Calendar API** for real-time strategy session scheduling.
+- **🗄️ Robust Backend**: Powered by **Drizzle ORM** & **Supabase (PostgreSQL)** for performant data handling.
+- **📄 Interactive CV**: Real-time PDF generation using `@react-pdf/renderer` with a custom-designed aesthetic.
+- **☁️ Edge Deployment**: Optimized for **Cloudflare Workers** using the **OpenNext** adapter for ultra-low latency.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS v4 & Lucide Icons
+- **Animations**: Framer Motion
+- **Database**: PostgreSQL (Supabase) via Drizzle ORM
+- **Deployment**: Cloudflare Workers / Pages
+- **Misc**: Google Cloud Console (Calendar API), Zod for validation
 
-## Learn More
+## 🚦 Getting Started
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js 18+
+- A Supabase Instance
+- Google Cloud Service Account (for Calendar)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/glenrioariesto/Portofolio.git
+   cd Portofolio
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
->>>>>>> master
+3. **Set up Environment Variables:**
+   Create a `.env` file in the root directory:
+   ```env
+   DATABASE_URL="your-postgresql-url"
+   GOOGLE_SERVICE_ACCOUNT_EMAIL="your-service-account@iam.gserviceaccount.com"
+   GOOGLE_PRIVATE_KEY="your-private-key"
+   GOOGLE_CALENDAR_ID="your-email@gmail.com"
+   ```
+
+4. **Initialize Database:**
+   ```bash
+   npx drizzle-kit push
+   ```
+
+5. **Run Development:**
+   ```bash
+   npm run dev
+   ```
+
+## 🚀 Deployment (Cloudflare)
+
+This project is optimized for Cloudflare using `@opennextjs/cloudflare`.
+
+1. **Build the project:**
+   ```bash
+   npm run build
+   ```
+
+2. **Set secrets on Cloudflare:**
+   ```bash
+   npx wrangler secret put DATABASE_URL
+   npx wrangler secret put GOOGLE_PRIVATE_KEY
+   ```
+
+3. **Deploy:**
+   ```bash
+   npx wrangler deploy
+   ```
+
+---
+
+Built with ❤️ by [Glen Rio Aristo](https://glenrioariesto.com)
