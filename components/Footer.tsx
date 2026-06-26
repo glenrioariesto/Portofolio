@@ -30,7 +30,7 @@ const Footer = () => {
                         <div className="space-y-3">
                             <p className="text-slate-600 font-bold uppercase tracking-widest text-[10px] md:text-xs">Available for New Projects</p>
                             <div className="flex gap-3 md:gap-4 justify-start md:justify-end">
-                                <a href="https://linkedin.com/in/glenrioariesto" target="_blank" className="p-3 bg-white border-2 border-slate-100 rounded-2xl hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm active:scale-95">
+                                <a href="https://linkedin.com/in/glenrioaristo" target="_blank" className="p-3 bg-white border-2 border-slate-100 rounded-2xl hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm active:scale-95">
                                     <Linkedin className="w-5 h-5 md:w-[22px] md:h-[22px]" />
                                 </a>
                                 <a href="https://github.com/glenrioariesto" target="_blank" className="p-3 bg-white border-2 border-slate-100 rounded-2xl hover:bg-black hover:text-white hover:border-black transition-all duration-300 shadow-sm active:scale-95">

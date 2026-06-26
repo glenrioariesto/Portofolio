@@ -110,7 +110,7 @@ const Hero = () => {
               <Github size={20} />
             </a>
             <a
-              href="https://linkedin.com/in/glenrioariesto" 
+              href="https://linkedin.com/in/glenrioaristo" 
               target="_blank"
               className="p-3 bg-gray-100 hover:bg-[#0077B5] hover:text-white rounded-full transition-all duration-300"
               title="LinkedIn"

@@ -131,11 +131,11 @@ const Booking = () => {
     };
 
     return (
-        <section id="booking" className="max-w-[1400px] mx-auto py-32 px-4">
+        <section id="booking" className="max-w-[1400px] mx-auto py-6 md:py-10 px-4">
             <motion.div
                 animate={{ opacity: isHidden ? 0 : 1 }}
                 transition={{ duration: 0.3 }}
-                className="text-center space-y-4 mb-16"
+                className="text-center space-y-4 mb-8 md:mb-10"
             >
                 <h2 className="text-3xl md:text-7xl font-bold text-amber-900 tracking-tighter font-grotesk">
                     Ready to scale?
@@ -155,7 +155,7 @@ const Booking = () => {
                     }}
                     transition={{ duration: 0.3 }}
                     style={{ pointerEvents: isHidden ? "none" : "auto" }}
-                    className="w-full lg:max-w-[1000px] bg-white/70 backdrop-blur-2xl rounded-[3rem] overflow-hidden shadow-2xl border border-white flex flex-col lg:flex-row min-h-[640px] text-slate-900 font-grotesk"
+                    className="w-full lg:max-w-[1000px] bg-white/70 backdrop-blur-2xl rounded-[3rem] overflow-hidden shadow-2xl border border-white flex flex-col lg:flex-row min-h-[550px] text-slate-900 font-grotesk"
                 >
                     {/* Left Side: Details */}
                     <div className="lg:w-1/4 p-8 border-b lg:border-b-0 lg:border-r border-slate-200/50 space-y-8 bg-slate-50/30">

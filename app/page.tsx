@@ -108,11 +108,11 @@ export default function Home() {
       </section>
 
       {/* 5. Booking Section - Reveal Animation */}
-      <section className="relative shrink-0 min-h-screen flex items-center justify-center bg-background-primary/30 snap-start overflow-hidden">
+      <section className="relative shrink-0 min-h-screen flex items-center justify-center bg-background-primary/30 snap-start overflow-x-hidden">
         {/* Parallax Background Text (Desktop Only) */}
         <motion.div
           style={{ x: xBooking }}
-          className="hidden md:block absolute top-0 lg:-top-20 left-20 text-[130px] lg:text-[10vw] font-black text-amber-900/5 whitespace-nowrap select-none pointer-events-none uppercase tracking-tighter z-0"
+          className="hidden md:block absolute top-4 lg:top-8 left-20 text-[130px] lg:text-[10vw] font-black text-amber-900/5 whitespace-nowrap select-none pointer-events-none uppercase tracking-tighter z-0"
         >
           Let's Design Incredible Work
         </motion.div>
@@ -122,7 +122,7 @@ export default function Home() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={sectionVariants}
-          className="w-full z-10 md:px-16 py-12 lg:mt-20"
+          className="w-full z-10 md:px-16 pb-12 pt-28 lg:pt-44 lg:pb-16"
         >
           <Booking />
         </motion.div>

@@ -124,8 +124,8 @@
     ]
   },
   {
-    "id": 5,
-    "title": "Human Management System",
+    "id": 4,
+    "title": "Human Management",
     "category": "Workforce Management",
     "date": "Sep 2025 - Present",
     "role": "Fullstack Web Developer",
@@ -156,7 +156,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": 5,
     "title": "Simulasi Buku Electronic",
     "category": "EdTech Gamification",
     "date": "Oct 2025 - Jan 2025",
@@ -190,6 +190,141 @@
       {
         "label": "Live Gallery",
         "url": "https://glenrioariesto.github.io/simulasi-buku-electronic/"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Pemakaman Digital",
+    "category": "Web Application & SaaS",
+    "date": "Oct 2025 - Present",
+    "role": "Lead Full Stack Developer",
+    "description": "Developed a comprehensive digital memorial and virtual cemetery platform. Features include customized memorial creation, interactive lineage charts (family trees), virtual cemeteries (3D Canvas view of headstones), secure email OTP login with Supabase PostgreSQL, and transaction logs.",
+    "images": [
+      "/screenshots/pemakaman-digital-v2/cover.png",
+      "/screenshots/pemakaman-digital-v2/cover_memorials.png",
+      "/screenshots/pemakaman-digital-v2/cover_settings.png",
+      "/screenshots/pemakaman-digital-v2/landing.png",
+      "/screenshots/pemakaman-digital-v2/dashboard.png",
+      "/screenshots/pemakaman-digital-v2/virtual_cemetery.png",
+      "/screenshots/pemakaman-digital-v2/memorial_detail.png",
+      "/screenshots/pemakaman-digital-v2/family_tree.png",
+      "/screenshots/pemakaman-digital-v2/create_memorial.png",
+      "/screenshots/pemakaman-digital-v2/transactions.png",
+      "/screenshots/pemakaman-digital-v2/settings.png"
+    ],
+    "techStack": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "BetterAuth",
+      "Drizzle ORM",
+      "PostgreSQL",
+      "HTML5 Canvas",
+      "Supabase"
+    ],
+    "stats": [
+      {
+        "label": "Views",
+        "value": "Interactive 3D"
+      }
+    ],
+    "links": [
+      {
+        "label": "Live App",
+        "url": "https://www.pemakamandigital.com"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Academic Portal",
+    "category": "Web Application",
+    "date": "Aug 2024 - Dec 2024",
+    "role": "Fullstack Web Developer",
+    "description": "Built an academic and student management portal. Features multi-role dashboards (Admin, Mentor, Parent) with specialized views for schedule management, session attendance tracking, invoicing/financial ledgers, and student directories.",
+    "images": [
+      "/screenshots/edutrack/cover.png",
+      "/screenshots/edutrack/cover_meetings.png",
+      "/screenshots/edutrack/admin/dashboard.png",
+      "/screenshots/edutrack/admin/schedule.png",
+      "/screenshots/edutrack/admin/finance.png",
+      "/screenshots/edutrack/admin/meetings.png",
+      "/screenshots/edutrack/admin/students.png",
+      "/screenshots/edutrack/admin/settings.png"
+    ],
+    "techStack": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "Drizzle ORM",
+      "PostgreSQL"
+    ],
+    "stats": [
+      {
+        "label": "Roles",
+        "value": "Multi-role"
+      }
+    ],
+    "links": [
+      {
+        "label": "Production URL",
+        "url": "https://edu-track-z38q.vercel.app"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Candi Dadi Guestbook",
+    "category": "Visitor Management",
+    "date": "Jun 2024 - Jul 2024",
+    "role": "Fullstack Web Developer",
+    "description": "Developed a custom reservation and visitor check-in portal for Candi Dadi. Features guest bookkeeping, reservation workflows, and an administrative dashboard for monitoring visitor attendance and statistics.",
+    "images": [
+      "/screenshots/candi-dadi/cover.png",
+      "/screenshots/candi-dadi/guestbook.png",
+      "/screenshots/candi-dadi/admin.png"
+    ],
+    "techStack": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "PostgreSQL"
+    ],
+    "stats": [
+      {
+        "label": "Accuracy",
+        "value": "100%"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "InstaScheduler Planner",
+    "category": "Social Media SaaS",
+    "date": "Jan 2025 - Feb 2025",
+    "role": "Fullstack Web Developer",
+    "description": "Built an automated Instagram scheduling tool. Includes interactive calendar planners, schedule creation forms for image/text posts, transaction logs, and user settings panel.",
+    "images": [
+      "/screenshots/instascheduler/cover.png",
+      "/screenshots/instascheduler/cover_logs.png",
+      "/screenshots/instascheduler/scheduler.png",
+      "/screenshots/instascheduler/postform.png",
+      "/screenshots/instascheduler/settings.png",
+      "/screenshots/instascheduler/logs.png"
+    ],
+    "techStack": [
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "Meta API",
+      "Node.js"
+    ],
+    "stats": [
+      {
+        "label": "Schedules",
+        "value": "Automated"
       }
     ]
   }

@@ -112,7 +112,7 @@ export default function RootLayout({
     "description": "Senior Fullstack Developer specializing in Next.js, AI, and modern web architectures.",
     "sameAs": [
       "https://github.com/glenrioariesto",
-      "https://linkedin.com/in/glenrioariesto"
+      "https://linkedin.com/in/glenrioaristo"
     ]
   };
 

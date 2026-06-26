@@ -1,7 +1,7 @@
 # GLEN RIO ARISTO
 **Senior Fullstack Developer & AI Specialist**
 📍 Bandung, Indonesia | 📞 089529307135 | 📧 glenrioariesto@gmail.com
-🔗 [LinkedIn](https://www.linkedin.com/in/glenrioariesto) | [GitHub](https://github.com/glenrioariesto) | [Portfolio](https://glenrioariesto.com)
+🔗 [LinkedIn](https://www.linkedin.com/in/glenrioaristo) | [GitHub](https://github.com/glenrioariesto) | [Portfolio](https://glenrioariesto.com)
 
 ---
 
