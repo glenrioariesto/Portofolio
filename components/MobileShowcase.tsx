@@ -24,6 +24,22 @@ const MobileProjectCard = ({
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
     const [showTechStack, setShowTechStack] = useState(false)
     const [isLinksOpen, setIsLinksOpen] = useState(false)
+    const dropdownRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        if (!isLinksOpen) return
+        const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsLinksOpen(false)
+            }
+        }
+        document.addEventListener('mousedown', handleOutsideClick)
+        document.addEventListener('touchstart', handleOutsideClick)
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick)
+            document.removeEventListener('touchstart', handleOutsideClick)
+        }
+    }, [isLinksOpen])
 
     const nextImage = (e: React.MouseEvent | React.TouchEvent) => {
         e.stopPropagation()
@@ -41,11 +57,71 @@ const MobileProjectCard = ({
             className="w-full"
         >
             <div
-                className="relative rounded-3xl overflow-hidden bg-white shadow-[0_6px_30px_rgba(0,0,0,0.08)] border border-gray-100"
+                className={`relative rounded-3xl bg-white shadow-[0_6px_30px_rgba(0,0,0,0.08)] border border-gray-100 transition-all duration-300 ${isLinksOpen ? 'z-30' : 'z-10'}`}
                 onClick={onExpand}
             >
+                {/* Link badges at top right of the card (outside image overflow-hidden) */}
+                {project.links && project.links.length > 0 && (
+                    <div className="absolute top-4 right-4 z-40 flex gap-2">
+                        {project.links.length === 1 ? (
+                            <a
+                                key={0}
+                                href={project.links[0].url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="flex items-center gap-1.5 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-semibold text-gray-800 active:bg-gray-100 transition-colors shadow-sm border border-gray-100"
+                            >
+                                {project.links[0].label}
+                                <ArrowUpRight size={12} />
+                            </a>
+                        ) : (
+                            <div className="relative" ref={dropdownRef}>
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        setIsLinksOpen(!isLinksOpen)
+                                    }}
+                                    className="flex items-center gap-1.5 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-semibold text-gray-800 active:bg-gray-100 transition-colors shadow-sm border border-gray-100"
+                                >
+                                    <span>Links ({project.links.length})</span>
+                                    <ChevronDown size={12} className={`transition-transform duration-200 ${isLinksOpen ? 'rotate-180' : ''}`} />
+                                </button>
+                                <AnimatePresence>
+                                    {isLinksOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.95, y: -5 }}
+                                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                                            exit={{ opacity: 0, scale: 0.95, y: -5 }}
+                                            transition={{ duration: 0.15 }}
+                                            className="absolute right-0 mt-1.5 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 py-1 z-50 overflow-hidden"
+                                        >
+                                            {project.links.map((link, idx) => (
+                                                <a
+                                                    key={idx}
+                                                    href={link.url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation()
+                                                        setIsLinksOpen(false)
+                                                    }}
+                                                    className="flex items-center justify-between px-4 py-2.5 text-xs font-semibold text-gray-700 active:bg-gray-100 hover:bg-gray-50 transition-colors"
+                                                >
+                                                    <span>{link.label}</span>
+                                                    <ArrowUpRight size={12} className="text-gray-400" />
+                                                </a>
+                                            ))}
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        )}
+                    </div>
+                )}
+
                 {/* ── Image Section ── */}
-                <div className="relative w-full aspect-video overflow-hidden">
+                <div className="relative w-full aspect-video overflow-hidden rounded-t-[22px]">
                     {project.images.length > 0 ? (
                         <>
                             <Image
@@ -59,7 +135,7 @@ const MobileProjectCard = ({
 
                             {/* Image dots indicator */}
                             {project.images.length > 1 && (
-                                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-50">
+                                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-30">
                                     {project.images.map((_, idx) => (
                                         <button
                                             key={idx}
@@ -84,76 +160,6 @@ const MobileProjectCard = ({
                                 <Briefcase size={48} className="mx-auto text-orange-300 mb-2" />
                                 <p className="text-orange-400 text-sm font-medium">Private Project</p>
                             </div>
-                        </div>
-                    )}
-
-                    {/* Link badges at top right */}
-                    {project.links && project.links.length > 0 && (
-                        <div className="absolute top-4 right-4 z-20 flex gap-2">
-                            {project.links.length === 1 ? (
-                                <a
-                                    key={0}
-                                    href={project.links[0].url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={(e) => e.stopPropagation()}
-                                    className="flex items-center gap-1.5 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-semibold text-gray-800 active:bg-gray-100 transition-colors shadow-sm border border-gray-100"
-                                >
-                                    {project.links[0].label}
-                                    <ArrowUpRight size={12} />
-                                </a>
-                            ) : (
-                                <div className="relative">
-                                    <button
-                                        onClick={(e) => {
-                                            e.stopPropagation()
-                                            setIsLinksOpen(!isLinksOpen)
-                                        }}
-                                        className="flex items-center gap-1.5 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-semibold text-gray-800 active:bg-gray-100 transition-colors shadow-sm border border-gray-100"
-                                    >
-                                        <span>Links ({project.links.length})</span>
-                                        <ChevronDown size={12} className={`transition-transform duration-200 ${isLinksOpen ? 'rotate-180' : ''}`} />
-                                    </button>
-                                    <AnimatePresence>
-                                        {isLinksOpen && (
-                                            <>
-                                                {/* Backdrop to close the dropdown */}
-                                                <div
-                                                    className="fixed inset-0 z-10"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation()
-                                                        setIsLinksOpen(false)
-                                                    }}
-                                                />
-                                                <motion.div
-                                                    initial={{ opacity: 0, scale: 0.95, y: -5 }}
-                                                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                                                    exit={{ opacity: 0, scale: 0.95, y: -5 }}
-                                                    transition={{ duration: 0.15 }}
-                                                    className="absolute right-0 mt-1.5 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 py-1 z-20 overflow-hidden"
-                                                >
-                                                    {project.links.map((link, idx) => (
-                                                        <a
-                                                            key={idx}
-                                                            href={link.url}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            onClick={(e) => {
-                                                                e.stopPropagation()
-                                                                setIsLinksOpen(false)
-                                                            }}
-                                                            className="flex items-center justify-between px-4 py-2.5 text-xs font-semibold text-gray-700 active:bg-gray-100 hover:bg-gray-50 transition-colors"
-                                                        >
-                                                            <span>{link.label}</span>
-                                                            <ArrowUpRight size={12} className="text-gray-400" />
-                                                        </a>
-                                                    ))}
-                                                </motion.div>
-                                            </>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            )}
                         </div>
                     )}
 
