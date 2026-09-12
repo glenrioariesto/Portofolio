@@ -6,6 +6,7 @@ import {
 } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import { NextButton, PrevButton, usePrevNextButtons } from './EmblaCarouselArrowButton'
+import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures'
 import { ArrowUpRight, ChevronLeft, ChevronRight, Layers, ChevronUp, ChevronDown, Briefcase } from 'lucide-react'
 import { Project } from './Experience'
 import Image from 'next/image'
@@ -76,7 +77,7 @@ const ProjectCard = ({
                 src={project.images[currentImageIndex]}
                 alt={`${project.title} screenshot ${currentImageIndex + 1}`}
                 fill
-                className="object-cover transition-opacity duration-500"
+                className="object-contain object-center transition-opacity duration-500"
               />
             )}
           </div>
@@ -201,7 +202,7 @@ const ProjectCard = ({
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const { projects, options } = props
-  const [emblaRef, emblaApi] = useEmblaCarousel(options)
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, [WheelGesturesPlugin()])
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
   const { hide, show } = useNavbar("emblaCarousel")
   
