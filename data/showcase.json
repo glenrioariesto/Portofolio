@@ -195,23 +195,16 @@
   },
   {
     "id": 6,
-    "title": "Pemakaman Digital",
+    "title": "Pohon Kenangan",
     "category": "Web Application & SaaS",
     "date": "Oct 2025 - Present",
     "role": "Lead Full Stack Developer",
-    "description": "Developed a comprehensive digital memorial and virtual cemetery platform. Features include customized memorial creation, interactive lineage charts (family trees), virtual cemeteries (3D Canvas view of headstones), secure email OTP login with Supabase PostgreSQL, and transaction logs.",
+    "description": "Developed a comprehensive digital memorial and virtual cemetery platform (Pohon Kenangan). Features include customized memorial creation, interactive lineage charts (family trees), virtual cemeteries (3D Canvas view of headstones), bilingual support with Intlayer (ID/EN), secure email OTP login with Supabase PostgreSQL, and transaction logs.",
     "images": [
       "/screenshots/pemakaman-digital-v2/cover.png",
-      "/screenshots/pemakaman-digital-v2/cover_memorials.png",
-      "/screenshots/pemakaman-digital-v2/cover_settings.png",
-      "/screenshots/pemakaman-digital-v2/landing.png",
-      "/screenshots/pemakaman-digital-v2/dashboard.png",
-      "/screenshots/pemakaman-digital-v2/virtual_cemetery.png",
-      "/screenshots/pemakaman-digital-v2/memorial_detail.png",
-      "/screenshots/pemakaman-digital-v2/family_tree.png",
-      "/screenshots/pemakaman-digital-v2/create_memorial.png",
-      "/screenshots/pemakaman-digital-v2/transactions.png",
-      "/screenshots/pemakaman-digital-v2/settings.png"
+      "/screenshots/pemakaman-digital-v2/cover_dashboard.png",
+      "/screenshots/pemakaman-digital-v2/cover_memorial_detail.png",
+      "/screenshots/pemakaman-digital-v2/cover_virtual_cemetery.png"
     ],
     "techStack": [
       "Next.js",
@@ -220,6 +213,7 @@
       "BetterAuth",
       "Drizzle ORM",
       "PostgreSQL",
+      "Intlayer",
       "HTML5 Canvas",
       "Supabase"
     ],
@@ -232,7 +226,7 @@
     "links": [
       {
         "label": "Live App",
-        "url": "https://www.pemakamandigital.com"
+        "url": "https://pohonkenangan.vercel.app/"
       }
     ]
   },
