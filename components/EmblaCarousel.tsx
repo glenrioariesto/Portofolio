@@ -278,9 +278,62 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       .on('slideFocus', tweenScale)
   }, [emblaApi, tweenScale])
 
+  const lastScrollTime = useRef(0)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  // Step-by-step wheel scrolling progression
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container || !emblaApi) return
+
+    const handleWheel = (e: WheelEvent) => {
+      // Allow minor horizontal trackpad movements
+      if (Math.abs(e.deltaY) < 15) return
+
+      const now = Date.now()
+      const currentIndex = emblaApi.selectedScrollSnap()
+      const lastIndex = projects.length - 1
+
+      // Scrolling Down
+      if (e.deltaY > 0) {
+        if (currentIndex < lastIndex) {
+          e.preventDefault()
+          e.stopPropagation()
+          if (now - lastScrollTime.current > 450) {
+            lastScrollTime.current = now
+            emblaApi.scrollNext()
+          }
+        }
+      } 
+      // Scrolling Up
+      else if (e.deltaY < 0) {
+        if (currentIndex > 0) {
+          e.preventDefault()
+          e.stopPropagation()
+          if (now - lastScrollTime.current > 450) {
+            lastScrollTime.current = now
+            emblaApi.scrollPrev()
+          }
+        }
+      }
+    }
+
+    container.addEventListener('wheel', handleWheel, { passive: false })
+    return () => {
+      container.removeEventListener('wheel', handleWheel)
+    }
+  }, [emblaApi, projects.length])
+
+  const handleSkip = () => {
+    const nextSection = document.getElementById('booking')
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
-    <div className="embla relative px-20">
-      <div className="embla__viewport" ref={emblaRef}>
+    <div ref={containerRef} className="embla relative px-20 flex flex-col items-center">
+      <div className="embla__viewport w-full" ref={emblaRef}>
         <div className="embla__container">
           {projects.map((project, index) => (
             <div className="embla__slide" key={project.id}>
@@ -298,6 +351,17 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       <div className="absolute top-1/2 -translate-y-1/2 left-0 w-full flex justify-between pointer-events-none px-24 2xl:px-82 ">
         <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} className="pointer-events-auto w-12 h-12 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg text-black" />
         <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} className="pointer-events-auto w-12 h-12 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg text-black" />
+      </div>
+
+      {/* Skip Showcase Button */}
+      <div className="mt-8 z-30 flex items-center gap-3">
+        <button
+          onClick={handleSkip}
+          className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-900/10 hover:bg-amber-900 text-amber-900 hover:text-white border border-amber-900/20 backdrop-blur-md text-xs font-bold tracking-wide transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
+        >
+          <span>Skip Showcase</span>
+          <ChevronDown size={14} className="group-hover:translate-y-0.5 transition-transform duration-200" />
+        </button>
       </div>
     </div>
   )

@@ -108,7 +108,7 @@ export default function Home() {
       </section>
 
       {/* 5. Booking Section - Reveal Animation */}
-      <section className="relative shrink-0 min-h-screen flex items-center justify-center bg-background-primary/30 snap-start overflow-x-hidden">
+      <section id="booking" className="relative shrink-0 min-h-screen flex items-center justify-center bg-background-primary/30 snap-start overflow-x-hidden">
         {/* Parallax Background Text (Desktop Only) */}
         <motion.div
           style={{ x: xBooking }}

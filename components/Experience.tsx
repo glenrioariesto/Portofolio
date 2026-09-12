@@ -23,7 +23,7 @@ export interface Project {
   links?: { label: string; url: string }[];
 }
 
-const OPTIONS: EmblaOptionsType = { loop: true, align: 'center' }
+const OPTIONS: EmblaOptionsType = { loop: false, align: 'center' }
 
 import { useNavbarContext } from "@/context/NavbarContext";
 
