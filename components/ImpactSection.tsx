@@ -55,18 +55,16 @@ const ImpactSection = () => {
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
                             whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                            className="relative bg-amber-50/40 hover:bg-white backdrop-blur-md rounded-3xl p-5 md:p-6 border border-amber-900/10 shadow-[0_4px_20px_rgba(69,26,3,0.04)] hover:shadow-[0_15px_35px_rgba(69,26,3,0.08)] transition-all flex flex-col justify-between overflow-hidden group"
+                            className="group relative bg-white/70 backdrop-blur-xl rounded-[2.5rem] p-6 md:p-7 border border-white shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col justify-between overflow-hidden"
                         >
-                            <div className="absolute -top-10 -right-10 w-28 h-28 bg-amber-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-amber-500/20 transition-colors" />
-
                             <div className="flex items-center justify-between mb-4">
-                                <div className="p-1.5 bg-amber-50/60 rounded-2xl w-fit group-hover:bg-amber-100/80 transition-colors duration-300 shadow-xs border border-amber-200/40">
+                                <div className="p-2 bg-amber-50/50 rounded-2xl w-fit group-hover:bg-amber-100 transition-colors duration-500 shadow-xs">
                                     <Image
                                         src={stat.image}
                                         alt={stat.label}
                                         width={56}
                                         height={56}
-                                        className="w-12 h-12 md:w-14 md:h-14 object-contain drop-shadow-xs group-hover:scale-105 transition-transform duration-300"
+                                        className="w-12 h-12 md:w-14 md:h-14 object-contain group-hover:scale-105 transition-transform duration-300"
                                     />
                                 </div>
                                 <span className="text-[10px] font-bold uppercase tracking-wider text-amber-900/70 bg-amber-100/60 px-2.5 py-1 rounded-full border border-amber-200/40 shadow-2xs">
