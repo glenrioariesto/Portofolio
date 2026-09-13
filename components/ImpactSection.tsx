@@ -24,7 +24,7 @@ const stats = [
     {
         numericValue: 6,
         suffix: "k+",
-        label: "Active Users Impacted",
+        label: "Users Impacted",
         sublabel: "Platform Learners & Clients",
         image: "/assets/stats/users.webp"
     },
