@@ -31,7 +31,7 @@ const Experience = () => {
   const { isHidden } = useNavbarContext();
 
   return (
-    <section id="showcase" className="relative flex flex-col overflow-hidden -mt-20 pt-20">
+    <section id="showcase" className="relative flex flex-col overflow-hidden">
 
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#FBE9D4]/90 via-[#FBE9D4]/40 to-transparent -z-10" />

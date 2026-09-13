@@ -7,6 +7,7 @@ import Image from "next/image";
 import Hero from "@/components/Hero";
 import TechMarquee from "@/components/TechMarquee";
 import Services from "@/components/Services";
+import ImpactSection from "@/components/ImpactSection";
 import Experience from "@/components/Experience";
 import Booking from "@/components/Booking";
 
@@ -86,29 +87,43 @@ export default function Home() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={sectionVariants}
-          className="w-full z-10 py-12"
+          className="w-full z-10 py-16"
         >
           <Services />
         </motion.div>
-
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background-primary to-transparent pointer-events-none" />
       </section>
 
-      {/* 4. Experience / Projects Showcase - Reveal Animation */}
-      <section className="relative shrink-0 min-h-screen flex items-center justify-center bg-background-primary/30 snap-start overflow-hidden">
+      {/* 4. Impact & Metrics Section - White Background with Soft Warm Transition */}
+      <section className="relative shrink-0 flex items-center justify-center bg-white snap-start overflow-hidden py-24 md:py-32">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={sectionVariants}
-          className="w-full z-10 md:px-16 2xl:px-0 py-12"
+          className="w-full z-10"
+        >
+          <ImpactSection />
+        </motion.div>
+
+        {/* Soft Background Warm Gradient Transition into Experience */}
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[#FBE9D4]/40 to-[#FBE9D4] pointer-events-none z-0" />
+      </section>
+
+      {/* 5. Experience / Projects Showcase - Soft Warm Background */}
+      <section className="relative shrink-0 min-h-screen flex items-center justify-center bg-[#FBE9D4] snap-start overflow-hidden">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+          className="w-full z-10 md:px-16 2xl:px-0 py-16 md:py-24"
         >
           <Experience />
         </motion.div>
       </section>
 
-      {/* 5. Booking Section - Reveal Animation */}
-      <section id="booking" className="relative shrink-0 min-h-screen flex items-center justify-center bg-background-primary/30 snap-start overflow-x-hidden">
+      {/* 6. Booking Section - Reveal Animation */}
+      <section id="booking" className="relative shrink-0 min-h-screen flex items-center justify-center bg-[#FBE9D4] snap-start overflow-x-hidden">
         {/* Parallax Background Text (Desktop Only) */}
         <motion.div
           style={{ x: xBooking }}
