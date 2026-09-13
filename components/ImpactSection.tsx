@@ -12,32 +12,28 @@ const stats = [
         suffix: "+",
         label: "Years of Experience",
         sublabel: "Software & Web Development",
-        image: "/assets/stats/experience.webp",
-        badge: "Since 2020"
+        image: "/assets/stats/experience.webp"
     },
     {
         numericValue: 20,
         suffix: "+",
         label: "Projects Completed",
         sublabel: "SaaS, AI, EdTech & Web",
-        image: "/assets/stats/projects.webp",
-        badge: "Production Ready"
+        image: "/assets/stats/projects.webp"
     },
     {
         numericValue: 6,
         suffix: "k+",
         label: "Active Users Impacted",
         sublabel: "Platform Learners & Clients",
-        image: "/assets/stats/users.webp",
-        badge: "Validated Impact"
+        image: "/assets/stats/users.webp"
     },
     {
         numericValue: 7,
         suffix: "+",
         label: "Domains Covered",
         sublabel: "AI, EdTech, SaaS, FinTech",
-        image: "/assets/stats/domains.webp",
-        badge: "Multi-Industry"
+        image: "/assets/stats/domains.webp"
     }
 ];
 
@@ -57,7 +53,7 @@ const ImpactSection = () => {
                             whileHover={{ y: -4, transition: { duration: 0.2 } }}
                             className="group relative bg-white/70 backdrop-blur-xl rounded-[2.5rem] p-6 md:p-7 border border-white shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col justify-between overflow-hidden"
                         >
-                            {/* Top: Image on the Left, Number & Badge on the Right */}
+                            {/* Top: Image on the Left, Big Number on the Right */}
                             <div className="flex items-center gap-3.5 md:gap-4 mb-5">
                                 <div className="p-2 bg-amber-50/50 rounded-2xl shrink-0 group-hover:bg-amber-100 transition-colors duration-500 shadow-xs">
                                     <Image
@@ -69,10 +65,7 @@ const ImpactSection = () => {
                                     />
                                 </div>
                                 <div className="min-w-0 flex-1">
-                                    <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-wider text-amber-900/60 font-grotesk block truncate">
-                                        {stat.badge}
-                                    </span>
-                                    <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold font-grotesk tracking-tight text-amber-950">
+                                    <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-grotesk tracking-tight text-amber-950">
                                         <NumberTicker
                                             value={stat.numericValue}
                                             suffix={stat.suffix}
