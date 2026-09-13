@@ -57,33 +57,33 @@ const ImpactSection = () => {
                             whileHover={{ y: -4, transition: { duration: 0.2 } }}
                             className="group relative bg-white/70 backdrop-blur-xl rounded-[2.5rem] p-6 md:p-7 border border-white shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col justify-between overflow-hidden"
                         >
-                            <div className="flex items-center justify-between mb-4">
-                                <div className="p-2 bg-amber-50/50 rounded-2xl w-fit group-hover:bg-amber-100 transition-colors duration-500 shadow-xs">
-                                    <Image
-                                        src={stat.image}
-                                        alt={stat.label}
-                                        width={56}
-                                        height={56}
-                                        className="w-12 h-12 md:w-14 md:h-14 object-contain group-hover:scale-105 transition-transform duration-300"
-                                    />
-                                </div>
-                                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-900/70 bg-amber-100/60 px-2.5 py-1 rounded-full border border-amber-200/40 shadow-2xs">
-                                    {stat.badge}
-                                </span>
+                            {/* 3D Icon Container */}
+                            <div className="mb-6 p-2 bg-amber-50/50 rounded-2xl w-fit group-hover:bg-amber-100 transition-colors duration-500 shadow-xs">
+                                <Image
+                                    src={stat.image}
+                                    alt={stat.label}
+                                    width={56}
+                                    height={56}
+                                    className="w-12 h-12 md:w-14 md:h-14 object-contain group-hover:scale-105 transition-transform duration-300"
+                                />
                             </div>
 
-                            <div>
-                                <div className="text-3xl md:text-4xl font-extrabold font-grotesk tracking-tight text-amber-950 mb-1">
+                            {/* Metrics & Content */}
+                            <div className="space-y-1">
+                                <span className="text-[11px] font-bold uppercase tracking-wider text-amber-900/60 font-grotesk block">
+                                    {stat.badge}
+                                </span>
+                                <div className="text-3xl md:text-5xl font-extrabold font-grotesk tracking-tight text-amber-950">
                                     <NumberTicker
                                         value={stat.numericValue}
                                         suffix={stat.suffix}
                                         delay={0.15 + idx * 0.1}
                                     />
                                 </div>
-                                <div className="text-sm font-bold text-slate-800 leading-snug">
+                                <div className="text-base font-bold text-slate-900 pt-1 leading-snug font-grotesk">
                                     {stat.label}
                                 </div>
-                                <div className="text-xs text-slate-500 mt-1 font-medium leading-tight">
+                                <div className="text-xs md:text-sm text-slate-500 font-light leading-relaxed font-grotesk">
                                     {stat.sublabel}
                                 </div>
                             </div>
