@@ -73,17 +73,35 @@ const Hero = () => {
         >
           <NameText classNameContainer="hidden md:block" />
 
-          <p className="text-sm md:text-lg leading-relaxed text-gray-500 font-grotesk font-light">
+          <p className="text-sm md:text-base leading-relaxed text-gray-600 font-grotesk font-light">
             A <span className="bg-gradient-to-r from-secondary to-secondary-variant text-transparent bg-clip-text font-bold">
               Fullstack Developer
             </span> and <span className="bg-gradient-to-r from-secondary-variant to-primary text-transparent bg-clip-text font-bold">
-              AI enthusiast
-            </span> with over 1 year of experience in building innovative digital solutions.
-            I specialize in developing <span className="bg-gradient-to-r from-primary-variant to-primary text-transparent bg-clip-text font-bold">
-              web applications
-            </span>, leveraging modern technologies and AI to enhance efficiency and quality.
+              AI specialist
+            </span> with proven experience in building scalable SaaS, enterprise systems, and interactive digital solutions.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+
+          {/* Key Impact Metrics */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 py-1">
+            <div className="bg-amber-50/80 border border-amber-900/10 rounded-2xl p-2.5 text-center shadow-xs hover:border-amber-900/20 transition-all">
+              <span className="text-xl md:text-2xl font-black font-grotesk text-amber-950 block leading-tight">4+</span>
+              <span className="text-[11px] font-semibold text-gray-600 block leading-tight mt-0.5">Years Exp</span>
+            </div>
+            <div className="bg-amber-50/80 border border-amber-900/10 rounded-2xl p-2.5 text-center shadow-xs hover:border-amber-900/20 transition-all">
+              <span className="text-xl md:text-2xl font-black font-grotesk text-amber-950 block leading-tight">20+</span>
+              <span className="text-[11px] font-semibold text-gray-600 block leading-tight mt-0.5">Projects</span>
+            </div>
+            <div className="bg-amber-50/80 border border-amber-900/10 rounded-2xl p-2.5 text-center shadow-xs hover:border-amber-900/20 transition-all">
+              <span className="text-xl md:text-2xl font-black font-grotesk text-amber-950 block leading-tight">6k+</span>
+              <span className="text-[11px] font-semibold text-gray-600 block leading-tight mt-0.5">Active Users</span>
+            </div>
+            <div className="bg-amber-50/80 border border-amber-900/10 rounded-2xl p-2.5 text-center shadow-xs hover:border-amber-900/20 transition-all">
+              <span className="text-xl md:text-2xl font-black font-grotesk text-amber-950 block leading-tight">7+</span>
+              <span className="text-[11px] font-semibold text-gray-600 block leading-tight mt-0.5">Domains</span>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 pt-1">
             <a
               className="bg-gradient-to-r from-primary-variant to-primary px-6 py-3 flex-1 justify-center text-center rounded-xl flex items-center gap-2 text-white font-medium hover:opacity-90 transition-opacity shadow-lg"
               href="mailto:glenrioariesto@gmail.com"
