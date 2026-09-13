@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Sparkles, MousePointer2 } from "lucide-react";
 import Image from "next/image";
 import Hero from "@/components/Hero";
+import Stats from "@/components/Stats";
 import TechMarquee from "@/components/TechMarquee";
 import Services from "@/components/Services";
 import Experience from "@/components/Experience";
@@ -33,8 +34,9 @@ export default function Home() {
       <section className="relative shrink-0 min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat snap-start overflow-hidden"
         style={{ backgroundImage: "url('/assets/background-kotak.webp')" }}>
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background-primary to-transparent pointer-events-none" />
-        <div className="w-full z-10 py-12">
+        <div className="w-full z-10 py-12 flex flex-col gap-8">
           <Hero />
+          <Stats />
         </div>
       </section>
 

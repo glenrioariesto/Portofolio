@@ -22,7 +22,7 @@ Bachelor of Software Engineering graduate from Telkom University (**GPA 3.50/4.0
 ## 💼 WORK EXPERIENCE
 
 ### **Startup AIGENSEE** | *Fullstack Web Developer*
-*Aug 2024 – Present*
+*Aug 2024 – Aug 2026*
 - Engineered a scalable **SaaS Online Course Platform** from scratch using Next.js and PostgreSQL.
 - Implemented **Midtrans Payment Gateway**, automated email notifications, and a specialized AI-art generation dashboard.
 - Successfully **generated IDR 100M in revenue** within the first months of launch.
