@@ -3,10 +3,13 @@
     "Express.js",
     "MySQL",
     "PostgreSQL",
+    "PostGIS",
     "RESTful API",
     "Model Context Protocol (MCP)",
     "React",
     "Tailwind",
+    "Framer Motion",
+    "Ant Design",
     "Firebase",
     "GCP",
     "VPS (Ubuntu/Linux)",
@@ -16,10 +19,14 @@
     "Laravel",
     "NextJS",
     "NestJS",
+    "React Native",
+    "Redis",
+    "BullMQ",
     "Shadcn",
     "Javascript",
     "TypeScript",
     "PHP",
+    "Google Maps API",
     "Midtrans API",
     "Chatgpt API",
     "Prompting"
@@ -33,6 +40,9 @@
   ],
   "tools": [
     "Git Control",
+    "Docker",
+    "AWS",
+    "Turborepo",
     "Antigravity",
     "Cursor",
     "Kilocode CLI",
@@ -48,6 +58,7 @@
     "Jira",
     "Notion",
     "Chatgpt",
+    "Claude",
     "Grok"
   ]
 }

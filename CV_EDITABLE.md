@@ -11,15 +11,24 @@ Bachelor of Software Engineering graduate from Telkom University (**GPA 3.50/4.0
 ---
 
 ## 🛠️ TECHNICAL SKILLS
-- **Frontend:** React.js, Next.js (App Router), TypeScript, Tailwind CSS, Framer Motion.
-- **Backend:** Node.js, Express.js, PHP (Laravel/CodeIgniter), Python (FastAPI).
-- **Database:** PostgreSQL (Prisma ORM), MySQL, Firebase (NoSQL).
-- **Tools & Cloud:** Git, AWS, Vercel, Docker, Figma, Midtrans API, OpenAI API.
-- **Methods:** Agile/Scrum, RESTful API Design, System Architecture.
+- **Frontend:** React.js, Next.js (App Router), React Native, TypeScript, Tailwind CSS, Framer Motion, Ant Design.
+- **Backend:** NestJS, Node.js, Express.js, PHP (Laravel/CodeIgniter), Python (FastAPI).
+- **Database:** PostgreSQL (PostGIS, Prisma ORM), Redis, MySQL, Firebase (NoSQL).
+- **Tools & Cloud:** Git, Turborepo, BullMQ, Docker, AWS, GCP, Vercel, Figma, Midtrans API, OpenAI API, Google Maps API, AI Tools (Claude, Cursor, Antigravity).
+- **Methods:** Agile/Scrum, SDLC, RESTful API Design, System Architecture, Monorepo Architecture.
 
 ---
 
 ## 💼 WORK EXPERIENCE
+
+### **PT Workforce Nusantara Indonesia** | *Fullstack Developer*
+*Sep 2026 – Present*
+- Engineered and maintained the end-to-end multi-platform digital ecosystem for **Piknix** (on-demand transport, delivery, and commerce), overseeing the backend API, web admin console, and three React Native mobile applications within a unified monorepo.
+- Designed and developed reliable backend services and RESTful APIs using **NestJS**, **Prisma ORM**, and **PostgreSQL with PostGIS** integrated with **Google Maps API** for geospatial polygon clustering and route dispatching on **GCP** infrastructure.
+- Implemented **Redis** and **BullMQ** for distributed caching, background job processing, and realtime **WebSocket** streaming for live trip tracking.
+- Enforced financial data integrity across digital wallet and order transactions through **idempotency checks**, **Argon2id encryption**, and comprehensive audit logging.
+- Developed modern front-end features for the internal **Web Admin console (React)** with strict Role-Based Access Control (RBAC) and TOTP authentication.
+- Incorporated modern AI development tools (**Claude, Cursor, Antigravity**) into daily development workflows for rapid problem-solving, debugging, and automated test boundary enforcement.
 
 ### **Startup AIGENSEE** | *Fullstack Web Developer*
 *Aug 2024 – Aug 2026*
@@ -53,6 +62,7 @@ Bachelor of Software Engineering graduate from Telkom University (**GPA 3.50/4.0
 
 ## 🚀 KEY PROJECTS
 
+- **Piknix (On-Demand Super-App):** Multi-platform ecosystem (NestJS, React Native, React Web Admin) featuring geospatial cluster resolution, realtime tracking, and secure financial ledger architecture.
 - **Aigensee (Learning Platform):** AI & Digital Art course hub with recurring billing and automated access management.
 - **Elicit Tools (AI Assistant):** A specialized tool for software planners to generate comprehensive PRDs using ChatGPT API.
 - **Obat Mahasiswa:** A React-based health hub using Firebase for real-time consultation and medical tracking.

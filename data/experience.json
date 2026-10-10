@@ -1,5 +1,19 @@
 [
   {
+    "company": "PT Workforce Nusantara Indonesia",
+    "location": "Bandung, Indonesia",
+    "role": "Fullstack Developer",
+    "dates": "September 2026 - Present",
+    "achievements": [
+      "Engineered and maintained the end-to-end multi-platform digital ecosystem for 'Piknix' (on-demand transport, food delivery, and commerce), managing the backend API, web admin console, and three cross-platform mobile apps (Customer, Driver, Merchant) within a unified monorepo.",
+      "Designed and built reliable backend services and RESTful APIs using NestJS, Prisma ORM, PostgreSQL with PostGIS, and Google Maps API for polygon cluster resolution, geocoding, and route dispatching on GCP infrastructure.",
+      "Implemented Redis and BullMQ for distributed caching, background job scheduling, and realtime WebSocket communication for live driver tracking and trip events.",
+      "Engineered resilient wallet and transaction flows enforcing financial integrity through double-entry ledger patterns, idempotency checks, Argon2id security, and comprehensive audit logging.",
+      "Developed modern front-end interfaces for the Web Admin management console using React and Ant Design, featuring role-based access control (RBAC), multi-role permissions, and TOTP authentication.",
+      "Integrated AI-assisted engineering tools (Claude, Cursor, Antigravity) into daily development workflows to accelerate feature delivery, conduct systematic code troubleshooting, and maintain rigorous automated test suites."
+    ]
+  },
+  {
     "company": "Startup AIGENSEE",
     "location": "Bandung, Indonesia",
     "role": "Fullstack Web Developer",
