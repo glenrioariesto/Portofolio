@@ -7,39 +7,39 @@ import { cvData } from '@/data';
 
 const styles = StyleSheet.create({
   page: {
-    padding: 30,
+    padding: 28,
     backgroundColor: '#ffffff',
     fontFamily: 'Helvetica',
   },
   header: {
     borderBottomWidth: 1.5,
     borderBottomColor: '#111827',
-    paddingBottom: 10,
-    marginBottom: 12,
+    paddingBottom: 8,
+    marginBottom: 10,
   },
   name: {
-    fontSize: 20,
+    fontSize: 19,
     fontWeight: 'bold',
     color: '#111827',
-    marginBottom: 4,
+    marginBottom: 3,
     textTransform: 'uppercase',
   },
   title: {
-    fontSize: 10.5,
+    fontSize: 10,
     color: '#78350f', // amber-900
     fontWeight: 'bold',
-    marginBottom: 4,
+    marginBottom: 3,
     textTransform: 'uppercase',
   },
   contactRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 8,
-    fontSize: 8.5,
+    fontSize: 8.2,
     color: '#4b5563',
   },
   section: {
-    marginBottom: 10,
+    marginBottom: 9,
   },
   sectionTitle: {
     fontSize: 8.5,
@@ -50,16 +50,16 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.8,
     borderBottomColor: '#e5e7eb',
     paddingBottom: 2,
-    marginBottom: 6,
+    marginBottom: 5,
   },
   summary: {
-    fontSize: 9,
+    fontSize: 8.8,
     color: '#374151',
-    lineHeight: 1.4,
+    lineHeight: 1.38,
     textAlign: 'justify',
   },
   experienceItem: {
-    marginBottom: 8,
+    marginBottom: 7,
   },
   experienceHeader: {
     flexDirection: 'row',
@@ -68,29 +68,29 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   role: {
-    fontSize: 10,
+    fontSize: 9.8,
     fontWeight: 'bold',
     color: '#111827',
   },
   companyDate: {
-    fontSize: 8.5,
+    fontSize: 8.2,
     color: '#6b7280',
     fontWeight: 'bold',
   },
   companySub: {
-    fontSize: 8.5,
+    fontSize: 8.2,
     color: '#78350f',
     fontWeight: 'bold',
     backgroundColor: '#fffdfa',
     padding: '1 3',
-    marginBottom: 3,
+    marginBottom: 2,
   },
   achievement: {
-    fontSize: 8.8,
+    fontSize: 8.5,
     color: '#4b5563',
     marginLeft: 10,
-    marginBottom: 2,
-    lineHeight: 1.35,
+    marginBottom: 1.5,
+    lineHeight: 1.32,
   },
   skillsGrid: {
     flexDirection: 'row',
@@ -100,15 +100,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   skillLabel: {
-    fontSize: 7.5,
+    fontSize: 7.2,
     fontWeight: 'bold',
     color: '#9ca3af',
-    marginBottom: 3,
+    marginBottom: 2,
   },
   skillText: {
-    fontSize: 8.5,
+    fontSize: 8.2,
     color: '#374151',
-    lineHeight: 1.35,
+    lineHeight: 1.3,
   },
   eduGrid: {
     flexDirection: 'row',
@@ -116,12 +116,12 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   eduTitle: {
-    fontSize: 9.5,
+    fontSize: 9.2,
     fontWeight: 'bold',
     color: '#111827',
   },
   gpa: {
-    fontSize: 8,
+    fontSize: 7.8,
     fontWeight: 'bold',
     color: '#ffffff',
     backgroundColor: '#78350f',
@@ -129,17 +129,17 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
   projectItem: {
-    marginBottom: 6,
+    marginBottom: 4,
   },
   projectName: {
-    fontSize: 9,
+    fontSize: 8.5,
     fontWeight: 'bold',
     color: '#1f2937',
   },
   projectDesc: {
-    fontSize: 8.2,
+    fontSize: 7.8,
     color: '#6b7280',
-    lineHeight: 1.25,
+    lineHeight: 1.2,
   }
 });
 
@@ -162,22 +162,27 @@ const PDFDocument = () => {
         </View>
 
         {/* Summary */}
-        <View style={styles.section}>
+        <View style={styles.section} wrap={false}>
           <Text style={styles.sectionTitle}>Professional Summary</Text>
           <Text style={styles.summary}>{summary}</Text>
         </View>
 
         {/* Experience */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Professional Experience</Text>
+          <Text style={styles.sectionTitle} minPresenceAhead={60}>Professional Experience</Text>
           {workExperience.map((work, index) => (
             <View key={index} style={styles.experienceItem}>
-              <View style={styles.experienceHeader} wrap={false}>
-                <Text style={styles.role}>{work.role}</Text>
-                <Text style={styles.companyDate}>{work.dates.toUpperCase()}</Text>
+              <View wrap={false}>
+                <View style={styles.experienceHeader}>
+                  <Text style={styles.role}>{work.role}</Text>
+                  <Text style={styles.companyDate}>{work.dates.toUpperCase()}</Text>
+                </View>
+                <Text style={styles.companySub}>{work.company.toUpperCase()} | {work.location}</Text>
+                {work.achievements.length > 0 && (
+                  <Text style={styles.achievement}>• {work.achievements[0]}</Text>
+                )}
               </View>
-              <Text style={styles.companySub} wrap={false}>{work.company.toUpperCase()} | {work.location}</Text>
-              {work.achievements.map((ach, idx) => (
+              {work.achievements.slice(1).map((ach, idx) => (
                 <Text key={idx} style={styles.achievement} wrap={false}>• {ach}</Text>
               ))}
             </View>
@@ -185,7 +190,7 @@ const PDFDocument = () => {
         </View>
 
         {/* Skills */}
-        <View style={styles.section}>
+        <View style={styles.section} wrap={false}>
           <Text style={styles.sectionTitle}>Technical Expertise</Text>
           <View style={styles.skillsGrid}>
             <View style={styles.skillColumn}>
@@ -200,8 +205,8 @@ const PDFDocument = () => {
         </View>
 
         {/* Education & Projects */}
-        <View style={{ flexDirection: 'row', gap: 20, marginBottom: 10 }}>
-          <View style={{ flex: 1.2 }}>
+        <View style={{ flexDirection: 'row', gap: 20, marginBottom: 8 }} wrap={false}>
+          <View style={{ flex: 1 }}>
             <Text style={styles.sectionTitle}>Education</Text>
             <View style={styles.eduGrid}>
               <Text style={styles.eduTitle}>{education.degree}</Text>
@@ -211,14 +216,14 @@ const PDFDocument = () => {
             <View style={{ marginTop: 2 }}>
               <Text style={styles.gpa}>GPA: {education.gpa}</Text>
             </View>
-            <Text style={[styles.skillText, { fontSize: 7.5, marginTop: 2, color: '#9ca3af' }]}>
+            <Text style={[styles.skillText, { fontSize: 7.2, marginTop: 2, color: '#9ca3af' }]}>
               {education.details}
             </Text>
           </View>
 
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1.4 }}>
             <Text style={styles.sectionTitle}>Key Projects</Text>
-            {projects.slice(0, 4).map((project, index) => (
+            {projects.slice(0, 5).map((project, index) => (
               <View key={index} style={styles.projectItem}>
                 <Text style={styles.projectName}>• {project.name}</Text>
                 <Text style={styles.projectDesc}>{project.description}</Text>
@@ -229,15 +234,15 @@ const PDFDocument = () => {
 
         {/* Achievements */}
         {achievements && achievements.length > 0 && (
-          <View style={styles.section}>
+          <View style={styles.section} wrap={false}>
             <Text style={styles.sectionTitle}>Achievements & Volunteering</Text>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
               {achievements.map((item, index) => (
                 <View key={index} style={{ width: '48%', marginBottom: 3, borderBottomWidth: 0.5, borderBottomColor: '#f3f4f6', paddingBottom: 1 }}>
-                  <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: '#111827' }}>{item.title}</Text>
+                  <Text style={{ fontSize: 8.2, fontWeight: 'bold', color: '#111827' }}>{item.title}</Text>
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 1 }}>
-                    <Text style={{ fontSize: 7.5, color: '#78350f', fontWeight: 'bold' }}>{item.role.toUpperCase()}</Text>
-                    <Text style={{ fontSize: 7.5, color: '#9ca3af' }}>{item.year}</Text>
+                    <Text style={{ fontSize: 7.2, color: '#78350f', fontWeight: 'bold' }}>{item.role.toUpperCase()}</Text>
+                    <Text style={{ fontSize: 7.2, color: '#9ca3af' }}>{item.year}</Text>
                   </View>
                 </View>
               ))}

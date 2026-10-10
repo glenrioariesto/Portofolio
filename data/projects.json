@@ -1,5 +1,21 @@
 [
   {
+    "name": "Piknix",
+    "description": "Multi-platform on-demand super-app ecosystem (NestJS, React Native, React Admin) with PostGIS clustering, realtime tracking, and double-entry financial ledger."
+  },
+  {
+    "name": "Pohon Kenangan",
+    "description": "Digital memorial platform featuring interactive family tree lineage charts, 3D canvas virtual headstones, Supabase PostgreSQL, and bilingual support."
+  },
+  {
+    "name": "EduScan",
+    "description": "Educational assessment and automated grading platform with cluster administration and performance analytics (NestJS, Drizzle ORM, React Native)."
+  },
+  {
+    "name": "InstaSchedule",
+    "description": "Automated social media planner and post scheduling system with visual calendar workflows and account management (Next.js, React)."
+  },
+  {
     "name": "Elicit Tools",
     "description": "AI-driven requirements engine that automates PRD/User Story generation using OpenAI models. Optimized for software documentation efficiency."
   },

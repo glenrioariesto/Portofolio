@@ -53,10 +53,10 @@ const CVTemplate = () => {
 
         {/* Work Experience */}
         <section className="mb-6">
-          <h2 className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-50 pb-1">Professional Experience</h2>
+          <h2 className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-50 pb-1 break-after-avoid">Professional Experience</h2>
           <div className="space-y-5">
             {workExperience.map((work, index) => (
-              <div key={index} className="space-y-1.5">
+              <div key={index} className="space-y-1.5 break-inside-avoid">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-baseline gap-1">
                   <h3 className="font-bold text-slate-900 text-[13px] md:text-[14px]">{work.role}</h3>
                   <span className="text-[9px] md:text-[10px] font-black text-slate-400 tabular-nums uppercase">{work.dates}</span>
@@ -76,8 +76,8 @@ const CVTemplate = () => {
         </section>
 
         {/* Skills - Focused Columns */}
-        <section className="mb-6">
-          <h2 className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-50 pb-1">Technical Expertise</h2>
+        <section className="mb-6 break-inside-avoid">
+          <h2 className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-50 pb-1 break-after-avoid">Technical Expertise</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-x-12">
             <div className="space-y-1.5">
               <h3 className="text-[8px] md:text-[9px] font-black uppercase text-slate-400 tracking-tighter">Hard Skills</h3>
@@ -96,8 +96,8 @@ const CVTemplate = () => {
 
         {/* Education & Achievements */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
-          <section>
-            <h2 className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-50 pb-1">Education</h2>
+          <section className="break-inside-avoid">
+            <h2 className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-50 pb-1 break-after-avoid">Education</h2>
             <div className="space-y-1">
               <div className="flex flex-col md:flex-row justify-between items-start gap-1">
                 <h3 className="font-bold text-[12px] md:text-[13px] text-slate-900">{education.degree}</h3>
@@ -111,10 +111,10 @@ const CVTemplate = () => {
             </div>
           </section>
 
-          <section>
-            <h2 className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-50 pb-1">Key Projects</h2>
+          <section className="break-inside-avoid">
+            <h2 className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-50 pb-1 break-after-avoid">Key Projects</h2>
             <div className="grid grid-cols-1 gap-2">
-              {projects.slice(0, 4).map((project, index) => (
+              {projects.map((project, index) => (
                 <div key={index} className="flex flex-col">
                   <span className="font-bold text-[10px] md:text-[11px] text-slate-800 flex items-center gap-1 tracking-tight">
                     • {project.name}
@@ -128,8 +128,8 @@ const CVTemplate = () => {
 
         {/* Achievements Section */}
         {achievements && achievements.length > 0 && (
-          <section>
-            <h2 className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-50 pb-1">Achievements & Volunteering</h2>
+          <section className="break-inside-avoid">
+            <h2 className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-50 pb-1 break-after-avoid">Achievements & Volunteering</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
               {achievements.map((item: any, index: number) => (
                 <div key={index} className="flex items-center justify-between gap-4 border-b border-slate-50/50 pb-1">
