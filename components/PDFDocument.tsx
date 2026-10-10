@@ -110,22 +110,18 @@ const styles = StyleSheet.create({
     color: '#374151',
     lineHeight: 1.3,
   },
-  eduGrid: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 2,
-  },
   eduTitle: {
-    fontSize: 9.2,
+    fontSize: 9.5,
     fontWeight: 'bold',
     color: '#111827',
+    marginBottom: 2,
   },
   gpa: {
-    fontSize: 7.8,
+    fontSize: 7.5,
     fontWeight: 'bold',
     color: '#ffffff',
     backgroundColor: '#78350f',
-    padding: '1 3',
+    padding: '1.5 4',
     borderRadius: 2,
   },
   projectItem: {
@@ -206,24 +202,27 @@ const PDFDocument = () => {
 
         {/* Education & Projects */}
         <View style={{ flexDirection: 'row', gap: 20, marginBottom: 8 }} wrap={false}>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1.1 }}>
             <Text style={styles.sectionTitle}>Education</Text>
-            <View style={styles.eduGrid}>
+            <View style={{ marginBottom: 3 }}>
               <Text style={styles.eduTitle}>{education.degree}</Text>
-              <Text style={styles.companyDate}>{education.dates}</Text>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 1, marginBottom: 2 }}>
+                <Text style={[styles.skillText, { fontWeight: 'bold', color: '#111827' }]}>{education.school}</Text>
+                <Text style={styles.companyDate}>{education.dates}</Text>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 1 }}>
+                <Text style={styles.gpa}>GPA: {education.gpa}</Text>
+                <Text style={{ fontSize: 7.5, color: '#6b7280' }}>{education.location}</Text>
+              </View>
             </View>
-            <Text style={[styles.skillText, { fontWeight: 'bold' }]}>{education.school}</Text>
-            <View style={{ marginTop: 2 }}>
-              <Text style={styles.gpa}>GPA: {education.gpa}</Text>
-            </View>
-            <Text style={[styles.skillText, { fontSize: 7.2, marginTop: 2, color: '#9ca3af' }]}>
+            <Text style={[styles.skillText, { fontSize: 7.2, color: '#4b5563', lineHeight: 1.25, marginTop: 2 }]}>
               {education.details}
             </Text>
           </View>
 
-          <View style={{ flex: 1.4 }}>
+          <View style={{ flex: 1.3 }}>
             <Text style={styles.sectionTitle}>Key Projects</Text>
-            {projects.slice(0, 5).map((project, index) => (
+            {projects.slice(0, 4).map((project, index) => (
               <View key={index} style={styles.projectItem}>
                 <Text style={styles.projectName}>• {project.name}</Text>
                 <Text style={styles.projectDesc}>{project.description}</Text>

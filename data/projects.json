@@ -1,9 +1,5 @@
 [
   {
-    "name": "Piknix",
-    "description": "Multi-platform on-demand super-app ecosystem (NestJS, React Native, React Admin) with PostGIS clustering, realtime tracking, and double-entry financial ledger."
-  },
-  {
     "name": "Pohon Kenangan",
     "description": "Digital memorial platform featuring interactive family tree lineage charts, 3D canvas virtual headstones, Supabase PostgreSQL, and bilingual support."
   },

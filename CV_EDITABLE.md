@@ -62,11 +62,9 @@ Bachelor of Software Engineering graduate from Telkom University (**GPA 3.50/4.0
 
 ## 🚀 KEY PROJECTS
 
-- **Piknix (On-Demand Super-App):** Multi-platform ecosystem (NestJS, React Native, React Web Admin) featuring geospatial cluster resolution, realtime tracking, and secure financial ledger architecture.
 - **Pohon Kenangan (Digital Memorial):** Platform for interactive lineage family trees, 3D canvas virtual cemeteries, Supabase PostgreSQL, and bilingual localization (Next.js, TypeScript).
 - **EduScan (Assessment Platform):** Educational grading and school cluster administration system built as a modular monolith (NestJS, Drizzle ORM, React Native).
 - **InstaSchedule (Social Media Planner):** Automated Instagram post scheduling platform with interactive calendar planning and multi-post management (Next.js, React).
-- **Aigensee (Learning Platform):** AI & Digital Art course hub with recurring billing and automated access management.
 - **Elicit Tools (AI Assistant):** A specialized tool for software planners to generate comprehensive PRDs using ChatGPT API.
 - **Obat Mahasiswa:** A React-based health hub using Firebase for real-time consultation and medical tracking.
 - **Menu Master:** A robust POS and inventory management system for restaurants built with CodeIgniter.

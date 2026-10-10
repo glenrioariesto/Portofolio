@@ -99,15 +99,16 @@ const CVTemplate = () => {
           <section className="break-inside-avoid">
             <h2 className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-50 pb-1 break-after-avoid">Education</h2>
             <div className="space-y-1">
-              <div className="flex flex-col md:flex-row justify-between items-start gap-1">
-                <h3 className="font-bold text-[12px] md:text-[13px] text-slate-900">{education.degree}</h3>
-                <span className="text-[8px] md:text-[9px] font-black text-slate-400 whitespace-nowrap">{education.dates}</span>
+              <h3 className="font-bold text-[12px] md:text-[13px] text-slate-900 leading-snug">{education.degree}</h3>
+              <div className="flex justify-between items-center text-[10px] md:text-[11px] font-bold text-slate-500 uppercase">
+                <span>{education.school}</span>
+                <span className="text-[8px] md:text-[9px] font-black text-slate-400 tabular-nums">{education.dates}</span>
               </div>
-              <p className="text-[10px] md:text-[11px] font-bold text-slate-500 uppercase">{education.school}</p>
-              <div className="flex items-center gap-2 mt-1">
+              <div className="flex items-center gap-2 mt-0.5">
                 <span className="text-[9px] md:text-[10px] font-black bg-amber-900 text-white px-1.5 py-0.5 rounded">GPA: {education.gpa}</span>
+                <span className="text-[9px] text-slate-400">{education.location}</span>
               </div>
-              <p className="text-[9px] md:text-[10px] text-slate-400 italic mt-1 leading-snug">{education.details}</p>
+              <p className="text-[9px] md:text-[10px] text-slate-500 italic mt-1 leading-snug">{education.details}</p>
             </div>
           </section>
 
