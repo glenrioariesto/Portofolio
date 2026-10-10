@@ -7,138 +7,139 @@ import { cvData } from '@/data';
 
 const styles = StyleSheet.create({
   page: {
-    padding: 40,
+    padding: 30,
     backgroundColor: '#ffffff',
     fontFamily: 'Helvetica',
   },
   header: {
-    borderBottomWidth: 2,
+    borderBottomWidth: 1.5,
     borderBottomColor: '#111827',
-    paddingBottom: 20,
-    marginBottom: 20,
+    paddingBottom: 10,
+    marginBottom: 12,
   },
   name: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#111827',
-    marginBottom: 8,
+    marginBottom: 4,
     textTransform: 'uppercase',
   },
   title: {
-    fontSize: 12,
+    fontSize: 10.5,
     color: '#78350f', // amber-900
     fontWeight: 'bold',
-    marginBottom: 8,
+    marginBottom: 4,
     textTransform: 'uppercase',
   },
   contactRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 10,
-    fontSize: 9,
+    gap: 8,
+    fontSize: 8.5,
     color: '#4b5563',
   },
   section: {
-    marginBottom: 15,
+    marginBottom: 10,
   },
   sectionTitle: {
-    fontSize: 9,
+    fontSize: 8.5,
     fontWeight: 'bold',
     color: '#9ca3af',
     textTransform: 'uppercase',
-    letterSpacing: 1,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f3f4f6',
-    paddingBottom: 4,
-    marginBottom: 8,
+    letterSpacing: 0.8,
+    borderBottomWidth: 0.8,
+    borderBottomColor: '#e5e7eb',
+    paddingBottom: 2,
+    marginBottom: 6,
   },
   summary: {
-    fontSize: 10,
+    fontSize: 9,
     color: '#374151',
-    lineHeight: 1.5,
+    lineHeight: 1.4,
     textAlign: 'justify',
   },
   experienceItem: {
-    marginBottom: 12,
+    marginBottom: 8,
   },
   experienceHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
-    marginBottom: 4,
+    marginBottom: 2,
   },
   role: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: 'bold',
     color: '#111827',
   },
   companyDate: {
-    fontSize: 9,
+    fontSize: 8.5,
     color: '#6b7280',
     fontWeight: 'bold',
   },
   companySub: {
-    fontSize: 9,
+    fontSize: 8.5,
     color: '#78350f',
     fontWeight: 'bold',
     backgroundColor: '#fffdfa',
-    padding: '2 4',
-    marginBottom: 4,
+    padding: '1 3',
+    marginBottom: 3,
   },
   achievement: {
-    fontSize: 10,
+    fontSize: 8.8,
     color: '#4b5563',
-    marginLeft: 12,
+    marginLeft: 10,
     marginBottom: 2,
-    lineHeight: 1.4,
+    lineHeight: 1.35,
   },
   skillsGrid: {
     flexDirection: 'row',
-    gap: 20,
+    gap: 15,
   },
   skillColumn: {
     flex: 1,
   },
   skillLabel: {
-    fontSize: 8,
+    fontSize: 7.5,
     fontWeight: 'bold',
     color: '#9ca3af',
-    marginBottom: 4,
+    marginBottom: 3,
   },
   skillText: {
-    fontSize: 10,
+    fontSize: 8.5,
     color: '#374151',
-    lineHeight: 1.4,
+    lineHeight: 1.35,
   },
   eduGrid: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 4,
+    marginBottom: 2,
   },
   eduTitle: {
-    fontSize: 11,
+    fontSize: 9.5,
     fontWeight: 'bold',
     color: '#111827',
   },
   gpa: {
-    fontSize: 9,
+    fontSize: 8,
     fontWeight: 'bold',
     color: '#ffffff',
     backgroundColor: '#78350f',
-    padding: '2 4',
+    padding: '1 3',
     borderRadius: 2,
   },
   projectItem: {
-    marginBottom: 8,
+    marginBottom: 6,
   },
   projectName: {
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: 'bold',
     color: '#1f2937',
   },
   projectDesc: {
-    fontSize: 9,
+    fontSize: 8.2,
     color: '#6b7280',
+    lineHeight: 1.25,
   }
 });
 
@@ -155,7 +156,7 @@ const PDFDocument = () => {
           <View style={styles.contactRow}>
             <Text>{personalInfo.phone} | {personalInfo.email} | {personalInfo.location}</Text>
           </View>
-          <View style={[styles.contactRow, { marginTop: 4 }]}>
+          <View style={[styles.contactRow, { marginTop: 2 }]}>
             <Text>{personalInfo.linkedin} | {personalInfo.github} | {personalInfo.portfolio}</Text>
           </View>
         </View>
@@ -170,14 +171,14 @@ const PDFDocument = () => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Professional Experience</Text>
           {workExperience.map((work, index) => (
-            <View key={index} style={styles.experienceItem} wrap={false}>
-              <View style={styles.experienceHeader}>
+            <View key={index} style={styles.experienceItem}>
+              <View style={styles.experienceHeader} wrap={false}>
                 <Text style={styles.role}>{work.role}</Text>
                 <Text style={styles.companyDate}>{work.dates.toUpperCase()}</Text>
               </View>
-              <Text style={styles.companySub}>{work.company.toUpperCase()} | {work.location}</Text>
+              <Text style={styles.companySub} wrap={false}>{work.company.toUpperCase()} | {work.location}</Text>
               {work.achievements.map((ach, idx) => (
-                <Text key={idx} style={styles.achievement}>• {ach}</Text>
+                <Text key={idx} style={styles.achievement} wrap={false}>• {ach}</Text>
               ))}
             </View>
           ))}
@@ -199,7 +200,7 @@ const PDFDocument = () => {
         </View>
 
         {/* Education & Projects */}
-        <View style={{ flexDirection: 'row', gap: 30, marginBottom: 15 }}>
+        <View style={{ flexDirection: 'row', gap: 20, marginBottom: 10 }}>
           <View style={{ flex: 1.2 }}>
             <Text style={styles.sectionTitle}>Education</Text>
             <View style={styles.eduGrid}>
@@ -207,10 +208,10 @@ const PDFDocument = () => {
               <Text style={styles.companyDate}>{education.dates}</Text>
             </View>
             <Text style={[styles.skillText, { fontWeight: 'bold' }]}>{education.school}</Text>
-            <View style={{ marginTop: 4 }}>
+            <View style={{ marginTop: 2 }}>
               <Text style={styles.gpa}>GPA: {education.gpa}</Text>
             </View>
-            <Text style={[styles.skillText, { fontSize: 8, marginTop: 4, color: '#9ca3af' }]}>
+            <Text style={[styles.skillText, { fontSize: 7.5, marginTop: 2, color: '#9ca3af' }]}>
               {education.details}
             </Text>
           </View>
@@ -230,13 +231,13 @@ const PDFDocument = () => {
         {achievements && achievements.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Achievements & Volunteering</Text>
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
               {achievements.map((item, index) => (
-                <View key={index} style={{ width: '48%', marginBottom: 4, borderBottomWidth: 0.5, borderBottomColor: '#f3f4f6', paddingBottom: 2 }}>
-                  <Text style={{ fontSize: 10, fontWeight: 'bold', color: '#111827' }}>{item.title}</Text>
+                <View key={index} style={{ width: '48%', marginBottom: 3, borderBottomWidth: 0.5, borderBottomColor: '#f3f4f6', paddingBottom: 1 }}>
+                  <Text style={{ fontSize: 8.5, fontWeight: 'bold', color: '#111827' }}>{item.title}</Text>
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 1 }}>
-                    <Text style={{ fontSize: 8, color: '#78350f', fontWeight: 'bold' }}>{item.role.toUpperCase()}</Text>
-                    <Text style={{ fontSize: 8, color: '#9ca3af' }}>{item.year}</Text>
+                    <Text style={{ fontSize: 7.5, color: '#78350f', fontWeight: 'bold' }}>{item.role.toUpperCase()}</Text>
+                    <Text style={{ fontSize: 7.5, color: '#9ca3af' }}>{item.year}</Text>
                   </View>
                 </View>
               ))}
