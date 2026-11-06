@@ -1,13 +1,14 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/db';
 import { careerSalaries } from '@/db/schema';
-import { eq, desc } from 'drizzle-orm';
+import { desc } from 'drizzle-orm';
 
-// Strict Authorization check using ADMIN_SECRET_KEY
+export const dynamic = 'force-dynamic';
+
 function isAuthorized(request: Request): boolean {
   const adminSecret = process.env.ADMIN_SECRET_KEY;
   if (!adminSecret) {
-    return false; // Always deny if no key is configured
+    return false;
   }
 
   const authHeader = request.headers.get('authorization');
@@ -20,20 +21,23 @@ function isAuthorized(request: Request): boolean {
 }
 
 export async function GET(request: Request) {
-  if (!isAuthorized(request)) {
-    return NextResponse.json(
-      { error: 'Unauthorized: Access to private career salary history is restricted.' },
-      { status: 401 }
-    );
-  }
-
   try {
+    if (!isAuthorized(request)) {
+      return NextResponse.json(
+        { 
+          error: 'Unauthorized', 
+          message: 'Invalid or missing key parameter. Access restricted.',
+          hasSecretEnv: Boolean(process.env.ADMIN_SECRET_KEY)
+        },
+        { status: 401 }
+      );
+    }
+
     const records = await db
       .select()
       .from(careerSalaries)
       .orderBy(desc(careerSalaries.id));
 
-    // Calculate analytics on the fly
     const monthlyRecords = records.filter(
       (r) => r.paymentFrequency === 'monthly' && Number(r.salaryAmount) > 0
     );
@@ -64,7 +68,11 @@ export async function GET(request: Request) {
     });
   } catch (error: any) {
     return NextResponse.json(
-      { error: 'Database query failed', message: error?.message },
+      { 
+        error: 'Internal Error', 
+        message: error?.message || String(error),
+        hasDbUrl: Boolean(process.env.DATABASE_URL)
+      },
       { status: 500 }
     );
   }
