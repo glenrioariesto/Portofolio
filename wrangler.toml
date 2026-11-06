@@ -12,10 +12,7 @@ binding = "ASSETS"
 binding = "WORKER_SELF_REFERENCE"
 service = "portofolio"
 
-# DATABASE_URL (Nile) is a secret: `npx wrangler secret put DATABASE_URL`
-[vars]
-GOOGLE_SERVICE_ACCOUNT_EMAIL = ""
-GOOGLE_PRIVATE_KEY = ""
-GOOGLE_CALENDAR_ID = ""
+# Note: Set environment variables and secrets via Cloudflare Dashboard or `wrangler secret put`
+# [vars] section is left out so wrangler deploy doesn't overwrite remote Dashboard settings.
 
 # Bindings (KV, D1, etc. can go here)
