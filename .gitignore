@@ -41,3 +41,16 @@ yarn-error.log*
 next-env.d.ts
 .open-next/
 .dev.vars
+.commandcode/
+
+# Private job application documents
+/lamaran/
+lamaran/
+
+# Private internal records (salary & compensation history)
+/server/data/
+salary-history.json
+*salary*.json
+server/
+scripts/manage-salaries.ts
+chat.txt

@@ -11,7 +11,7 @@ A high-end, Apple-inspired digital portfolio built with a **Vibe Engineering** m
 
 - ** Apple-Inspired UI**: Clean, minimal, and premium aesthetic using Tailwind 4 and Framer Motion.
 - **📅 Smart Booking System**: Integrated with **Google Calendar API** for real-time strategy session scheduling.
-- **🗄️ Robust Backend**: Powered by **Drizzle ORM** & **Supabase (PostgreSQL)** for performant data handling.
+- **🗄️ Robust Backend**: Powered by **Drizzle ORM** & **Nile (serverless PostgreSQL)** for performant data handling.
 - **📄 Interactive CV**: Real-time PDF generation using `@react-pdf/renderer` with a custom-designed aesthetic.
 - **☁️ Edge Deployment**: Optimized for **Cloudflare Workers** using the **OpenNext** adapter for ultra-low latency.
 
@@ -20,7 +20,7 @@ A high-end, Apple-inspired digital portfolio built with a **Vibe Engineering** m
 - **Framework**: Next.js 16 (App Router)
 - **Styling**: Tailwind CSS v4 & Lucide Icons
 - **Animations**: Framer Motion
-- **Database**: PostgreSQL (Supabase) via Drizzle ORM
+- **Database**: PostgreSQL (Nile) via Drizzle ORM
 - **Deployment**: Cloudflare Workers / Pages
 - **Misc**: Google Cloud Console (Calendar API), Zod for validation
 
@@ -29,7 +29,7 @@ A high-end, Apple-inspired digital portfolio built with a **Vibe Engineering** m
 ### Prerequisites
 
 - Node.js 18+
-- A Supabase Instance
+- A Nile database ([thenile.dev](https://thenile.dev))
 - Google Cloud Service Account (for Calendar)
 
 ### Installation
@@ -48,7 +48,7 @@ A high-end, Apple-inspired digital portfolio built with a **Vibe Engineering** m
 3. **Set up Environment Variables:**
    Create a `.env` file in the root directory:
    ```env
-   DATABASE_URL="your-postgresql-url"
+   DATABASE_URL="postgres://<user>:<password>@<region>.db.thenile.dev:5432/<db>"
    GOOGLE_SERVICE_ACCOUNT_EMAIL="your-service-account@iam.gserviceaccount.com"
    GOOGLE_PRIVATE_KEY="your-private-key"
    GOOGLE_CALENDAR_ID="your-email@gmail.com"
