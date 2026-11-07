@@ -7,12 +7,24 @@ type DrizzleDb = ReturnType<typeof drizzle<typeof schema>>;
 let _db: DrizzleDb | null = null;
 let _client: ReturnType<typeof postgres> | null = null;
 
+function sanitizeConnectionString(raw: string): string {
+  let str = raw.trim();
+  // Strip variable assignment syntax if user accidentally pasted "DATABASE_URL=..."
+  str = str.replace(/^DATABASE_URL\s*=\s*/i, '');
+  // Strip surrounding quotes if wrapped in "..." or '...'
+  str = str.replace(/^["']|["']$/g, '').trim();
+  str = str.replace(/^DATABASE_URL\s*=\s*/i, '').trim();
+  str = str.replace(/^["']|["']$/g, '').trim();
+  return str;
+}
+
 export function getDb(): DrizzleDb {
   if (!_db) {
-    const connectionString = process.env.DATABASE_URL;
-    if (!connectionString) {
+    const rawUrl = process.env.DATABASE_URL;
+    if (!rawUrl) {
       throw new Error("DATABASE_URL environment variable is missing or empty.");
     }
+    const connectionString = sanitizeConnectionString(rawUrl);
     _client = postgres(connectionString, {
       prepare: false,
       ssl: "require",
