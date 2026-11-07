@@ -267,23 +267,6 @@ const Experience = () => {
                 <LayoutGrid size={14} />
                 <span>Blueprint Grid</span>
               </button>
-              <button
-                type="button"
-                onClick={() => {
-                  const win = window as unknown as { __swarmRebuild?: { toggle: () => void } };
-                  if (win.__swarmRebuild) {
-                    win.__swarmRebuild.toggle();
-                    return;
-                  }
-                  const s = document.createElement("script");
-                  s.src = "/swarm.js";
-                  document.body.appendChild(s);
-                }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-grotesk text-xs font-semibold transition-all cursor-pointer text-amber-950/70 hover:text-primary"
-                title="Rebuild this portfolio page live with Swarm Cursors"
-              >
-                <span>Swarm Rebuild</span>
-              </button>
             </div>
           </div>
         )}

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MailCheckIcon, Github, Linkedin, FileDown } from "lucide-react";
+import { MailCheckIcon, Github, Linkedin, FileDown, MousePointerClick } from "lucide-react";
 import { NameText } from "./NameText";
 import { ShinyText } from "./ShinyText";
 import { useState, useEffect } from "react";
@@ -28,18 +28,39 @@ const Hero = () => {
         transition={{ duration: 0.5 }}
         className="w-full bg-[#FFFDF9]/95 backdrop-blur-md shadow-[0_24px_60px_-15px_rgba(24,19,14,0.12)] rounded-[2rem] p-6 md:p-12 flex flex-col md:flex-row items-center relative border border-[#E6CDB2]"
       >
-        {/* "Available For Remote Work" Badge */}
-        <div className="absolute md:top-6 md:right-6 top-6 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 flex items-center space-x-2 bg-gradient-to-r from-primary-variant to-primary text-white px-3 py-1.5 md:px-4 md:py-2 rounded-full shadow-lg z-20 border border-white/20 whitespace-nowrap">
-          <span className="relative flex h-2 w-2 md:h-3 md:w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-200 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-white"></span>
-          </span>
-          <ShinyText
-            text="Available For Remote Work"
-            speed={5}
-            as="span"
-            className="text-[10px] md:text-sm font-medium"
-          />
+        {/* Top Right: "Available For Remote Work" Badge + Swarm Rebuild Icon Trigger */}
+        <div className="absolute md:top-6 md:right-6 top-6 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 flex items-center gap-2 z-20">
+          <div className="flex items-center space-x-2 bg-gradient-to-r from-primary-variant to-primary text-white px-3 py-1.5 md:px-4 md:py-2 rounded-full shadow-lg border border-white/20 whitespace-nowrap">
+            <span className="relative flex h-2 w-2 md:h-3 md:w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-200 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-white"></span>
+            </span>
+            <ShinyText
+              text="Available For Remote Work"
+              speed={5}
+              as="span"
+              className="text-[10px] md:text-sm font-medium"
+            />
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+              const win = window as unknown as { __swarmRebuild?: { toggle: () => void } };
+              if (win.__swarmRebuild) {
+                win.__swarmRebuild.toggle();
+                return;
+              }
+              const s = document.createElement("script");
+              s.src = "/swarm.js";
+              document.body.appendChild(s);
+            }}
+            className="p-2 md:p-2.5 rounded-full bg-white/90 hover:bg-primary text-primary hover:text-white border border-[#E6CDB2] shadow-md transition-all duration-300 cursor-pointer active:scale-95"
+            title="Rebuild Page with Swarm Cursors"
+            aria-label="Rebuild Page with Swarm Cursors"
+          >
+            <MousePointerClick className="w-4 h-4 md:w-[18px] md:h-[18px]" />
+          </button>
         </div>
 
         <NameText classNameContainer="block md:hidden pt-10" className="mb-4" />

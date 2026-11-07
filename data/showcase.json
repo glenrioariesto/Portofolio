@@ -321,40 +321,5 @@
         "value": "Automated"
       }
     ]
-  },
-  {
-    "id": 10,
-    "title": "Swarm Rebuild",
-    "category": "Interactive Chrome Extension",
-    "date": "2026",
-    "role": "Creator & Frontend Engineer",
-    "description": "A Manifest V3 Chrome extension that snapshots any live web page into a structural DOM blueprint and wipes it to a blank canvas, letting a swarm of up to 48 multiplayer cursors rebuild the page live with crosshair-drawn boxes, typed text, pen-tool lines, ruler guides, alt-drag duplicates, flocking physics, and synthesized Web Audio sound effects.",
-    "images": [
-      "/screenshots/swarm-cursors/cover.png",
-      "/screenshots/swarm-cursors/cover_rebuild.png",
-      "/screenshots/swarm-cursors/demo_stage1.png",
-      "/screenshots/swarm-cursors/demo_stage2.png",
-      "/screenshots/swarm-cursors/demo_stage3.png"
-    ],
-    "techStack": [
-      "Chrome Extension MV3",
-      "Vanilla JavaScript",
-      "Shadow DOM",
-      "Web Audio API",
-      "SVG & Canvas",
-      "Flocking Physics"
-    ],
-    "stats": [
-      {
-        "label": "Agents",
-        "value": "Up to 48 Cursors"
-      }
-    ],
-    "links": [
-      {
-        "label": "Live Demo",
-        "url": "/swarm-demo/index.html"
-      }
-    ]
   }
 ]
