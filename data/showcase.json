@@ -349,6 +349,12 @@
         "label": "Agents",
         "value": "Up to 48 Cursors"
       }
+    ],
+    "links": [
+      {
+        "label": "Live Demo",
+        "url": "/swarm-demo/index.html"
+      }
     ]
   }
 ]
