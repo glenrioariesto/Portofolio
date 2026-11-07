@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { db, client } from '@/db';
+import { withDb } from '@/db';
 import { careerSalaries } from '@/db/schema';
 import { desc } from 'drizzle-orm';
 
@@ -56,7 +56,10 @@ const INITIAL_SALARIES = [
   },
 ];
 
-async function autoMigrate() {
+async function ensureTableAndData(
+  db: Parameters<Parameters<typeof withDb>[0]>[0],
+  client: Parameters<Parameters<typeof withDb>[0]>[1]
+) {
   await client.unsafe(`
     CREATE TABLE IF NOT EXISTS "career_salaries" (
       "id" serial PRIMARY KEY NOT NULL,
@@ -74,6 +77,11 @@ async function autoMigrate() {
       "updated_at" timestamp DEFAULT now() NOT NULL
     )
   `);
+
+  const existing = await db.select().from(careerSalaries);
+  if (existing.length === 0) {
+    await db.insert(careerSalaries).values(INITIAL_SALARIES);
+  }
 }
 
 function isAuthorized(request: Request): boolean {
@@ -104,55 +112,53 @@ export async function GET(request: Request) {
       );
     }
 
-    let records;
-    try {
-      records = await db
-        .select()
-        .from(careerSalaries)
-        .orderBy(desc(careerSalaries.id));
-    } catch (initialErr: any) {
+    return await withDb(async (db, client) => {
+      let records;
       try {
-        await autoMigrate();
-        const existing = await db.select().from(careerSalaries);
-        if (existing.length === 0) {
-          await db.insert(careerSalaries).values(INITIAL_SALARIES);
-        }
         records = await db
           .select()
           .from(careerSalaries)
           .orderBy(desc(careerSalaries.id));
-      } catch (migrateErr: any) {
-        throw new Error(`AutoMigrate failed: ${migrateErr?.message || String(migrateErr)} [Initial error: ${initialErr?.message}]`);
+      } catch (initialErr: any) {
+        try {
+          await ensureTableAndData(db, client);
+          records = await db
+            .select()
+            .from(careerSalaries)
+            .orderBy(desc(careerSalaries.id));
+        } catch (migrateErr: any) {
+          throw new Error(`AutoMigrate failed: ${migrateErr?.message || String(migrateErr)} [Initial error: ${initialErr?.message}]`);
+        }
       }
-    }
 
-    const monthlyRecords = records.filter(
-      (r) => r.paymentFrequency === 'monthly' && Number(r.salaryAmount) > 0
-    );
-    const avgMonthly =
-      monthlyRecords.length > 0
-        ? Math.round(
-            monthlyRecords.reduce((sum, r) => sum + Number(r.salaryAmount), 0) /
-              monthlyRecords.length
-          )
-        : 0;
+      const monthlyRecords = records.filter(
+        (r) => r.paymentFrequency === 'monthly' && Number(r.salaryAmount) > 0
+      );
+      const avgMonthly =
+        monthlyRecords.length > 0
+          ? Math.round(
+              monthlyRecords.reduce((sum, r) => sum + Number(r.salaryAmount), 0) /
+                monthlyRecords.length
+            )
+          : 0;
 
-    const highestSalary = records.reduce(
-      (max, r) => (Number(r.salaryAmount) > max ? Number(r.salaryAmount) : max),
-      0
-    );
+      const highestSalary = records.reduce(
+        (max, r) => (Number(r.salaryAmount) > max ? Number(r.salaryAmount) : max),
+        0
+      );
 
-    return NextResponse.json({
-      status: 'success',
-      data: {
-        analytics: {
-          totalRecords: records.length,
-          monthlyJobsCount: monthlyRecords.length,
-          averageMonthlySalary: avgMonthly,
-          highestSalaryRecorded: highestSalary,
+      return NextResponse.json({
+        status: 'success',
+        data: {
+          analytics: {
+            totalRecords: records.length,
+            monthlyJobsCount: monthlyRecords.length,
+            averageMonthlySalary: avgMonthly,
+            highestSalaryRecorded: highestSalary,
+          },
+          records,
         },
-        records,
-      },
+      });
     });
   } catch (error: any) {
     return NextResponse.json(

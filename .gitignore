@@ -54,3 +54,4 @@ salary-history.json
 server/
 scripts/manage-salaries.ts
 chat.txt
+.wrangler/
