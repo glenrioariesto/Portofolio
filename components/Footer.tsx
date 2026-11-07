@@ -46,10 +46,10 @@ const Footer = () => {
 
                 {/* Middle Section: Links & Info */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 md:gap-12 pt-10 md:pt-12 border-t border-slate-200/60 mb-16 md:mb-20">
-                    <div className="flex flex-wrap gap-x-6 gap-y-4 text-[11px] md:text-sm font-bold uppercase tracking-wide text-slate-600">
-                        <a href="#about" className="hover:text-primary transition-colors">Home</a>
+                    <div className="flex flex-wrap gap-x-6 gap-y-4 text-[11px] md:text-sm font-mono font-bold uppercase tracking-wide text-[#645647]">
+                        <a href="#hero" className="hover:text-primary transition-colors">Home</a>
                         <a href="#services" className="hover:text-primary transition-colors">Services</a>
-                        <a href="#showcase" className="hover:text-primary transition-colors">Experience</a>
+                        <a href="#showcase" className="hover:text-primary transition-colors">Experience &amp; Career</a>
                         <a href="#booking" className="hover:text-primary transition-colors">Contact</a>
                     </div>
 

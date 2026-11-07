@@ -15,7 +15,7 @@ function sanitizeConnectionString(raw: string): string {
   return str;
 }
 
-export function createScopedDb() {
+export function createScopedDb(connectTimeoutSeconds = 8) {
   const rawUrl = process.env.DATABASE_URL;
   if (!rawUrl) {
     throw new Error("DATABASE_URL environment variable is missing or empty.");
@@ -25,7 +25,7 @@ export function createScopedDb() {
     prepare: false,
     ssl: 'require',
     max: 1,
-    connect_timeout: 5,
+    connect_timeout: connectTimeoutSeconds,
     idle_timeout: 0,
   });
   const db = drizzle(client, { schema });
@@ -48,14 +48,27 @@ export function createScopedDb() {
  * and "Cannot perform I/O on behalf of a different request" errors.
  */
 export async function withDb<T>(
-  fn: (db: DrizzleDb, client: ReturnType<typeof postgres>) => Promise<T>
+  fn: (db: DrizzleDb, client: ReturnType<typeof postgres>) => Promise<T>,
+  options?: { retries?: number; connectTimeoutSeconds?: number }
 ): Promise<T> {
-  const scoped = createScopedDb();
-  try {
-    return await fn(scoped.db, scoped.client);
-  } finally {
-    await scoped.close();
+  const maxRetries = options?.retries ?? 1;
+  const timeoutSec = options?.connectTimeoutSeconds ?? 8;
+  let lastError: unknown;
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    const scoped = createScopedDb(timeoutSec);
+    try {
+      return await fn(scoped.db, scoped.client);
+    } catch (err) {
+      lastError = err;
+      if (attempt < maxRetries) {
+        await new Promise((r) => setTimeout(r, 250));
+      }
+    } finally {
+      await scoped.close();
+    }
   }
+  throw lastError;
 }
 
 // Fallback legacy accessors

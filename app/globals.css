@@ -3,13 +3,21 @@
 @theme {
   --color-primary: #B45309;
   --color-primary-variant: #92400E;
-  --color-secondary: #1E293B;
-  --color-secondary-variant: #334155;
+  --color-secondary: #78350F;
+  --color-secondary-variant: #92400E;
   --color-background-primary: #FBE9D4;
+  --color-surface-ivory: #FFFDF9;
+  --color-surface-sand: #F5DEC3;
+  --color-ink: #18130E;
+  --color-muted-umber: #645647;
+  --color-border-warm: #E6CDB2;
 
   --font-grotesk: var(--font-space-grotesk), sans-serif;
+  --font-display: var(--font-space-grotesk), sans-serif;
   --font-rubik-doodle: var(--font-rubik-doodle), cursive;
+  --font-serif-editorial: var(--font-space-grotesk), sans-serif;
   --font-sans: var(--font-inter), sans-serif;
+  --font-mono: var(--font-space-grotesk), sans-serif;
 
   --animate-shine: shine 5s linear infinite;
 
@@ -22,6 +30,10 @@
       background-position: -100%;
     }
   }
+}
+
+.font-tabular {
+  font-variant-numeric: tabular-nums;
 }
 
 

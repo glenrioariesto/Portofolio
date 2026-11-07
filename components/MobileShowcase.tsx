@@ -398,7 +398,7 @@ const ExpandedProjectModal = ({
                     <div className="px-6 pt-5">
                         {/* Number + Category */}
                         <div className="flex items-center gap-3 mb-3">
-                            <span className="w-8 h-8 bg-black text-white rounded-lg flex items-center justify-center text-sm font-bold">
+                            <span className="w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center text-sm font-bold">
                                 {String(index + 1).padStart(2, '0')}
                             </span>
                             <span className="px-3 py-1 bg-orange-50 text-primary-variant text-xs font-semibold rounded-full border border-orange-100">

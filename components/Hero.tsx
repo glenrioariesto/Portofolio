@@ -26,13 +26,13 @@ const Hero = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="w-full bg-white/90 backdrop-blur-md shadow-2xl rounded-[2.5rem] p-6 md:p-12 flex flex-col md:flex-row items-center relative border border-white/30"
+        className="w-full bg-[#FFFDF9]/95 backdrop-blur-md shadow-[0_24px_60px_-15px_rgba(24,19,14,0.12)] rounded-[2rem] p-6 md:p-12 flex flex-col md:flex-row items-center relative border border-[#E6CDB2]"
       >
         {/* "Available For Remote Work" Badge */}
-        <div className="absolute md:top-6 md:right-6 top-6 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 flex items-center space-x-2 bg-secondary text-white px-3 py-1.5 md:px-4 md:py-2 rounded-full shadow-lg z-20 border border-white/20 whitespace-nowrap">
+        <div className="absolute md:top-6 md:right-6 top-6 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 flex items-center space-x-2 bg-gradient-to-r from-primary-variant to-primary text-white px-3 py-1.5 md:px-4 md:py-2 rounded-full shadow-lg z-20 border border-white/20 whitespace-nowrap">
           <span className="relative flex h-2 w-2 md:h-3 md:w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-primary-variant"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-200 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-white"></span>
           </span>
           <ShinyText
             text="Available For Remote Work"
@@ -90,7 +90,7 @@ const Hero = () => {
             </a>
             <button
               onClick={() => setShowCV(true)}
-              className="bg-white/50 backdrop-blur-md border border-white/50 px-6 py-3 flex-1 justify-center text-center rounded-xl flex items-center gap-2 text-gray-700 font-medium hover:bg-white transition-all shadow-sm"
+              className="bg-white/50 backdrop-blur-md border border-white/50 px-6 py-3 flex-1 justify-center text-center rounded-xl flex items-center gap-2 text-gray-700 font-medium hover:bg-white transition-all shadow-sm cursor-pointer"
             >
               <FileDown className="w-5 h-5" />
               Download CV

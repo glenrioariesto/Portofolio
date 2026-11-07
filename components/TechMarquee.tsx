@@ -96,7 +96,7 @@ const TechMarquee = () => {
                   className="w-16 h-16"
                 />
               </motion.div>
-              <span className="text-gray-400 text-2xl font-semibold">{tech.name}</span>
+              <span className="text-[#645647] text-xl md:text-2xl font-grotesk font-bold tracking-tight">{tech.name}</span>
             </motion.div>
           ))}
         </motion.div>

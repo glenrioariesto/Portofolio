@@ -7,3 +7,6 @@ This workspace is equipped with specialized agents and skills for managing the p
 
 ## Available Workspace Skills
 * **`portfolio-showcase`** ([.agents/skills/portfolio-showcase/SKILL.md](file:///.agents/skills/portfolio-showcase/SKILL.md)): Step-by-step workflow, visual guidelines, and scripts for automated screenshot capture and cover mockup generation.
+
+## Design System
+Read DESIGN.md before visual or UI work: it defines the fonts, colors, spacing, and aesthetic direction. Ask the user before departing from it. When reviewing or QA-ing UI, flag code that doesn't match DESIGN.md.

@@ -18,7 +18,7 @@ export const NameText = ({ classNameContainer, classNameSayhai, className }: { c
           transition={{ duration: 0.8 }}
           className="relative"
         >
-          Hello, I'm
+          Hello, I&apos;m
           <span className="absolute bottom-0 left-0 w-full h-[2px] bg-primary animate-pulse"></span>
         </motion.span>
       </p>

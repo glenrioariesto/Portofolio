@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Space_Grotesk, Rubik_Doodle_Shadow } from "next/font/google";
+import { Space_Grotesk, Rubik_Doodle_Shadow, Inter } from "next/font/google";
+import Script from "next/script";
+import { NavbarProvider } from "@/context/NavbarContext";
+import ScrollProgress from "@/components/ScrollProgress";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://glenrioariesto.com"),
@@ -84,18 +87,10 @@ const rubikDoodleShadow = Rubik_Doodle_Shadow({
   variable: "--font-rubik-doodle",
 });
 
-import { Inter } from "next/font/google";
-import Script from "next/script";
-
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
-
-
-
-import { NavbarProvider } from "@/context/NavbarContext";
-import ScrollProgress from "@/components/ScrollProgress";
 
 export default function RootLayout({
   children,

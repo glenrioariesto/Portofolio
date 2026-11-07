@@ -51,11 +51,11 @@ const ImpactSection = () => {
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
                             whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                            className="group relative bg-white/70 backdrop-blur-xl rounded-[2.5rem] p-5 sm:p-6 md:p-7 border border-white shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col justify-between overflow-hidden h-full"
+                            className="group relative bg-[#FFFDF9] rounded-[1.75rem] p-5 sm:p-6 md:p-7 border border-[#E6CDB2] shadow-[0_18px_40px_-18px_rgba(24,19,14,0.08)] hover:border-primary transition-all duration-300 flex flex-col justify-between overflow-hidden h-full"
                         >
                             {/* Top: Image on the Left, Big Number on the Right (Fixed Height) */}
                             <div className="flex items-center gap-3 sm:gap-3.5 md:gap-4 h-14 md:h-16 mb-4 md:mb-5">
-                                <div className="p-1.5 sm:p-2 bg-amber-50/50 rounded-2xl shrink-0 group-hover:bg-amber-100 transition-colors duration-500 shadow-xs flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16">
+                                <div className="p-1.5 sm:p-2 bg-[#F5DEC3]/50 border border-[#E6CDB2] rounded-2xl shrink-0 group-hover:bg-[#F5DEC3] transition-colors duration-300 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16">
                                     <Image
                                         src={stat.image}
                                         alt={stat.label}
@@ -65,7 +65,7 @@ const ImpactSection = () => {
                                     />
                                 </div>
                                 <div className="min-w-0 flex-1 flex items-center">
-                                    <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-grotesk tracking-tight text-amber-950">
+                                    <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-mono font-tabular tracking-tight text-[#18130E]">
                                         <NumberTicker
                                             value={stat.numericValue}
                                             suffix={stat.suffix}
@@ -78,12 +78,12 @@ const ImpactSection = () => {
                             {/* Bottom: Title & Sublabel with strict uniform baseline alignment */}
                             <div className="flex flex-col flex-1 justify-between pt-1">
                                 <div className="min-h-[2.5rem] sm:min-h-[2.75rem] md:min-h-[3rem] flex items-center">
-                                    <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-snug font-grotesk">
+                                    <h3 className="text-sm sm:text-base font-bold text-[#18130E] leading-snug font-grotesk">
                                         {stat.label}
                                     </h3>
                                 </div>
                                 <div className="min-h-[2.25rem] sm:min-h-[2.5rem] flex items-start pt-1">
-                                    <p className="text-xs sm:text-sm text-slate-500 font-light leading-snug font-grotesk">
+                                    <p className="text-xs sm:text-sm text-[#645647] leading-snug font-sans">
                                         {stat.sublabel}
                                     </p>
                                 </div>

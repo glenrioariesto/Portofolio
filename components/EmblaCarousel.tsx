@@ -51,8 +51,8 @@ const ProjectCard = ({
       <div className="flex w-full h-[500px] bg-white/90 backdrop-blur-md rounded-[2.5rem] overflow-hidden shadow-2xl py-2 pr-2 relative border border-white/30">
 
         <div className="z-30 absolute bottom-0 left-0 w-full h-16 flex flex-row justify-around items-center bg-white rounded-b-[2.5rem] px-6 md:relative md:w-20 md:h-full md:flex-col md:justify-start md:py-8 md:gap-8 md:bottom-auto md:left-auto md:bg-transparent md:px-0 md:rounded-none">
-          <div className="hidden md:flex w-10 h-10 bg-black text-white rounded-full items-center justify-center font-bold text-xl">
-            {index + 1}
+          <div className="hidden md:flex w-10 h-10 bg-primary text-white rounded-full items-center justify-center font-mono font-bold text-sm font-tabular">
+            {String(index + 1).padStart(2, '0')}
           </div>
           <div className="flex flex-row md:flex-col gap-8 text-gray-400 w-full md:w-auto justify-around md:justify-start items-center">
             <button onClick={nextImage} className="text-black hover:text-gray-600 transition-colors p-2 rounded-full hover:bg-gray-100/50">
@@ -158,24 +158,24 @@ const ProjectCard = ({
               >
                 <div className="flex items-center gap-6">
                   <div className="flex flex-col items-center border-r border-gray-200 pr-6 shrink-0">
-                    <span className="text-xs font-bold text-gray-700 text-center leading-tight mt-0.5">{project.date}</span>
+                    <span className="text-xs font-mono font-bold text-[#645647] text-center leading-tight mt-0.5">{project.date}</span>
                   </div>
                   <div className="min-w-0">
                     <h3 className="text-2xl font-bold leading-tight font-rubik-doodle tracking-wide">{project.title}</h3>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-xs font-semibold">{project.role}</span>
+                      <span className="text-xs font-semibold text-primary">{project.role}</span>
                     </div>
                     {isExpanded && (
                       <>
-                        <p className="text-xs text-gray-500 mt-3 leading-relaxed font-grotesk font-light max-h-[100px] overflow-y-auto pr-2 custom-scrollbar">
+                        <p className="text-xs text-[#645647] mt-3 leading-relaxed font-sans max-h-[100px] overflow-y-auto pr-2 custom-scrollbar">
                           {project.description}
                         </p>
                         {project.stats && project.stats.length > 0 && (
                           <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-gray-100">
                             {project.stats.map((stat, idx) => (
-                              <div key={idx} className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-50 to-amber-50 px-3 py-1 rounded-full border border-orange-100 shadow-sm">
-                                <span className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">{stat.label}</span>
-                                <span className="text-xs font-black bg-gradient-to-r from-amber-700 to-orange-600 text-transparent bg-clip-text">
+                              <div key={idx} className="inline-flex items-center gap-2 bg-[#F5DEC3]/60 px-3 py-1 rounded-md border border-[#E6CDB2]">
+                                <span className="text-[10px] font-mono text-[#645647] font-bold uppercase tracking-tight">{stat.label}</span>
+                                <span className="text-xs font-mono font-bold text-primary font-tabular">
                                   {stat.value}
                                 </span>
                               </div>
