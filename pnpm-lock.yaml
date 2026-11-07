@@ -4,10 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  '@opennextjs/aws@3.10.1': d038600b31371c19e392fc0ae26b662c1cd8d3d5cbadc80c84762036b11d9723
-  '@opennextjs/cloudflare@1.19.1': 32179f7a31ba9e02f5d30246c5dc35f30225f27211ea9eb3efaf7e651f7132a8
-
 importers:
 
   .:
@@ -54,7 +50,7 @@ importers:
     devDependencies:
       '@opennextjs/cloudflare':
         specifier: ^1.19.1
-        version: 1.19.1(patch_hash=32179f7a31ba9e02f5d30246c5dc35f30225f27211ea9eb3efaf7e651f7132a8)(next@16.2.4(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(wrangler@4.158.0(@types/node@20.17.19))
+        version: 1.19.1(next@16.2.4(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(wrangler@4.158.0(@types/node@20.17.19))
       '@tailwindcss/postcss':
         specifier: ^4.1.18
         version: 4.1.18
@@ -4892,7 +4888,7 @@ snapshots:
     dependencies:
       gzip-size: 6.0.0
 
-  '@opennextjs/aws@3.10.1(patch_hash=d038600b31371c19e392fc0ae26b662c1cd8d3d5cbadc80c84762036b11d9723)(next@16.2.4(react-dom@19.2.5(react@19.2.5))(react@19.2.5))':
+  '@opennextjs/aws@3.10.1(next@16.2.4(react-dom@19.2.5(react@19.2.5))(react@19.2.5))':
     dependencies:
       '@ast-grep/napi': 0.40.5
       '@aws-sdk/client-cloudfront': 3.984.0
@@ -4916,11 +4912,11 @@ snapshots:
       - aws-crt
       - supports-color
 
-  '@opennextjs/cloudflare@1.19.1(patch_hash=32179f7a31ba9e02f5d30246c5dc35f30225f27211ea9eb3efaf7e651f7132a8)(next@16.2.4(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(wrangler@4.158.0(@types/node@20.17.19))':
+  '@opennextjs/cloudflare@1.19.1(next@16.2.4(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(wrangler@4.158.0(@types/node@20.17.19))':
     dependencies:
       '@ast-grep/napi': 0.40.5
       '@dotenvx/dotenvx': 1.31.0
-      '@opennextjs/aws': 3.10.1(patch_hash=d038600b31371c19e392fc0ae26b662c1cd8d3d5cbadc80c84762036b11d9723)(next@16.2.4(react-dom@19.2.5(react@19.2.5))(react@19.2.5))
+      '@opennextjs/aws': 3.10.1(next@16.2.4(react-dom@19.2.5(react@19.2.5))(react@19.2.5))
       cloudflare: 4.5.0
       comment-json: 4.6.2
       enquirer: 2.4.1
