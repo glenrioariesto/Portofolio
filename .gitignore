@@ -55,3 +55,4 @@ server/
 scripts/manage-salaries.ts
 chat.txt
 .wrangler/
+pnpm-workspace.yaml
