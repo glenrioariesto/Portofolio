@@ -34,7 +34,7 @@ export function createScopedDb() {
     client,
     async close() {
       try {
-        await client.end({ timeout: 0 });
+        await client.end({ timeout: 0 }).catch(() => {});
       } catch {
         // Disregard closing errors in serverless cleanup
       }
