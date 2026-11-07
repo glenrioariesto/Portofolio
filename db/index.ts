@@ -29,7 +29,6 @@ export function getDb(): DrizzleDb {
       prepare: false,
       ssl: "require",
       max: 1,
-      idle_timeout: 20,
     });
     _db = drizzle(_client, { schema });
   }
