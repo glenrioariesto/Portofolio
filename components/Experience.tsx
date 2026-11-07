@@ -153,9 +153,12 @@ function matchCategory(project: Project, filterId: string): boolean {
   if (filterId === "edtech") {
     return (
       cat.includes("edtech") ||
+      cat.includes("interactive") ||
+      cat.includes("extension") ||
       title.includes("simulasi") ||
       title.includes("kenangan") ||
-      title.includes("academic")
+      title.includes("academic") ||
+      title.includes("swarm")
     );
   }
   return true;
